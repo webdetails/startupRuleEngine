@@ -308,7 +308,7 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>708</xloc>
+      <xloc>709</xloc>
       <yloc>126</yloc>
       <draw>Y</draw>
       </GUI>

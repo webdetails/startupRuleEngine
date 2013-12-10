@@ -16,7 +16,7 @@
         </parameter>
         <parameter>
             <name>event</name>
-            <default_value>endpoint.Never</default_value>
+            <default_value>endpoint.executeAtLogin</default_value>
             <description/>
         </parameter>
         <parameter>
@@ -137,7 +137,6 @@
   <hop> <from>Get Variables</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>List Endpoints</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>atInit&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>execute Endpoint</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
   <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>atLogin&#x3f;</to><enabled>Y</enabled> </hop>
   <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>atLogout&#x3f;</to><enabled>Y</enabled> </hop>
   <hop> <from>atLogout&#x3f;</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
@@ -149,6 +148,7 @@
   <hop> <from>atLogin&#x3f;</from><to>build log string</to><enabled>Y</enabled> </hop>
   <hop> <from>atLogout&#x3f;</from><to>build log string</to><enabled>Y</enabled> </hop>
   <hop> <from>build log string</from><to>execute Endpoint</to><enabled>Y</enabled> </hop>
+  <hop> <from>execute Endpoint</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Dummy &#x28;do nothing&#x29;</name>
@@ -444,6 +444,32 @@
     </step>
 
   <step>
+    <name>build log string</name>
+    <type>Janino</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>log_string</field_name>
+<formula_string>&#x22;Triggered upon a &#x22; &#x2b; event &#x2b;&#x22; event&#x22;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>693</xloc>
+      <yloc>111</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>execute Endpoint</name>
     <type>JobExecutor</type>
     <description/>
@@ -486,7 +512,7 @@
     <result_files_file_name_field>FileName</result_files_file_name_field>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>840</xloc>
+      <xloc>841</xloc>
       <yloc>110</yloc>
       <draw>Y</draw>
       </GUI>
@@ -518,32 +544,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>252</xloc>
       <yloc>357</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>build log string</name>
-    <type>Janino</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <formula><field_name>log_string</field_name>
-<formula_string>&#x22;Triggered upon a &#x22; &#x2b; event &#x2b;&#x22; event&#x22;</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field/>
-</formula>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>693</xloc>
-      <yloc>111</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

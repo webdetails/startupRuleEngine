@@ -117,8 +117,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>153</xloc>
-      <yloc>157</yloc>
+      <xloc>56</xloc>
+      <yloc>74</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -127,8 +127,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>654</xloc>
-      <yloc>356</yloc>
+      <xloc>756</xloc>
+      <yloc>222</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
@@ -138,8 +138,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>308</xloc>
-      <yloc>362</yloc>
+      <xloc>339</xloc>
+      <yloc>226</yloc>
       </entry>
     <entry>
       <name>execute Job</name>
@@ -173,8 +173,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>474</xloc>
-      <yloc>361</yloc>
+      <xloc>560</xloc>
+      <yloc>359</yloc>
       </entry>
     <entry>
       <name>File Exists</name>
@@ -184,8 +184,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>308</xloc>
-      <yloc>156</yloc>
+      <xloc>174</xloc>
+      <yloc>77</yloc>
       </entry>
     <entry>
       <name>isTransformation&#x3f;</name>
@@ -206,8 +206,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>473</xloc>
-      <yloc>159</yloc>
+      <xloc>174</xloc>
+      <yloc>235</yloc>
       </entry>
     <entry>
       <name>execute Transformation</name>
@@ -241,8 +241,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>647</xloc>
-      <yloc>154</yloc>
+      <xloc>551</xloc>
+      <yloc>83</yloc>
       </entry>
     <entry>
       <name>Write To Log</name>
@@ -254,8 +254,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>791</xloc>
-      <yloc>155</yloc>
+      <xloc>762</xloc>
+      <yloc>86</yloc>
       </entry>
     <entry>
       <name>Write To Log 2</name>
@@ -267,11 +267,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>521</xloc>
-      <yloc>431</yloc>
+      <xloc>764</xloc>
+      <yloc>353</yloc>
       </entry>
     <entry>
-      <name>write to Log file</name>
+      <name>write to Log file &#x28;success&#x29;</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
@@ -302,33 +302,54 @@
             <value>&#x24;&#x7b;filename&#x7d;</value>
             </parameter>            <parameter>            <name>log_string</name>
             <stream_name/>
-            <value>&#x24;&#x7b;log_string&#x7d;</value>
+            <value>&#x24;&#x7b;log_string&#x7d; - SUCCESS</value>
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>567</xloc>
-      <yloc>255</yloc>
+      <xloc>618</xloc>
+      <yloc>219</yloc>
+      </entry>
+    <entry>
+      <name>write to Log file &#x28;failure&#x29;</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;logEndpoint.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>filename</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;filename&#x7d;</value>
+            </parameter>            <parameter>            <name>log_string</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;log_string&#x7d; - FAILED</value>
+            </parameter>      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>490</xloc>
+      <yloc>215</yloc>
       </entry>
   </entries>
   <hops>
-    <hop>
-      <from>execute Job</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>execute Job</from>
-      <to>Abort job</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
     <hop>
       <from>START</from>
       <to>File Exists</to>
@@ -376,24 +397,6 @@
     </hop>
     <hop>
       <from>execute Transformation</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>execute Transformation</from>
-      <to>Abort job</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>execute Transformation</from>
       <to>Write To Log</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -412,7 +415,43 @@
     </hop>
     <hop>
       <from>execute Transformation</from>
-      <to>write to Log file</to>
+      <to>write to Log file &#x28;success&#x29;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>execute Job</from>
+      <to>write to Log file &#x28;success&#x29;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>execute Job</from>
+      <to>write to Log file &#x28;failure&#x29;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>execute Transformation</from>
+      <to>write to Log file &#x28;failure&#x29;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>write to Log file &#x28;failure&#x29;</from>
+      <to>Abort job</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -420,8 +459,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>execute Job</from>
-      <to>write to Log file</to>
+      <from>write to Log file &#x28;success&#x29;</from>
+      <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

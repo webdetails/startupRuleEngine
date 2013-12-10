@@ -11,12 +11,12 @@
     <parameters>
         <parameter>
             <name>cpk.plugin.dir</name>
-            <default_value>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;..&#x2f;</default_value>
+            <default_value>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;..</default_value>
             <description/>
         </parameter>
         <parameter>
             <name>cpk.solution.system.dir</name>
-            <default_value>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;..&#x2f;</default_value>
+            <default_value>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;..</default_value>
             <description/>
         </parameter>
         <parameter>
@@ -26,7 +26,7 @@
         </parameter>
         <parameter>
             <name>log_string</name>
-            <default_value>executed</default_value>
+            <default_value>executed manually</default_value>
             <description/>
         </parameter>
         <parameter>
@@ -151,9 +151,9 @@
   <order>
   <hop> <from>Get Variables</from><to>get endpoint log filename</to><enabled>Y</enabled> </hop>
   <hop> <from>get endpoint log filename</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>Text file output</to><enabled>Y</enabled> </hop>
   <hop> <from>Get System Info</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>Get Variables 2</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>Append log</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Get System Info</name>
@@ -264,8 +264,8 @@
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue/>
- <function>&#x3d;</function>
+ <leftvalue>log_filename</leftvalue>
+ <function>IS NOT NULL</function>
  <rightvalue/>
  </condition>
     </compare>
@@ -278,7 +278,7 @@
     </step>
 
   <step>
-    <name>Text file output</name>
+    <name>Append log</name>
     <type>TextFileOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -288,7 +288,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <separator> &#x3a;&#x3a;</separator>
+    <separator> - </separator>
     <enclosure/>
     <enclosure_forced>N</enclosure_forced>
     <enclosure_fix_disabled>N</enclosure_fix_disabled>
@@ -347,8 +347,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>581</xloc>
-      <yloc>129</yloc>
+      <xloc>622</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -376,6 +376,7 @@
     <main_path>Y</main_path>
     <rename_on_output>Y</rename_on_output>
     <description/>
+       <connector><parent>k_filename</parent><child>k_filename</child></connector>
     </mapping>      </input>
       <output>
     <mapping>    <input_step/>
@@ -402,6 +403,10 @@
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
 <attributes><group><name>DataService</name>
-</group></attributes>
+<attribute><key>name</key>
+<value/>
+</attribute><attribute><key>stepname</key>
+<value/>
+</attribute></group></attributes>
 
 </transformation>
