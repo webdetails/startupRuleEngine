@@ -380,12 +380,12 @@
      },
      {
       "name": "colHeaders",
-      "value": "[\"Endpoint\",\"Description\",\"hidden\",\"hidden\",\"init\",\"login\",\"logout\"]",
+      "value": "[\"Endpoint\",\"Description\",\"hidden\",\"hidden\",\"init\",\"login\",\"logout\",\"Log\"]",
       "type": "Array"
      },
      {
       "name": "colTypes",
-      "value": "[\"string\",\"string\",\"hidden\",\"hidden\",\"checkbox\",\"checkbox\",\"checkbox\"]",
+      "value": "[\"runKettle\",\"string\",\"hidden\",\"hidden\",\"checkbox\",\"checkbox\",\"checkbox\",\"string\"]",
       "type": "colTypesCustom"
      },
      {

@@ -137,16 +137,18 @@
   <hop> <from>Get Variables</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>List Endpoints</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>atInit&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>atInit&#x3f;</from><to>execute Endpoint</to><enabled>Y</enabled> </hop>
   <hop> <from>execute Endpoint</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
-  <hop> <from>atLogin&#x3f;</from><to>execute Endpoint</to><enabled>Y</enabled> </hop>
-  <hop> <from>atLogout&#x3f;</from><to>execute Endpoint</to><enabled>Y</enabled> </hop>
   <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>atLogin&#x3f;</to><enabled>Y</enabled> </hop>
   <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>atLogout&#x3f;</to><enabled>Y</enabled> </hop>
   <hop> <from>atLogout&#x3f;</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>atLogin&#x3f;</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>atInit&#x3f;</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>Modified Java Script Value</to><enabled>Y</enabled> </hop>
+  <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>process Rules</to><enabled>Y</enabled> </hop>
+  <hop> <from>execute Endpoint</from><to>Write to log</to><enabled>N</enabled> </hop>
+  <hop> <from>atInit&#x3f;</from><to>build log string</to><enabled>Y</enabled> </hop>
+  <hop> <from>atLogin&#x3f;</from><to>build log string</to><enabled>Y</enabled> </hop>
+  <hop> <from>atLogout&#x3f;</from><to>build log string</to><enabled>Y</enabled> </hop>
+  <hop> <from>build log string</from><to>execute Endpoint</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Dummy &#x28;do nothing&#x29;</name>
@@ -161,8 +163,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>735</xloc>
-      <yloc>274</yloc>
+      <xloc>843</xloc>
+      <yloc>268</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -194,8 +196,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>238</xloc>
-      <yloc>39</yloc>
+      <xloc>240</xloc>
+      <yloc>66</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -225,8 +227,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>237</xloc>
-      <yloc>128</yloc>
+      <xloc>244</xloc>
+      <yloc>187</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -267,38 +269,8 @@
     </mappings>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>86</xloc>
-      <yloc>122</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Modified Java Script Value</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#xa;for &#x28;var k&#x3d;0&#x3b; k&#x3c;getInputRowMeta&#x28;&#x29;.size&#x28;&#x29;&#x3b; k&#x2b;&#x2b;&#x29; &#x7b; &#x2f;&#x2f;loop through the actual row&#xa; &#xa;  &#x2f;&#x2f; Grab the metadata for this value&#xa;  &#x2f;&#x2f;&#xa;  var valueMeta &#x3d; getInputRowMeta&#x28;&#x29;.getFieldNames&#x28;&#x29;&#x5b;k&#x5d;&#x3b;&#xa; &#xa;  &#x2f;&#x2f;using the IDs instead of &#x22;String&#x22; would make it faster, see API for the IDs&#xa;  &#x2f;&#x2f;&#xa;  if &#x28;valueMeta.startsWith&#x28;&#x22;endpoint.&#x22;&#x29;&#x29; &#x7b; &#x2f;&#x2f;only for String types&#xa;	&#x2f;&#x2f;if &#x28;&#x21;String&#x28;event&#x29;.equals&#x28;row&#x5b;k&#x5d;&#x29;&#x29;&#x7b;&#xa;		filename &#x3d; null&#x3b;&#xa;	&#x2f;&#x2f;&#x7d;&#xa;  &#x7d;&#xa;&#x7d;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>filename</name>
-        <rename>filename</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>Y</replace>
-      </field>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>475</xloc>
-      <yloc>423</yloc>
+      <xloc>83</xloc>
+      <yloc>189</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -316,8 +288,34 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>907</xloc>
-      <yloc>112</yloc>
+      <xloc>1013</xloc>
+      <yloc>109</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write to log</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_detailed</loglevel>
+      <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>0</limitRowsNumber>
+      <logmessage/>
+    <fields>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1024</xloc>
+      <yloc>221</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -333,7 +331,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>execute Endpoint</send_true_to>
+<send_true_to>build log string</send_true_to>
 <send_false_to>Dummy &#x28;do nothing&#x29;</send_false_to>
     <compare>
 <condition>
@@ -374,7 +372,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>execute Endpoint</send_true_to>
+<send_true_to>build log string</send_true_to>
 <send_false_to>Dummy &#x28;do nothing&#x29;</send_false_to>
     <compare>
 <condition>
@@ -415,7 +413,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>execute Endpoint</send_true_to>
+<send_true_to>build log string</send_true_to>
 <send_false_to>Dummy &#x28;do nothing&#x29;</send_false_to>
     <compare>
 <condition>
@@ -465,6 +463,7 @@
     <group_field/>
     <group_time/>
           <parameters>       <variablemapping><variable>filename</variable><field>filename</field><input/></variablemapping>
+       <variablemapping><variable>log_string</variable><field>log_string</field><input/></variablemapping>
     <inherit_all_vars>Y</inherit_all_vars>
     </parameters>
     <execution_result_target_step/>
@@ -487,8 +486,64 @@
     <result_files_file_name_field>FileName</result_files_file_name_field>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>734</xloc>
-      <yloc>113</yloc>
+      <xloc>840</xloc>
+      <yloc>110</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>process Rules</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#xa;for &#x28;var k&#x3d;0&#x3b; k&#x3c;getInputRowMeta&#x28;&#x29;.size&#x28;&#x29;&#x3b; k&#x2b;&#x2b;&#x29; &#x7b; &#x2f;&#x2f;loop through the actual row&#xa; &#xa;  &#x2f;&#x2f; Grab the metadata for this value&#xa;  &#x2f;&#x2f;&#xa;  var valueMeta &#x3d; getInputRowMeta&#x28;&#x29;.getFieldNames&#x28;&#x29;&#x5b;k&#x5d;&#x3b;&#xa; &#xa;  &#x2f;&#x2f;using the IDs instead of &#x22;String&#x22; would make it faster, see API for the IDs&#xa;  &#x2f;&#x2f;&#xa;  if &#x28;valueMeta.startsWith&#x28;&#x22;endpoint.&#x22;&#x29;&#x29; &#x7b; &#x2f;&#x2f;only for String types&#xa;	&#x2f;&#x2f;if &#x28;&#x21;String&#x28;event&#x29;.equals&#x28;row&#x5b;k&#x5d;&#x29;&#x29;&#x7b;&#xa;		filename &#x3d; null&#x3b;&#xa;	&#x2f;&#x2f;&#x7d;&#xa;  &#x7d;&#xa;&#x7d;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>filename</name>
+        <rename>filename</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>252</xloc>
+      <yloc>357</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>build log string</name>
+    <type>Janino</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>log_string</field_name>
+<formula_string>&#x22;Triggered upon a &#x22; &#x2b; event &#x2b;&#x22; event&#x22;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>693</xloc>
+      <yloc>111</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -499,10 +554,6 @@
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
 <attributes><group><name>DataService</name>
-<attribute><key>name</key>
-<value/>
-</attribute><attribute><key>stepname</key>
-<value/>
-</attribute></group></attributes>
+</group></attributes>
 
 </transformation>
