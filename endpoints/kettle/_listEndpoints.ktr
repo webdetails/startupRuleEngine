@@ -236,7 +236,7 @@
  <leftvalue>parameter</leftvalue>
  <function>STARTS WITH</function>
  <rightvalue/>
- <value><name>constant</name><type>String</type><text>endpoint.</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+ <value><name>constant</name><type>String</type><text>cpk.</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -499,7 +499,7 @@
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>executeAtInit</name>
+      </field>      <field>        <name>executeAtStart</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -676,7 +676,7 @@
       <fields>
         <field>
           <field_name>defaultValue</field_name>
-          <key_value>endpoint.executeAtLogin</key_value>
+          <key_value>cpk.executeAtLogin</key_value>
           <target_name>executeAtLogin</target_name>
           <target_type>Boolean</target_type>
           <target_format/>
@@ -690,7 +690,7 @@
           </field>
         <field>
           <field_name>defaultValue</field_name>
-          <key_value>endpoint.executeAtLogout</key_value>
+          <key_value>cpk.executeAtLogout</key_value>
           <target_name>executeAtLogout</target_name>
           <target_type>Boolean</target_type>
           <target_format/>
@@ -704,8 +704,8 @@
           </field>
         <field>
           <field_name>defaultValue</field_name>
-          <key_value>endpoint.executeAtInit</key_value>
-          <target_name>executeAtInit</target_name>
+          <key_value>cpk.executeAtStart</key_value>
+          <target_name>executeAtStart</target_name>
           <target_type>Boolean</target_type>
           <target_format/>
           <target_length>-1</target_length>
@@ -767,10 +767,6 @@
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
 <attributes><group><name>DataService</name>
-<attribute><key>name</key>
-<value/>
-</attribute><attribute><key>stepname</key>
-<value/>
-</attribute></group></attributes>
+</group></attributes>
 
 </transformation>

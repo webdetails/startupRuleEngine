@@ -10,13 +10,18 @@
     <directory>&#x2f;</directory>
     <parameters>
         <parameter>
+            <name>cpk.executeAtStart</name>
+            <default_value>true</default_value>
+            <description/>
+        </parameter>
+        <parameter>
             <name>cpk.solution.system.dir</name>
             <default_value>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;..&#x2f;..&#x2f;</default_value>
             <description/>
         </parameter>
         <parameter>
             <name>event</name>
-            <default_value>endpoint.executeAtLogin</default_value>
+            <default_value>cpk.executeAtStart</default_value>
             <description/>
         </parameter>
         <parameter>
@@ -136,19 +141,19 @@
   <order>
   <hop> <from>Get Variables</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>List Endpoints</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>atInit&#x3f;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>atStart&#x3f;</to><enabled>Y</enabled> </hop>
   <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>atLogin&#x3f;</to><enabled>Y</enabled> </hop>
   <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>atLogout&#x3f;</to><enabled>Y</enabled> </hop>
   <hop> <from>atLogout&#x3f;</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>atLogin&#x3f;</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>atInit&#x3f;</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>atStart&#x3f;</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>process Rules</to><enabled>Y</enabled> </hop>
-  <hop> <from>execute Endpoint</from><to>Write to log</to><enabled>N</enabled> </hop>
-  <hop> <from>atInit&#x3f;</from><to>build log string</to><enabled>Y</enabled> </hop>
+  <hop> <from>atStart&#x3f;</from><to>build log string</to><enabled>Y</enabled> </hop>
   <hop> <from>atLogin&#x3f;</from><to>build log string</to><enabled>Y</enabled> </hop>
   <hop> <from>atLogout&#x3f;</from><to>build log string</to><enabled>Y</enabled> </hop>
   <hop> <from>build log string</from><to>execute Endpoint</to><enabled>Y</enabled> </hop>
   <hop> <from>execute Endpoint</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
+  <hop> <from>List Endpoints</from><to>Write to log</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Dummy &#x28;do nothing&#x29;</name>
@@ -237,7 +242,7 @@
     <name>List Endpoints</name>
     <type>SimpleMapping</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
@@ -305,58 +310,38 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <loglevel>log_level_detailed</loglevel>
+      <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
       <limitRows>N</limitRows>
       <limitRowsNumber>0</limitRowsNumber>
-      <logmessage/>
+      <logmessage>process Rules caught event&#x3a; &#x24;&#x7b;event&#x7d;</logmessage>
     <fields>
+      <field>
+        <name>endpointName</name>
+        </field>
+      <field>
+        <name>description</name>
+        </field>
+      <field>
+        <name>extendedDescription</name>
+        </field>
+      <field>
+        <name>filename</name>
+        </field>
+      <field>
+        <name>executeAtStart</name>
+        </field>
+      <field>
+        <name>executeAtLogin</name>
+        </field>
+      <field>
+        <name>executeAtLogout</name>
+        </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1024</xloc>
-      <yloc>221</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>atInit&#x3f;</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>build log string</send_true_to>
-<send_false_to>Dummy &#x28;do nothing&#x29;</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>executeAtInit</leftvalue>
-   <function>&#x3d;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>AND</operator>
-   <leftvalue>event</leftvalue>
-   <function>&#x3d;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>endpoint.executeAtInit</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>461</xloc>
-      <yloc>104</yloc>
+      <xloc>162</xloc>
+      <yloc>263</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -390,7 +375,7 @@
    <leftvalue>event</leftvalue>
    <function>&#x3d;</function>
    <rightvalue/>
-   <value><name>constant</name><type>String</type><text>endpoint.executeAtLogin</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+   <value><name>constant</name><type>String</type><text>cpk.executeAtLogin</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
   </conditions>
  </condition>
     </compare>
@@ -431,7 +416,7 @@
    <leftvalue>event</leftvalue>
    <function>&#x3d;</function>
    <rightvalue/>
-   <value><name>constant</name><type>String</type><text>endpoint.executeAtLogout</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+   <value><name>constant</name><type>String</type><text>cpk.executeAtLogout</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
   </conditions>
  </condition>
     </compare>
@@ -439,6 +424,47 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>461</xloc>
       <yloc>268</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>atStart&#x3f;</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>build log string</send_true_to>
+<send_false_to>Dummy &#x28;do nothing&#x29;</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>executeAtStart</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <leftvalue>event</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>cpk.executeAtStart</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>461</xloc>
+      <yloc>104</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -554,6 +580,10 @@
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
 <attributes><group><name>DataService</name>
-</group></attributes>
+<attribute><key>name</key>
+<value/>
+</attribute><attribute><key>stepname</key>
+<value/>
+</attribute></group></attributes>
 
 </transformation>

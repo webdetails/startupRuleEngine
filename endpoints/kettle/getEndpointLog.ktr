@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>listEndpoints</name>
+    <name>get Endpoint Log</name>
     <description>Clean Transformation</description>
     <extended_description/>
     <trans_version/>
@@ -11,22 +11,17 @@
     <parameters>
         <parameter>
             <name>cpk.plugin.dir</name>
-            <default_value>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;..&#x2f;</default_value>
+            <default_value>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;..</default_value>
             <description/>
         </parameter>
         <parameter>
             <name>cpk.solution.system</name>
-            <default_value>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;..&#x2f;</default_value>
+            <default_value>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;..</default_value>
             <description/>
         </parameter>
         <parameter>
-            <name>endpoint.executeAtLogin</name>
-            <default_value>N</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>endpoint.executeAtStart</name>
-            <default_value>Y</default_value>
+            <name>filename</name>
+            <default_value>&#x24;&#x7b;cpk.solution.system&#x7d;&#x2f;startupRules&#x2f;rules&#x2f;log.kjb</default_value>
             <description/>
         </parameter>
         <parameter>
@@ -149,51 +144,10 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Read endpoint info</from><to>get Endpoint Log</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Variables</from><to>Read endpoint info</to><enabled>Y</enabled> </hop>
-  <hop> <from>get Endpoint Log</from><to>Group by</to><enabled>Y</enabled> </hop>
-  <hop> <from>Group by</from><to>Sort rows</to><enabled>Y</enabled> </hop>
-  <hop> <from>Sort rows</from><to>Merge Join</to><enabled>Y</enabled> </hop>
-  <hop> <from>Read endpoint info</from><to>Sort rows 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Sort rows 2</from><to>Merge Join</to><enabled>Y</enabled> </hop>
-  <hop> <from>Merge Join</from><to>Select values</to><enabled>Y</enabled> </hop>
   <hop> <from>Select values</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
-  <hop> <from>Read endpoint info</from><to>Add constants</to><enabled>N</enabled> </hop>
-  <hop> <from>Add constants</from><to>Sort rows</to><enabled>N</enabled> </hop>
+  <hop> <from>Get Variables</from><to>Simple Mapping &#x28;sub-transformation&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Simple Mapping &#x28;sub-transformation&#x29;</from><to>Select values</to><enabled>Y</enabled> </hop>
   </order>
-  <step>
-    <name>Add constants</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>last_log</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Never</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>289</xloc>
-      <yloc>210</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
   <step>
     <name>Get Variables</name>
     <type>GetVariable</type>
@@ -207,8 +161,8 @@
            </partitioning>
     <fields>
       <field>
-        <name>rules_folder</name>
-        <variable>&#x24;&#x7b;rules.dir&#x7d;</variable>
+        <name>filename</name>
+        <variable>&#x24;&#x7b;filename&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -221,76 +175,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>78</xloc>
-      <yloc>131</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Group by</name>
-    <type>GroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <all_rows>N</all_rows>
-      <ignore_aggregate>N</ignore_aggregate>
-      <field_ignore/>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>grp</prefix>
-      <add_linenr>N</add_linenr>
-      <linenr_fieldname/>
-      <give_back_row>N</give_back_row>
-      <group>
-        <field>
-          <name>filename</name>
-        </field>
-      </group>
-      <fields>
-        <field>
-          <aggregate>last_log</aggregate>
-          <subject>log_line</subject>
-          <type>LAST_INCL_NULL</type>
-          <valuefield/>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>460</xloc>
-      <yloc>295</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Merge Join</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<join_type>INNER</join_type>
-<step1>Sort rows 2</step1>
-<step2>Sort rows</step2>
-    <keys_1>
-      <key>filename</key>
-    </keys_1>
-    <keys_2>
-      <key>filename</key>
-    </keys_2>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>456</xloc>
-      <yloc>127</yloc>
+      <xloc>367</xloc>
+      <yloc>228</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -308,58 +194,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>709</xloc>
-      <yloc>126</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Read endpoint info</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <specification_method>filename</specification_method>
-    <trans_object_id/>
-    <trans_name/>
-    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;_listEndpoints.ktr</filename>
-    <directory_path/>
-    <mappings>
-      <input>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>Y</rename_on_output>
-    <description/>
-    </mapping>      </input>
-      <output>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>N</rename_on_output>
-    <description/>
-       <connector><parent>endpointName</parent><child>endpointName</child></connector>
-       <connector><parent>description</parent><child>description</child></connector>
-       <connector><parent>extendedDescription</parent><child>extendedDescription</child></connector>
-       <connector><parent>filename</parent><child>filename</child></connector>
-       <connector><parent>executeAtInit</parent><child>executeAtInit</child></connector>
-       <connector><parent>executeAtLogin</parent><child>executeAtLogin</child></connector>
-       <connector><parent>executeAtLogout</parent><child>executeAtLogout</child></connector>
-    </mapping>      </output>
-          <parameters>       <variablemapping><variable>folder</variable><input>&#x24;&#x7b;rules.dir&#x7d;</input></variablemapping>
-    <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
-    </mappings>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>205</xloc>
-      <yloc>124</yloc>
+      <xloc>778</xloc>
+      <yloc>225</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -375,15 +211,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>      <field>        <name>endpointName</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>description</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>extendedDescription</name>
+    <fields>      <field>        <name>log_line</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -391,101 +219,17 @@
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>executeAtStart</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>executeAtLogin</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>executeAtLogout</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>last_log</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>574</xloc>
-      <yloc>126</yloc>
+      <xloc>656</xloc>
+      <yloc>223</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Sort rows</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>filename</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>455</xloc>
-      <yloc>205</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Sort rows 2</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>filename</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>363</xloc>
-      <yloc>126</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>get Endpoint Log</name>
+    <name>Simple Mapping &#x28;sub-transformation&#x29;</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -515,16 +259,14 @@
     <main_path>Y</main_path>
     <rename_on_output>N</rename_on_output>
     <description/>
-       <connector><parent>k_filename</parent><child>filename</child></connector>
-       <connector><parent>log_line</parent><child>log_line</child></connector>
     </mapping>      </output>
           <parameters>    <inherit_all_vars>Y</inherit_all_vars>
     </parameters>
     </mappings>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>204</xloc>
-      <yloc>299</yloc>
+      <xloc>516</xloc>
+      <yloc>220</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -535,6 +277,10 @@
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
 <attributes><group><name>DataService</name>
-</group></attributes>
+<attribute><key>name</key>
+<value/>
+</attribute><attribute><key>stepname</key>
+<value/>
+</attribute></group></attributes>
 
 </transformation>

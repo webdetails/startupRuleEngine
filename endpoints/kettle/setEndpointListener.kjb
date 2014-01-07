@@ -172,7 +172,7 @@
             <value>&#x24;&#x7b;filename&#x7d;</value>
             </parameter>            <parameter>            <name>newParams</name>
             <stream_name/>
-            <value>endpoint.&#x24;&#x7b;event&#x7d;,&#x24;&#x7b;value&#x7d;,&#x24;&#x7b;description&#x7d;&#x3b;</value>
+            <value>cpk.&#x24;&#x7b;event&#x7d;,&#x24;&#x7b;value&#x7d;,&#x24;&#x7b;description&#x7d;&#x3b;</value>
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
