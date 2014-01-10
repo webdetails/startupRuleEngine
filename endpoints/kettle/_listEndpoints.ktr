@@ -272,7 +272,7 @@
     <limit>0</limit>
     <file>
       <name>&#x24;&#x7b;rules.dir&#x7d;</name>
-      <filemask>&#x5b;a-zA-Z&#x5d;&#x2b;.&#x2a;&#x5c;.k.&#x2a;</filemask>
+      <filemask>.&#x2a;&#x5c;.&#x28;ktr&#x7c;kjb&#x29;</filemask>
       <exclude_filemask/>
       <file_required>N</file_required>
       <include_subfolders>Y</include_subfolders>
@@ -767,6 +767,10 @@
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
 <attributes><group><name>DataService</name>
-</group></attributes>
+<attribute><key>name</key>
+<value/>
+</attribute><attribute><key>stepname</key>
+<value/>
+</attribute></group></attributes>
 
 </transformation>

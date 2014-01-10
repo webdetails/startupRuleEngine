@@ -13,12 +13,22 @@
     <parameters>
         <parameter>
             <name>filename</name>
-            <default_value>&#x2f;Users&#x2f;carlos&#x2f;biserver-ce&#x2f;pentaho-solutions&#x2f;system&#x2f;startupRules&#x2f;rules&#x2f;log.kjb</default_value>
+            <default_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;..&#x2f;..&#x2f;startupRules&#x2f;rules&#x2f;log.kjb</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>log_filename2</name>
+            <default_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;..&#x2f;..&#x2f;startupRules&#x2f;logs&#x2f;log.kjb</default_value>
             <description/>
         </parameter>
         <parameter>
             <name>log_string</name>
             <default_value>Manual execution</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>logs.dir</name>
+            <default_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;..&#x2f;..&#x2f;startupRules&#x2f;logs</default_value>
             <description/>
         </parameter>
     </parameters>
@@ -127,8 +137,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>756</xloc>
-      <yloc>222</yloc>
+      <xloc>829</xloc>
+      <yloc>265</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
@@ -138,8 +148,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>339</xloc>
-      <yloc>226</yloc>
+      <xloc>411</xloc>
+      <yloc>75</yloc>
       </entry>
     <entry>
       <name>execute Job</name>
@@ -152,29 +162,29 @@
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
+      <set_logfile>Y</set_logfile>
+      <logfile>&#x24;&#x7b;log_filename&#x7d;</logfile>
       <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
+      <loglevel>Rowlevel</loglevel>
       <slave_server_name/>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <expand_remote_job>N</expand_remote_job>
       <create_parent_folder>N</create_parent_folder>
       <pass_export>N</pass_export>
-      <force_separate_logging>N</force_separate_logging>
+      <force_separate_logging>Y</force_separate_logging>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
             <parameter>            <name>filename</name>
             <stream_name>filename</stream_name>
             <value/>
-            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
+            </parameter>      </parameters>      <set_append_logfile>Y</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>560</xloc>
-      <yloc>359</yloc>
+      <xloc>633</xloc>
+      <yloc>402</yloc>
       </entry>
     <entry>
       <name>File Exists</name>
@@ -184,8 +194,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>174</xloc>
-      <yloc>77</yloc>
+      <xloc>193</xloc>
+      <yloc>74</yloc>
       </entry>
     <entry>
       <name>isTransformation&#x3f;</name>
@@ -206,8 +216,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>174</xloc>
-      <yloc>235</yloc>
+      <xloc>414</xloc>
+      <yloc>267</yloc>
       </entry>
     <entry>
       <name>execute Transformation</name>
@@ -220,55 +230,55 @@
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
+      <set_logfile>Y</set_logfile>
+      <logfile>&#x24;&#x7b;log_filename&#x7d;</logfile>
       <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
+      <loglevel>Rowlevel</loglevel>
       <slave_server_name/>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <expand_remote_job>N</expand_remote_job>
       <create_parent_folder>N</create_parent_folder>
       <pass_export>N</pass_export>
-      <force_separate_logging>N</force_separate_logging>
+      <force_separate_logging>Y</force_separate_logging>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
             <parameter>            <name>filename</name>
             <stream_name>filename</stream_name>
             <value/>
-            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
+            </parameter>      </parameters>      <set_append_logfile>Y</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>551</xloc>
-      <yloc>83</yloc>
+      <xloc>623</xloc>
+      <yloc>127</yloc>
       </entry>
     <entry>
       <name>Write To Log</name>
       <description/>
       <type>WRITE_TO_LOG</type>
-      <logmessage/>
+      <logmessage>Wrote to log file &#x24;&#x7b;log_filename&#x7d;</logmessage>
       <loglevel>Basic</loglevel>
       <logsubject>executeEndpoint &#x28;transformation&#x29;</logsubject>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>762</xloc>
-      <yloc>86</yloc>
+      <xloc>835</xloc>
+      <yloc>129</yloc>
       </entry>
     <entry>
       <name>Write To Log 2</name>
       <description/>
       <type>WRITE_TO_LOG</type>
-      <logmessage/>
+      <logmessage>Wrote to log file &#x24;&#x7b;log_filename&#x7d;</logmessage>
       <loglevel>Basic</loglevel>
       <logsubject>executeEndpoint &#x28;Job&#x29;</logsubject>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>764</xloc>
-      <yloc>353</yloc>
+      <xloc>837</xloc>
+      <yloc>396</yloc>
       </entry>
     <entry>
       <name>write to Log file &#x28;success&#x29;</name>
@@ -276,7 +286,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;logEndpoint.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;_logEndpoint.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -297,17 +307,17 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-            <parameter>            <name>filename</name>
+            <parameter>            <name>log_filename</name>
             <stream_name/>
-            <value>&#x24;&#x7b;filename&#x7d;</value>
+            <value>&#x24;&#x7b;log_filename&#x7d;</value>
             </parameter>            <parameter>            <name>log_string</name>
             <stream_name/>
             <value>&#x24;&#x7b;log_string&#x7d; - SUCCESS</value>
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>618</xloc>
-      <yloc>219</yloc>
+      <xloc>691</xloc>
+      <yloc>262</yloc>
       </entry>
     <entry>
       <name>write to Log file &#x28;failure&#x29;</name>
@@ -315,7 +325,46 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;logEndpoint.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;_logEndpoint.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>log_filename</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;log_filename&#x7d;</value>
+            </parameter>            <parameter>            <name>log_string</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;log_string&#x7d; - FAILED</value>
+            </parameter>      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>564</xloc>
+      <yloc>258</yloc>
+      </entry>
+    <entry>
+      <name>get Endpoint Log Filename</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;_getLogFilename.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -339,14 +388,69 @@
             <parameter>            <name>filename</name>
             <stream_name/>
             <value>&#x24;&#x7b;filename&#x7d;</value>
-            </parameter>            <parameter>            <name>log_string</name>
+            </parameter>            <parameter>            <name>rules.dir</name>
             <stream_name/>
-            <value>&#x24;&#x7b;log_string&#x7d; - FAILED</value>
+            <value/>
+            </parameter>            <parameter>            <name>logs.dir</name>
+            <stream_name/>
+            <value/>
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>490</xloc>
-      <yloc>215</yloc>
+      <xloc>190</xloc>
+      <yloc>172</yloc>
+      </entry>
+    <entry>
+      <name>write to Log file</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;_logEndpoint.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>log_filename</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;log_filename&#x7d;</value>
+            </parameter>            <parameter>            <name>log_string</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;log_string&#x7d; - BEGIN</value>
+            </parameter>      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>195</xloc>
+      <yloc>271</yloc>
+      </entry>
+    <entry>
+      <name>Write To Log 3</name>
+      <description/>
+      <type>WRITE_TO_LOG</type>
+      <logmessage>Writing to log file &#x24;&#x7b;log_filename&#x7d;</logmessage>
+      <loglevel>Minimal</loglevel>
+      <logsubject/>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>181</xloc>
+      <yloc>396</yloc>
       </entry>
   </entries>
   <hops>
@@ -380,15 +484,6 @@
     <hop>
       <from>isTransformation&#x3f;</from>
       <to>execute Transformation</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>File Exists</from>
-      <to>isTransformation&#x3f;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -465,6 +560,42 @@
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>File Exists</from>
+      <to>get Endpoint Log Filename</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>get Endpoint Log Filename</from>
+      <to>write to Log file</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>write to Log file</from>
+      <to>isTransformation&#x3f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>write to Log file</from>
+      <to>Write To Log 3</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
       <unconditional>Y</unconditional>
     </hop>
   </hops>
