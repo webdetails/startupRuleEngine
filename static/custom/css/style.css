@@ -71,18 +71,36 @@ border: 0;
 
 /* Window Background */
 body{
+  font-family: 'OpenSansRegular', 'Helvetica Neue', Arial, sans-serif;
+  background: #ebedee;
+  padding-top: 50px;
+  overflow-y: scroll;
 }
 /* Dashboard Background / Blueprint Container */
 div.container  {
-
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
+div.container *{
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 
 /* =============================================================================
    2. HEADER 
    ========================================================================== */
 .WDheader {
-  font-size: 16px;
-  padding: 10px 0 10px 0;
+  padding: 5px 0 5px 0;
+
+background: #EBEDEE;
+text-align: left;
+font-size: 25px;
+color: #333E48;
+font-family: 'OpenSansLight';
+
 }
 
 .WDh1 {}
@@ -426,6 +444,8 @@ div.container  {
 }
 
 button {
+cursor: pointer;
+border: none;
 }
 .no-svg   button {
 }
@@ -584,5 +604,182 @@ button span {
    ========================================================================== */
 
 
+.sre-usage kbd{
+  font-family: 'Droid Sans', monospace;
+  font-weight: bold;
+}
 
 
+.refreshButton button{
+  height:35px;
+  width:34px;
+  background: url('../img/refresh.png') -1px 50% no-repeat;
+  -webkit-border-radius:2px;
+  -moz-border-radius:2px;
+  -o-border-radius:2px;
+  -ms-border-radius:2px;
+  border-radius:2px;
+  float:right;
+}
+.refreshButton button:hover{
+  background-position: -36px 50%;
+}
+
+
+
+ .dataTables_wrapper {
+  min-height: 1px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+ .dataTables_wrapper .dataTables_filter{
+  display: none;
+}
+
+table{
+  border: none;
+  max-width: 100%;
+  min-width: 100%;
+  padding-top: 10px;
+  border-collapse:separate;
+  border-spacing:0px;
+  margin-top: 20px;
+}
+table tr{
+  background: #EBEDEE;
+  height: 40px;
+}
+
+/* Header */
+thead tr {
+  height: 30px;
+}
+thead th {
+  background: none;
+  color: #333e48;
+  font-size: 13px;
+  text-align: left !important;
+  font-weight: normal;
+  vertical-align: bottom;
+  font-family: 'OpenSansSemibold';
+  padding-bottom: 12px;
+  padding-top: 12px;
+  padding-left: 10px;
+}
+thead th:last-child {
+  text-align: center;
+}
+
+/* Body */
+tbody tr:nth-child(even) {
+  background: #EBEDEE;
+}
+tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+tbody td{
+  text-align: left;
+  color: #333e48;
+  font-size: 13px;
+  padding: 0px;
+  padding-left: 10px;
+  font-family: 'Open Sans';
+}
+tbody td:last-child {
+  text-align: center;
+  border-right: none;
+}
+
+tr.even td.sorting_1 {
+  background: none !important;
+}
+
+tr.odd td.sorting_1 {
+  background: none !important;
+}
+
+
+.sorting,
+.sorting_asc,
+.sorting_desc {
+  background: none;
+  cursor: pointer;
+}
+
+.sorting:hover {
+  background: url('../img/sort_both.png') no-repeat center right #fefefe;
+}
+
+.sorting_asc:hover {
+  background: url('../img/sort_asc.png') no-repeat center right #fefefe;
+}
+
+.sorting_desc:hover {
+  background: url('../img/sort_desc.png') no-repeat center right #fefefe;
+}
+
+
+.runKettle span
+{
+line-height: 32px;
+}
+
+.runEndpointButton,
+.runKettleAddIn
+{
+  background-image: url('../img/play.png');
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  background-color: transparent;
+  width: 32px;
+  height:32px;
+  float: right;
+  display: inline;
+}
+.runEndpointButton:hover,
+.runKettleAddIn:hover
+{
+  background-position: -32px 0px;
+}
+
+th.checkbox
+{
+  text-align:center;
+}
+
+
+.checkBoxAddIn.checked,
+.checkBoxAddIn.unchecked
+{
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  background-color: transparent;
+  width: 30px;
+  height:30px;
+  border:0;
+}
+.checkBoxAddIn.checked
+{
+  background-image: url('../img/checkbox_checked.png');
+}
+.checkBoxAddIn.unchecked
+{
+  background-image: url('../img/checkbox.png');
+}
+
+
+.executionStatus{
+  margin-left: auto;
+  margin-right:auto;
+}
+th.executionStatus{
+  text-align:center;
+}
+.executionStatus.executionStatusSuccess
+{
+  color: green;
+}
+.executionStatus.executionStatusFailed
+{
+  color: red;
+}
