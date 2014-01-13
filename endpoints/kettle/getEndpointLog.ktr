@@ -15,23 +15,23 @@
             <description/>
         </parameter>
         <parameter>
-            <name>cpk.solution.system</name>
+            <name>cpk.solution.system.dir</name>
             <default_value>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;..</default_value>
             <description/>
         </parameter>
         <parameter>
             <name>filename</name>
-            <default_value>&#x24;&#x7b;cpk.solution.system&#x7d;&#x2f;startupRules&#x2f;rules&#x2f;log.kjb</default_value>
+            <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;startupRules&#x2f;rules&#x2f;log.kjb</default_value>
             <description/>
         </parameter>
         <parameter>
             <name>logs.dir</name>
-            <default_value>&#x24;&#x7b;cpk.solution.system&#x7d;&#x2f;startupRules&#x2f;log</default_value>
+            <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;startupRules&#x2f;log</default_value>
             <description/>
         </parameter>
         <parameter>
             <name>rules.dir</name>
-            <default_value>&#x24;&#x7b;cpk.solution.system&#x7d;&#x2f;startupRules&#x2f;rules</default_value>
+            <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;startupRules&#x2f;rules</default_value>
             <description/>
         </parameter>
     </parameters>
@@ -146,7 +146,9 @@
   <order>
   <hop> <from>Select values</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
   <hop> <from>Get Variables</from><to>Simple Mapping &#x28;sub-transformation&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Simple Mapping &#x28;sub-transformation&#x29;</from><to>Select values</to><enabled>Y</enabled> </hop>
+  <hop> <from>Sort rows</from><to>Select values</to><enabled>Y</enabled> </hop>
+  <hop> <from>Simple Mapping &#x28;sub-transformation&#x29;</from><to>Add sequence</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add sequence</from><to>Sort rows</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Get Variables</name>
@@ -215,14 +217,10 @@
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>filename</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>656</xloc>
+      <xloc>669</xloc>
       <yloc>223</yloc>
       <draw>Y</draw>
       </GUI>
@@ -232,7 +230,7 @@
     <name>Simple Mapping &#x28;sub-transformation&#x29;</name>
     <type>SimpleMapping</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
@@ -260,13 +258,78 @@
     <rename_on_output>N</rename_on_output>
     <description/>
     </mapping>      </output>
-          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
+          <parameters>       <variablemapping><variable>logs.dir</variable><input>&#x24;&#x7b;logs.dir&#x7d;</input></variablemapping>
+       <variablemapping><variable>rules.dir</variable><input>&#x24;&#x7b;rules.dir&#x7d;</input></variablemapping>
+    <inherit_all_vars>Y</inherit_all_vars>
     </parameters>
     </mappings>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>516</xloc>
-      <yloc>220</yloc>
+      <xloc>489</xloc>
+      <yloc>222</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort rows</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>row</name>
+        <ascending>N</ascending>
+        <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>610</xloc>
+      <yloc>117</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Add sequence</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <valuename>row</valuename>
+      <use_database>N</use_database>
+      <connection/>
+      <schema/>
+      <seqname>SEQ_</seqname>
+      <use_counter>Y</use_counter>
+      <counter_name/>
+      <start_at>1</start_at>
+      <increment_by>1</increment_by>
+      <max_value>99999999999999</max_value>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>548</xloc>
+      <yloc>118</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -277,10 +340,6 @@
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
 <attributes><group><name>DataService</name>
-<attribute><key>name</key>
-<value/>
-</attribute><attribute><key>stepname</key>
-<value/>
-</attribute></group></attributes>
+</group></attributes>
 
 </transformation>

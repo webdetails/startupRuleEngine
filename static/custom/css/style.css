@@ -666,9 +666,11 @@ thead th {
   padding-top: 12px;
   padding-left: 10px;
 }
+
 thead th:last-child {
   text-align: center;
 }
+
 
 /* Body */
 tbody tr:nth-child(even) {
@@ -745,8 +747,14 @@ line-height: 32px;
 th.checkbox
 {
   text-align:center;
+  /* padding-left:0; */
+  /* padding-right:0; */
 }
 
+th[colspan].checkbox{
+  font-weight: lighter;
+  padding-bottom: 0;
+}
 
 .checkBoxAddIn.checked,
 .checkBoxAddIn.unchecked
@@ -773,7 +781,7 @@ th.checkbox
   margin-right:auto;
 }
 th.executionStatus{
-  text-align:center;
+  /* text-align:center; */
 }
 .executionStatus.executionStatusSuccess
 {
@@ -782,4 +790,9 @@ th.executionStatus{
 .executionStatus.executionStatusFailed
 {
   color: red;
+}
+
+.popupComponent
+{
+  /* border-width: 2px; */
 }

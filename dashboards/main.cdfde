@@ -545,6 +545,44 @@
       "type": "String"
      }
     ]
+   },
+   {
+    "id": "252f69ad-5303-624f-dc66-401589a6b1ed",
+    "type": "LayoutRow",
+    "typeDesc": "Row",
+    "parent": "def96af9-98cf-a8ae-2645-1a3e9582416b",
+    "properties": [
+     {
+      "name": "name",
+      "value": "popupObj",
+      "type": "Id"
+     },
+     {
+      "name": "height",
+      "value": "500",
+      "type": "Integer"
+     },
+     {
+      "name": "backgroundColor",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "roundCorners",
+      "value": "",
+      "type": "RoundCorners"
+     },
+     {
+      "name": "textAlign",
+      "value": "",
+      "type": "TextAlign"
+     },
+     {
+      "name": "cssClass",
+      "value": "",
+      "type": "String"
+     }
+    ]
    }
   ]
  },
@@ -591,16 +629,6 @@
       "type": "JavaScript"
      },
      {
-      "name": "colSortable",
-      "value": "[]",
-      "type": "Array"
-     },
-     {
-      "name": "expandParameters",
-      "value": "[]",
-      "type": "ValuesArray"
-     },
-     {
       "name": "parameters",
       "value": "[]",
       "type": "ValuesArray"
@@ -622,18 +650,18 @@
      },
      {
       "name": "colWidths",
+      "value": "[null,null,\"0\",\"0\",\"50\",\"50\",\"50\"]",
+      "type": "Array"
+     },
+     {
+      "name": "colSortable",
       "value": "[]",
       "type": "Array"
      },
      {
-      "name": "lengthChange",
-      "value": "true",
-      "type": "Boolean"
-     },
-     {
-      "name": "expandOnClick",
-      "value": "false",
-      "type": "Boolean"
+      "name": "expandParameters",
+      "value": "[]",
+      "type": "ValuesArray"
      },
      {
       "name": "paginate",
@@ -659,6 +687,16 @@
       "name": "displayLength",
       "value": "",
       "type": "Integer"
+     },
+     {
+      "name": "lengthChange",
+      "value": "true",
+      "type": "Boolean"
+     },
+     {
+      "name": "expandOnClick",
+      "value": "false",
+      "type": "Boolean"
      },
      {
       "name": "colSearchable",
@@ -732,7 +770,7 @@
      },
      {
       "name": "postExecution",
-      "value": "function f(){\n    var myself= this,\n    checkbox_str = 'Mark/unmark this Kettle job/transformation for execution at the next ',\n    tooltips = {\n        'td.column0 span': 'Name of the endpoint to run',\n        'td.column0 button': 'Run this Kettle job/transformation now',\n        'td.column4 .checkBoxAddIn': checkbox_str + 'server start up',\n        'td.column5 .checkBoxAddIn': checkbox_str + 'user log in',\n        'td.column6 .checkBoxAddIn': checkbox_str + 'user log out'\n    };\n    _.each(tooltips, function(title, key){ \n        myself.placeholder(key).attr('title', title);\n    });\n    this.placeholder().tooltip();\n\n}",
+      "value": "function f(){\n    var myself= this,\n    checkbox_str = 'Mark/unmark this Kettle job/transformation for execution at the next ',\n    tooltips = {\n        'td.column0 span': 'Name of the endpoint to run',\n        'td.column0 button': 'Run this Kettle job/transformation now',\n        'td.column4 .checkBoxAddIn': checkbox_str + 'server start up',\n        'td.column5 .checkBoxAddIn': checkbox_str + 'user log in',\n        'td.column6 .checkBoxAddIn': checkbox_str + 'user log out'\n    };\n    _.each(tooltips, function(title, key){ \n        myself.placeholder(key).attr('title', title);\n    });\n    this.placeholder().tooltip();\n    \n    var extra_row = $('<tr/>');\n    extra_row.append($('<th/>').attr('colspan', 2));\n    extra_row.append($('<th/>').attr('colspan', 3).text('Run service at:').addClass('checkbox'));\n    extra_row.append($('<th/>').attr('colspan', 2));\n    this.placeholder('thead').prepend(extra_row);\n\n}",
       "type": "JavaScript"
      },
      {
@@ -851,6 +889,84 @@
     ]
    },
    {
+    "id": "3a5f1b75-f0ca-d7bf-d073-5111926ef3b0",
+    "type": "Componentspopup",
+    "typeDesc": "Popup Component",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "value": "popupComponent",
+      "type": "Id"
+     },
+     {
+      "name": "listeners",
+      "value": "[]",
+      "type": "Listeners"
+     },
+     {
+      "name": "gravity",
+      "value": "S",
+      "type": "Gravity"
+     },
+     {
+      "name": "parameters",
+      "value": "[]",
+      "type": "ValuesArray"
+     },
+     {
+      "name": "priority",
+      "value": 5,
+      "type": "Integer"
+     },
+     {
+      "name": "draggable",
+      "value": "true",
+      "type": "Boolean"
+     },
+     {
+      "name": "horizontalScroll",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "verticalScroll",
+      "value": "true",
+      "type": "Boolean"
+     },
+     {
+      "name": "closeOnClickOutside",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "htmlObject",
+      "value": "${p:popupObj}",
+      "type": "HtmlObject"
+     },
+     {
+      "name": "executeAtStart",
+      "value": "true",
+      "type": "Boolean"
+     },
+     {
+      "name": "preExecution",
+      "value": "",
+      "type": "JavaScript"
+     },
+     {
+      "name": "postExecution",
+      "value": "",
+      "type": "JavaScript"
+     },
+     {
+      "name": "tooltip",
+      "value": "",
+      "type": "Html"
+     }
+    ]
+   },
+   {
     "id": "GENERIC",
     "name": "Generic",
     "type": "Label",
@@ -873,6 +989,34 @@
      {
       "name": "name",
       "value": "refreshEvent",
+      "type": "Id"
+     },
+     {
+      "name": "propertyValue",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "parameterViewRole",
+      "value": "unused",
+      "type": "parameterViewRoleCustom"
+     },
+     {
+      "name": "bookmarkable",
+      "value": "false",
+      "type": "Boolean"
+     }
+    ]
+   },
+   {
+    "id": "e31a53c6-9bb0-4788-4106-0f613e238042",
+    "type": "ComponentsParameter",
+    "typeDesc": "Simple parameter",
+    "parent": "GENERIC",
+    "properties": [
+     {
+      "name": "name",
+      "value": "popupParam",
       "type": "Id"
      },
      {

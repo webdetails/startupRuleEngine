@@ -154,14 +154,9 @@
   <hop> <from>Select values</from><to>Join Rows</to><enabled>Y</enabled> </hop>
   <hop> <from>Join Rows &#x28;cartesian product&#x29; 2</from><to>Get Filename</to><enabled>Y</enabled> </hop>
   <hop> <from>get log filenames</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get logs folder</from><to>Merge Join</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Variables</from><to>Merge Join</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Variables</from><to>Get rules folder</to><enabled>Y</enabled> </hop>
-  <hop> <from>Merge Join</from><to>Select values 3</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get rules folder</from><to>Merge Join 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Merge Join 2</from><to>Select values 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Variables</from><to>Merge Join 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Variables</from><to>Get logs folder</to><enabled>Y</enabled> </hop>
+  <hop> <from>Join Rows</from><to>Write to log</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get logs folder</from><to>Select values 3</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get rules folder</from><to>Select values 2</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Data Grid</name>
@@ -284,51 +279,6 @@
     </step>
 
   <step>
-    <name>Get Variables</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>rules_folder</name>
-        <variable>&#x24;&#x7b;rules.dir&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>logs_folder</name>
-        <variable>&#x24;&#x7b;logs.dir&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>222</xloc>
-      <yloc>368</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Get logs folder</name>
     <type>GetFileNames</type>
     <description/>
@@ -345,7 +295,7 @@
     <doNotFailIfNoFile>N</doNotFailIfNoFile>
     <rownum>N</rownum>
     <isaddresult>N</isaddresult>
-    <filefield>Y</filefield>
+    <filefield>N</filefield>
     <rownum_field/>
     <filename_Field>logs_folder</filename_Field>
     <wildcard_Field/>
@@ -361,8 +311,8 @@
     </file>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>323</xloc>
-      <yloc>435</yloc>
+      <xloc>415</xloc>
+      <yloc>309</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -371,7 +321,7 @@
     <name>Get rules folder</name>
     <type>GetFileNames</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
@@ -384,7 +334,7 @@
     <doNotFailIfNoFile>Y</doNotFailIfNoFile>
     <rownum>N</rownum>
     <isaddresult>N</isaddresult>
-    <filefield>Y</filefield>
+    <filefield>N</filefield>
     <rownum_field/>
     <filename_Field>rules_folder</filename_Field>
     <wildcard_Field/>
@@ -400,8 +350,8 @@
     </file>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>323</xloc>
-      <yloc>246</yloc>
+      <xloc>411</xloc>
+      <yloc>220</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -438,7 +388,7 @@
     <name>Join Rows</name>
     <type>JoinRows</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
@@ -492,62 +442,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>216</xloc>
       <yloc>131</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Merge Join</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<join_type>FULL OUTER</join_type>
-<step1>Get Variables</step1>
-<step2>Get logs folder</step2>
-    <keys_1>
-      <key>logs_folder</key>
-    </keys_1>
-    <keys_2>
-      <key>logs_folder</key>
-    </keys_2>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>478</xloc>
-      <yloc>401</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Merge Join 2</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<join_type>FULL OUTER</join_type>
-<step1>Get Variables</step1>
-<step2>Get rules folder</step2>
-    <keys_1>
-      <key>rules_folder</key>
-    </keys_1>
-    <keys_2>
-      <key>rules_folder</key>
-    </keys_2>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>459</xloc>
-      <yloc>258</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -617,8 +511,8 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>553</xloc>
-      <yloc>256</yloc>
+      <xloc>504</xloc>
+      <yloc>214</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -641,8 +535,8 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>576</xloc>
-      <yloc>400</yloc>
+      <xloc>519</xloc>
+      <yloc>300</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -673,16 +567,50 @@
       </GUI>
     </step>
 
+  <step>
+    <name>Write to log</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>0</limitRowsNumber>
+      <logmessage>_get Endpoint Log Filename</logmessage>
+    <fields>
+      <field>
+        <name>k_filename_fullpath</name>
+        </field>
+      <field>
+        <name>k_filename</name>
+        </field>
+      <field>
+        <name>rules_folder</name>
+        </field>
+      <field>
+        <name>logs_folder</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>762</xloc>
+      <yloc>151</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step_error_handling>
   </step_error_handling>
    <slave-step-copy-partition-distribution>
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
 <attributes><group><name>DataService</name>
-<attribute><key>name</key>
-<value/>
-</attribute><attribute><key>stepname</key>
-<value/>
-</attribute></group></attributes>
+</group></attributes>
 
 </transformation>
