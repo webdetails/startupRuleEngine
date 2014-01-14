@@ -71,10 +71,15 @@ border: 0;
 
 /* Window Background */
 body{
-  font-family: 'OpenSansRegular', 'Helvetica Neue', Arial, sans-serif;
-  background: #ebedee;
-  padding-top: 50px;
+  font-family: 'OpenSansLight', 'Helvetica Neue', Arial, sans-serif;
+  background: #EBEDEE;
+
+  color: #222222;
+  /* padding-top: 50px; */
   overflow-y: scroll;
+background: url('../img/bg_page.png') repeat-x top left;
+background-color: #FFF;
+
 }
 /* Dashboard Background / Blueprint Container */
 div.container  {
@@ -88,19 +93,20 @@ div.container *{
   box-sizing: border-box;
 }
 
-
 /* =============================================================================
    2. HEADER 
    ========================================================================== */
 .WDheader {
-  padding: 5px 0 5px 0;
+  padding: 15px 0 10px 0;
 
-background: #EBEDEE;
+/* background: #EBEDEE; */
 text-align: left;
-font-size: 25px;
-color: #333E48;
-font-family: 'OpenSansLight';
-
+font-size: 16px;
+/* color: #333E48; */
+font-family: 'OpenSansSemiBold';
+/* font-weight:bold; */
+border-bottom: 1px solid #C1D7E1;
+color: #30506d;
 }
 
 .WDh1 {}
@@ -604,49 +610,87 @@ button span {
    ========================================================================== */
 
 
+.sre-panel
+{
+  background: #ffffff;
+  border: 1px solid #C1D7E1;
+  margin-top: 20px;
+}
+
+
+.WDheader-marker{
+  width: 200px;
+  height: 4px;
+  background: #fcc809;
+  margin:0;
+  padding:0;
+}
+
+.mainBlock{
+
+margin: 25px;
+margin-top: 0px;
+}
+
+.sre-usage{
+  color: #30506D;
+  font-size: 11px;
+}
+.instructions{
+  padding-top: 10px;
+}
+
 .sre-usage kbd{
   font-family: 'Droid Sans', monospace;
   font-weight: bold;
 }
 
-
+.refreshButton
+{
+  float:right;
+}
 .refreshButton button{
-  height:35px;
-  width:34px;
-  background: url('../img/refresh.png') -1px 50% no-repeat;
-  -webkit-border-radius:2px;
-  -moz-border-radius:2px;
-  -o-border-radius:2px;
-  -ms-border-radius:2px;
-  border-radius:2px;
+  height:18px;
+  width:18px;
+  background: url('../img/refresh-normal.png') -1px 50% no-repeat;
   float:right;
 }
 .refreshButton button:hover{
-  background-position: -36px 50%;
+  background-image: url('../img/refresh-hover.png');
+}
+.infoButton
+{
+  display: none;
+  height:18px;
+  width:18px;
+  margin-left: 20px;
+  background: url('../img/info.png') -1px 50% no-repeat;
+  float:right;
 }
 
 
 
- .dataTables_wrapper {
+.dataTables_wrapper {
   min-height: 1px;
   margin-left: 0px;
   margin-right: 0px;
 }
- .dataTables_wrapper .dataTables_filter{
+.dataTables_wrapper .dataTables_filter{
   display: none;
 }
 
 table{
-  border: none;
+  /* border: none; */
   max-width: 100%;
   min-width: 100%;
-  padding-top: 10px;
+  padding-top: 20px;
+  /* padding-bottom: 10px; */
   border-collapse:separate;
   border-spacing:0px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 table tr{
-  background: #EBEDEE;
+  /* background: #EBEDEE; */
   height: 40px;
 }
 
@@ -656,40 +700,65 @@ thead tr {
 }
 thead th {
   background: none;
-  color: #333e48;
+  color: #00609E; /*#1973BC;*/
   font-size: 13px;
   text-align: left !important;
   font-weight: normal;
   vertical-align: bottom;
-  font-family: 'OpenSansSemibold';
+  /* font-family: 'OpenSansSemibold'; */
   padding-bottom: 12px;
   padding-top: 12px;
   padding-left: 10px;
 }
 
 thead th:last-child {
-  text-align: center;
+  /* text-align: center; */
 }
 
 
 /* Body */
-tbody tr:nth-child(even) {
-  background: #EBEDEE;
+tbody tr:nth-child(even),
+tbody tr:nth-child(odd) 
+{
+  /* background: #ffffff; */
+  background: linear-gradient(to bottom, #FFFFFF 0%, #F8F8F8 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: 1px solid #C1D7E1;
 }
-tbody tr:nth-child(odd) {
-  background: #f5f5f5;
+
+tbody
+{
+  border: 1px solid #C1D7E1;
+/* display:block; */
 }
+
 tbody td{
   text-align: left;
   color: #333e48;
-  font-size: 13px;
+  font-size: 12px;
   padding: 0px;
   padding-left: 10px;
+  padding-top:10px;
+  padding-bottom:10px;
   font-family: 'Open Sans';
+  border:none;
+  border-bottom: 1px solid #C1D7E1;
+
+}
+tbody tr:first-child td{
+  border-top: 1px solid #C1D7E1;
+}
+tbody td:first-child {
+  border-left: 1px solid #C1D7E1;
 }
 tbody td:last-child {
-  text-align: center;
-  border-right: none;
+  /* text-align: center; */
+  border-right: 1px solid #C1D7E1;
+}
+
+tr.even, 
+tr.odd
+{
+  border-spacing:1px;
 }
 
 tr.even td.sorting_1 {
@@ -698,6 +767,17 @@ tr.even td.sorting_1 {
 
 tr.odd td.sorting_1 {
   background: none !important;
+}
+
+tr.odd:hover,
+tr.even:hover
+{
+    background: none repeat scroll 0 0 #DCE7ED;
+    cursor: pointer;
+	-webkit-transition: all 200ms ease-in;
+	-moz-transition: all 200ms ease-in;
+	-o-transition: all 200ms ease-in;
+	transition: all 200ms ease-in; 
 }
 
 
@@ -720,40 +800,58 @@ tr.odd td.sorting_1 {
   background: url('../img/sort_desc.png') no-repeat center right #fefefe;
 }
 
+th.runKettle
+{
+  padding-left: 54px;
+}
 
 .runKettle span
 {
 line-height: 32px;
+padding-left: 10px;
+font-family: 'OpenSansSemiBold';
 }
 
-.runEndpointButton,
-.runKettleAddIn
+.runKettle button
 {
-  background-image: url('../img/play.png');
-  background-repeat: no-repeat;
-  background-position: 0px 0px;
-  background-color: transparent;
+  margin-top: 2px;
+  background-color: #007297;
+  background: url('../img/play.png') no-repeat 6px 4px;
+  background: url('../img/play.png') no-repeat 6px 4px, -moz-linear-gradient(top, #007297 49%, #005e7c 100%);
+  background: url('../img/play.png') no-repeat 6px 4px, -webkit-gradient(linear, left top, left bottom, color-stop(49%,#007297), color-stop(100%,#005E7C));
+  background: url('../img/play.png') no-repeat 6px 4px, -webkit-linear-gradient(top, #007297 49%,#005E7C 100%);
+  background: url('../img/play.png') no-repeat 6px 4px, -o-linear-gradient(top, #007297 49%,#005e7c 100%);
+  background: url('../img/play.png') no-repeat 6px 4px, -ms-linear-gradient(top, #007297 49%,#005e7c 100%);
+  background: url('../img/play.png') no-repeat 6px 4px, linear-gradient(to bottom, #007297 49%,#005E7C 100%);
+
+ 
   width: 32px;
-  height:32px;
-  float: right;
-  display: inline;
+  height:28px;
+  float: left;
+  /* display: inline; */
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+
+-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+
 }
-.runEndpointButton:hover,
-.runKettleAddIn:hover
+.runKettle button:hover
 {
-  background-position: -32px 0px;
+  background: #0085B0 url('../img/play.png') no-repeat 6px 4px;
 }
 
 th.checkbox
 {
   text-align:center;
-  /* padding-left:0; */
-  /* padding-right:0; */
 }
 
 th[colspan].checkbox{
   font-weight: lighter;
   padding-bottom: 0;
+  text-align: center;
 }
 
 .checkBoxAddIn.checked,
@@ -762,37 +860,79 @@ th[colspan].checkbox{
   background-repeat: no-repeat;
   background-position: 0px 0px;
   background-color: transparent;
-  width: 30px;
-  height:30px;
-  border:0;
+  width: 20px;
+  height:20px;
+  border:1px solid #30516D;
+  margin-left: 5px;
+}
+.column6 .checkBoxAddIn{
+  margin-left: 10px;
+}
+
+.checkBoxAddIn:hover
+{
+  border-color: #15AAED;
 }
 .checkBoxAddIn.checked
 {
-  background-image: url('../img/checkbox_checked.png');
+  background-image: url('../img/tick.png');
 }
 .checkBoxAddIn.unchecked
 {
-  background-image: url('../img/checkbox.png');
+  /* background-image: url('../img/checkbox.png'); */
 }
 
 
 .executionStatus{
-  margin-left: auto;
-  margin-right:auto;
+  /* margin-left: auto; */
+  /* margin-right:auto; */
+padding-right: 10px;
 }
 th.executionStatus{
   /* text-align:center; */
 }
+td.executionStatus{
+  font-family:'OpenSansSemiBold';
+}
 .executionStatus.executionStatusSuccess
 {
-  color: green;
+  color: #00924E;
 }
 .executionStatus.executionStatusFailed
 {
-  color: red;
+  color: #ff0017;
 }
 
 .popupComponent
 {
-  /* border-width: 2px; */
+  border-width: 2px;
+  border-radius: 0;
+  padding-right: 7px;
+}
+.popupComponent h3
+{
+  padding-bottom: 12px;
+  font-size: 16px;
+}
+.popupComponent .arrow {
+  display:none !important;
+}
+.popupComponent a.close{
+  background-image: url('../img/close-normal.png');
+}
+.popupComponent a.close:hover{
+  background-image: url('../img/close-hover.png');
+}
+
+.popupComponent .sre-logs{
+  overflow-y:scroll;
+  /* height: 465px; */
+  color:#3b647e;
+  font-size: 10px;
+}
+.popupComponent.executionStatusSuccess {
+  border-color: #00924E;
+}
+.popupComponent.executionStatusFailed {
+  border-color: #ff0017;
 }

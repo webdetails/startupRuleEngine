@@ -79,6 +79,190 @@
     "properties": [
      {
       "name": "name",
+      "value": "panel",
+      "type": "Id"
+     },
+     {
+      "name": "height",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "backgroundColor",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "roundCorners",
+      "value": "",
+      "type": "RoundCorners"
+     },
+     {
+      "name": "textAlign",
+      "value": "",
+      "type": "TextAlign"
+     },
+     {
+      "name": "cssClass",
+      "value": "sre-panel pentaho-page-background",
+      "type": "String"
+     }
+    ]
+   },
+   {
+    "id": "4c57d756-7f7e-0742-5b6e-246ccebf2e74",
+    "type": "LayoutColumn",
+    "typeDesc": "Column",
+    "parent": "16eff851-d314-e336-9578-d7b724524eb8",
+    "properties": [
+     {
+      "name": "name",
+      "value": "headerMarker",
+      "type": "Id"
+     },
+     {
+      "name": "columnSpan",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "columnPrepend",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "columnAppend",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "columnPrependTop",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "columnAppendBottom",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "columnBorder",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "columnBigBorder",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "height",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "backgroundColor",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "roundCorners",
+      "value": "",
+      "type": "RoundCorners"
+     },
+     {
+      "name": "textAlign",
+      "value": "",
+      "type": "TextAlign"
+     },
+     {
+      "name": "cssClass",
+      "value": "WDheader-marker",
+      "type": "String"
+     }
+    ]
+   },
+   {
+    "id": "def96af9-98cf-a8ae-2645-1a3e9582416b",
+    "type": "LayoutColumn",
+    "typeDesc": "Column",
+    "parent": "16eff851-d314-e336-9578-d7b724524eb8",
+    "properties": [
+     {
+      "name": "name",
+      "value": "mainBlock",
+      "type": "Id"
+     },
+     {
+      "name": "columnSpan",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "columnPrepend",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "columnAppend",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "columnPrependTop",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "columnAppendBottom",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "columnBorder",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "columnBigBorder",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "height",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "backgroundColor",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "roundCorners",
+      "value": "",
+      "type": "RoundCorners"
+     },
+     {
+      "name": "textAlign",
+      "value": "",
+      "type": "TextAlign"
+     },
+     {
+      "name": "cssClass",
+      "value": "mainBlock",
+      "type": "String"
+     }
+    ]
+   },
+   {
+    "id": "85cad82f-5e4a-ad8f-ad41-ce460903a283",
+    "type": "LayoutRow",
+    "typeDesc": "Row",
+    "parent": "def96af9-98cf-a8ae-2645-1a3e9582416b",
+    "properties": [
+     {
+      "name": "name",
       "value": "",
       "type": "Id"
      },
@@ -110,10 +294,10 @@
     ]
    },
    {
-    "id": "def96af9-98cf-a8ae-2645-1a3e9582416b",
+    "id": "610c4313-3108-debd-a15f-069199913654",
     "type": "LayoutColumn",
     "typeDesc": "Column",
-    "parent": "16eff851-d314-e336-9578-d7b724524eb8",
+    "parent": "85cad82f-5e4a-ad8f-ad41-ce460903a283",
     "properties": [
      {
       "name": "name",
@@ -122,7 +306,7 @@
      },
      {
       "name": "columnSpan",
-      "value": "24",
+      "value": "",
       "type": "Integer"
      },
      {
@@ -183,10 +367,10 @@
     ]
    },
    {
-    "id": "32fd7116-3f04-e8be-ea1a-2d4cf5cc2323",
+    "id": "ddcb7a1a-0ca0-1525-9719-4a4f01403076",
     "type": "LayoutRow",
     "typeDesc": "Row",
-    "parent": "def96af9-98cf-a8ae-2645-1a3e9582416b",
+    "parent": "610c4313-3108-debd-a15f-069199913654",
     "properties": [
      {
       "name": "name",
@@ -221,81 +405,10 @@
     ]
    },
    {
-    "id": "a776b507-5818-8a57-ce61-dbd034489d2f",
-    "type": "LayoutHtml",
-    "typeDesc": "Html",
-    "parent": "32fd7116-3f04-e8be-ea1a-2d4cf5cc2323",
-    "properties": [
-     {
-      "name": "name",
-      "value": "",
-      "type": "Id"
-     },
-     {
-      "name": "html",
-      "value": "Startup Rule Engine ",
-      "type": "Html"
-     },
-     {
-      "name": "fontSize",
-      "value": "",
-      "type": "Integer"
-     },
-     {
-      "name": "color",
-      "value": "",
-      "type": "Color"
-     },
-     {
-      "name": "cssClass",
-      "value": "wdTitle",
-      "type": "String"
-     }
-    ]
-   },
-   {
-    "id": "ef1cd00e-164b-b526-dd7b-ec5bde2d2049",
-    "type": "LayoutRow",
-    "typeDesc": "Row",
-    "parent": "def96af9-98cf-a8ae-2645-1a3e9582416b",
-    "properties": [
-     {
-      "name": "name",
-      "value": "",
-      "type": "Id"
-     },
-     {
-      "name": "height",
-      "value": "",
-      "type": "Integer"
-     },
-     {
-      "name": "backgroundColor",
-      "value": "",
-      "type": "Color"
-     },
-     {
-      "name": "roundCorners",
-      "value": "",
-      "type": "RoundCorners"
-     },
-     {
-      "name": "textAlign",
-      "value": "",
-      "type": "TextAlign"
-     },
-     {
-      "name": "cssClass",
-      "value": "",
-      "type": "String"
-     }
-    ]
-   },
-   {
-    "id": "6435d91d-c2f2-30dd-d5be-4a2c97d423ba",
+    "id": "d4b06a1a-8f06-d842-1822-1cbdd870962b",
     "type": "LayoutColumn",
     "typeDesc": "Column",
-    "parent": "ef1cd00e-164b-b526-dd7b-ec5bde2d2049",
+    "parent": "ddcb7a1a-0ca0-1525-9719-4a4f01403076",
     "properties": [
      {
       "name": "name",
@@ -304,7 +417,7 @@
      },
      {
       "name": "columnSpan",
-      "value": "22",
+      "value": "18",
       "type": "Integer"
      },
      {
@@ -365,10 +478,10 @@
     ]
    },
    {
-    "id": "67e845a8-a41b-44d6-74db-e905a369718a",
+    "id": "ac690960-ab00-063c-e909-e97545a0fe6f",
     "type": "LayoutHtml",
     "typeDesc": "Html",
-    "parent": "6435d91d-c2f2-30dd-d5be-4a2c97d423ba",
+    "parent": "d4b06a1a-8f06-d842-1822-1cbdd870962b",
     "properties": [
      {
       "name": "name",
@@ -377,7 +490,7 @@
      },
      {
       "name": "html",
-      "value": "Drop Kettle transformation/job files into your <kbd>pentaho-solutions/system/startupRules</kbd> folder and schedule their execution here ",
+      "value": "Startup Rule Engine ",
       "type": "Html"
      },
      {
@@ -392,16 +505,16 @@
      },
      {
       "name": "cssClass",
-      "value": "sre-usage",
+      "value": "",
       "type": "String"
      }
     ]
    },
    {
-    "id": "908ad859-5e94-4fa6-71ad-0d9f2c698b86",
+    "id": "b46c3c58-8fac-3817-057d-2e67ce56fc4e",
     "type": "LayoutColumn",
     "typeDesc": "Column",
-    "parent": "ef1cd00e-164b-b526-dd7b-ec5bde2d2049",
+    "parent": "ddcb7a1a-0ca0-1525-9719-4a4f01403076",
     "properties": [
      {
       "name": "name",
@@ -410,7 +523,7 @@
      },
      {
       "name": "columnSpan",
-      "value": "2",
+      "value": "",
       "type": "Integer"
      },
      {
@@ -471,10 +584,227 @@
     ]
    },
    {
-    "id": "dd753e24-57c4-fb50-6a2b-edcbb82ec5f6",
+    "id": "f9cb0393-59af-b68f-50ae-0289f99178e7",
+    "type": "LayoutColumn",
+    "typeDesc": "Column",
+    "parent": "ddcb7a1a-0ca0-1525-9719-4a4f01403076",
+    "properties": [
+     {
+      "name": "name",
+      "value": "buttonInfoObj",
+      "type": "Id"
+     },
+     {
+      "name": "columnSpan",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "columnPrepend",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "columnAppend",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "columnPrependTop",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "columnAppendBottom",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "columnBorder",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "columnBigBorder",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "height",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "backgroundColor",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "roundCorners",
+      "value": "",
+      "type": "RoundCorners"
+     },
+     {
+      "name": "textAlign",
+      "value": "",
+      "type": "TextAlign"
+     },
+     {
+      "name": "cssClass",
+      "value": "infoButton",
+      "type": "String"
+     }
+    ]
+   },
+   {
+    "id": "8aa1e78d-67f0-cecf-ece2-7e3db6817390",
     "type": "LayoutRow",
     "typeDesc": "Row",
-    "parent": "def96af9-98cf-a8ae-2645-1a3e9582416b",
+    "parent": "610c4313-3108-debd-a15f-069199913654",
+    "properties": [
+     {
+      "name": "name",
+      "value": "instructions",
+      "type": "Id"
+     },
+     {
+      "name": "height",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "backgroundColor",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "roundCorners",
+      "value": "",
+      "type": "RoundCorners"
+     },
+     {
+      "name": "textAlign",
+      "value": "",
+      "type": "TextAlign"
+     },
+     {
+      "name": "cssClass",
+      "value": "instructions",
+      "type": "String"
+     }
+    ]
+   },
+   {
+    "id": "218cc156-8ed0-6535-534c-4a7c09277593",
+    "type": "LayoutColumn",
+    "typeDesc": "Column",
+    "parent": "8aa1e78d-67f0-cecf-ece2-7e3db6817390",
+    "properties": [
+     {
+      "name": "name",
+      "value": "",
+      "type": "Id"
+     },
+     {
+      "name": "columnSpan",
+      "value": "20",
+      "type": "Integer"
+     },
+     {
+      "name": "columnPrepend",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "columnAppend",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "columnPrependTop",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "columnAppendBottom",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "columnBorder",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "columnBigBorder",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "height",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "backgroundColor",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "roundCorners",
+      "value": "",
+      "type": "RoundCorners"
+     },
+     {
+      "name": "textAlign",
+      "value": "",
+      "type": "TextAlign"
+     },
+     {
+      "name": "cssClass",
+      "value": "",
+      "type": "String"
+     }
+    ]
+   },
+   {
+    "id": "2650ee9d-690a-bf2f-bde2-386f662eba67",
+    "type": "LayoutHtml",
+    "typeDesc": "Html",
+    "parent": "218cc156-8ed0-6535-534c-4a7c09277593",
+    "properties": [
+     {
+      "name": "name",
+      "value": "",
+      "type": "Id"
+     },
+     {
+      "name": "html",
+      "value": "Drop Kettle transformation/job files into your <kbd>pentaho-solutions/system/startupRules</kbd> folder and schedule their execution here. ",
+      "type": "Html"
+     },
+     {
+      "name": "fontSize",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "color",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "cssClass",
+      "value": "sre-usage",
+      "type": "String"
+     }
+    ]
+   },
+   {
+    "id": "565eaf9d-545a-06ee-9601-d4dbe5d4dfc5",
+    "type": "LayoutRow",
+    "typeDesc": "Row",
+    "parent": "610c4313-3108-debd-a15f-069199913654",
     "properties": [
      {
       "name": "name",
@@ -509,10 +839,10 @@
     ]
    },
    {
-    "id": "77f3749f-3521-ca06-b79b-cbd7cec06d6d",
+    "id": "36733ea7-52ff-a3e0-2e6c-e27acf7aceb2",
     "type": "LayoutRow",
     "typeDesc": "Row",
-    "parent": "def96af9-98cf-a8ae-2645-1a3e9582416b",
+    "parent": "610c4313-3108-debd-a15f-069199913654",
     "properties": [
      {
       "name": "name",
@@ -559,7 +889,7 @@
      },
      {
       "name": "height",
-      "value": "500",
+      "value": "",
       "type": "Integer"
      },
      {
@@ -579,7 +909,7 @@
      },
      {
       "name": "cssClass",
-      "value": "",
+      "value": "popupObj",
       "type": "String"
      }
     ]
@@ -629,28 +959,13 @@
       "type": "JavaScript"
      },
      {
-      "name": "parameters",
-      "value": "[]",
-      "type": "ValuesArray"
-     },
-     {
-      "name": "colHeaders",
-      "value": "[\"Service\",\"Description\",\"hidden\",\"hidden\",\"Start\",\"Login\",\"Logout\",\"Last execution\",\"Status\",\"Execution details\"]",
-      "type": "Array"
-     },
-     {
-      "name": "colTypes",
-      "value": "[\"runKettle\",\"string\",\"hidden\",\"hidden\",\"checkbox\",\"checkbox\",\"checkbox\",\"string\",\"executionStatus\",\"hidden\"]",
-      "type": "colTypesCustom"
-     },
-     {
       "name": "colFormats",
       "value": "[]",
       "type": "Array"
      },
      {
       "name": "colWidths",
-      "value": "[null,null,\"0\",\"0\",\"50\",\"50\",\"50\"]",
+      "value": "[null,null,\"0\",\"0\",\"70\",\"70\",\"70\"]",
       "type": "Array"
      },
      {
@@ -664,19 +979,19 @@
       "type": "ValuesArray"
      },
      {
-      "name": "paginate",
-      "value": "false",
-      "type": "Boolean"
+      "name": "parameters",
+      "value": "[]",
+      "type": "ValuesArray"
      },
      {
-      "name": "filter",
-      "value": "false",
-      "type": "Boolean"
+      "name": "colHeaders",
+      "value": "[\"Service\",\"Description\",\"hidden\",\"hidden\",\"Start\",\"Login\",\"Logout\",\"Last execution\",\"Status\",\"Execution details\"]",
+      "type": "Array"
      },
      {
-      "name": "info",
-      "value": "false",
-      "type": "Boolean"
+      "name": "colTypes",
+      "value": "[\"runKettle\",\"string\",\"hidden\",\"hidden\",\"checkbox\",\"checkbox\",\"checkbox\",\"string\",\"executionStatus\",\"hidden\"]",
+      "type": "colTypesCustom"
      },
      {
       "name": "sort",
@@ -699,6 +1014,21 @@
       "type": "Boolean"
      },
      {
+      "name": "paginate",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "filter",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "info",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
       "name": "colSearchable",
       "value": "[]",
       "type": "Array"
@@ -714,14 +1044,14 @@
       "type": "Datasource"
      },
      {
-      "name": "sDom",
-      "value": "",
-      "type": "JavaScript"
-     },
-     {
       "name": "sortBy",
       "value": "[]",
       "type": "SortByArray"
+     },
+     {
+      "name": "sDom",
+      "value": "",
+      "type": "JavaScript"
      },
      {
       "name": "priority",
@@ -770,7 +1100,7 @@
      },
      {
       "name": "postExecution",
-      "value": "function f(){\n    var myself= this,\n    checkbox_str = 'Mark/unmark this Kettle job/transformation for execution at the next ',\n    tooltips = {\n        'td.column0 span': 'Name of the endpoint to run',\n        'td.column0 button': 'Run this Kettle job/transformation now',\n        'td.column4 .checkBoxAddIn': checkbox_str + 'server start up',\n        'td.column5 .checkBoxAddIn': checkbox_str + 'user log in',\n        'td.column6 .checkBoxAddIn': checkbox_str + 'user log out'\n    };\n    _.each(tooltips, function(title, key){ \n        myself.placeholder(key).attr('title', title);\n    });\n    this.placeholder().tooltip();\n    \n    var extra_row = $('<tr/>');\n    extra_row.append($('<th/>').attr('colspan', 2));\n    extra_row.append($('<th/>').attr('colspan', 3).text('Run service at:').addClass('checkbox'));\n    extra_row.append($('<th/>').attr('colspan', 2));\n    this.placeholder('thead').prepend(extra_row);\n\n}",
+      "value": "function f(){\n    var myself= this,\n    checkbox_str = 'Check to execute at the next ',\n    tooltips = {\n        'td.column0 span': 'Name of the endpoint to run',\n        'td.column0 button': 'Run this Kettle job/transformation now',\n        'td.column4 .checkBoxAddIn': checkbox_str + 'server start up',\n        'td.column5 .checkBoxAddIn': checkbox_str + 'user log in',\n        'td.column6 .checkBoxAddIn': checkbox_str + 'user log out',\n        'td.column8': 'Check execution logs'\n    };\n    _.each(tooltips, function(title, key){ \n        myself.placeholder(key).attr('title', title);\n    });\n    this.placeholder().tipsy();\n    \n    if (false) {        \n    var extra_row = $('<tr/>');\n    extra_row.append($('<th/>').attr('colspan', 2));\n    extra_row.append($('<th/>').attr('colspan', 3).text('Run service at:').addClass('checkbox'));\n    extra_row.append($('<th/>').attr('colspan', 2));\n    this.placeholder('thead').prepend(extra_row);\n    }\n\n}",
       "type": "JavaScript"
      },
      {
@@ -931,7 +1261,7 @@
      },
      {
       "name": "verticalScroll",
-      "value": "true",
+      "value": "false",
       "type": "Boolean"
      },
      {

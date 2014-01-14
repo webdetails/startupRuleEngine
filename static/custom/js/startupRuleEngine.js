@@ -19,7 +19,7 @@
                 $tgt = $(tgt),
                 //value = st.rawData.resultset[st.rowIdx][st.colIdx],
                 value = st.tableData[st.rowIdx][st.colIdx],
-                $addIn = $('<input type="button"/>').addClass('checkBoxAddIn'),
+                $addIn = $('<input type="button"/>').addClass('checkBoxAddIn').tipsy(),
                 //$('<input type="checkbox"/>').addClass('checkBoxAddIn'),
                 isChecked = (value.toLowerCase() == "true");
             //$addIn.prop('checked', isChecked);
@@ -101,7 +101,9 @@
                     }
                 });
             });
-            $(tgt).empty().append($text).append($addIn);
+            $(tgt).empty()
+                .append($addIn)
+                .append($text);
             //$(tgt).append($addIn);
         }
 
@@ -120,6 +122,7 @@
                 'failed' : ['Failed', 'executionStatusFailed']
             },
             url:  Dashboards.getWebAppPath() + '/plugin/startupRuleEngine/api/getEndpointLog',
+            idxEndpointName:0,
             idxFilename: 3
         },
 
@@ -133,22 +136,15 @@
                 $tgt = $(tgt);
             var execution_result = st.value.trim().toLowerCase();
             if (execution_result in options.status){
-                //var contents = $('<h3/>').text(options.status[execution_result][0]).addClass(options.status[execution_result][1]);;
-                $tgt.empty().text(options.status[execution_result][0]).addClass(options.status[execution_result][1]);
-                //$tgt.empty().append(contents);
-                if (false){
-                $tgt.append($('<div/>').html('Lorem ipsum'));
-                $tgt.accordion({
-                    collapsible: true
-                });
-                }
+                $tgt.empty()
+                    .text(options.status[execution_result][0])
+                    .addClass(options.status[execution_result][1])
+                    .tipsy();
             }
             $tgt.click(function(){
-            //var f = (function(){
-                var endpointName = st.rawData.resultset[st.rowIdx][0];
+                var endpointName = st.tableData[st.rowIdx][options.idxEndpointName];
 
                 Dashboards.log("Getting log of "+endpointName, 'debug') ;
-                //Dashboards.log(JSON.stringify(st));
                 // Call the endpoint
                 var url = options.url;
                 $.ajax(url, {
@@ -159,16 +155,27 @@
                         paramfilename: st.tableData[st.rowIdx][options.idxFilename]
                     },
                     success: function(data){
-                        //Dashboards.log('The table should be updated...');
+                        // Insert a marker between different invocations
                         _.each(data.resultset, function(el){
-                            // Insert a marker between different invocations
                             if (el[0].endsWith('BEGIN')){
-                                el[0] += '<hr/>';
+                                el[0] += '<hr>';
                             }
                         });
-                        var html  =  data.resultset.join('<br/>') || data;
+                        // Build log html
+                        var  html = data.resultset.join('<br>') || data;
+                        html.replace('<hr><br>', '<hr>');
+                        html = '<h3>'+ endpointName  +'</h3>'
+                            + '<div class=\"sre-logs\">'
+                            + html
+                            + '</div>';
                         Dashboards.fireChange('popupParam', html);
+
                         $('#popupObj').empty().html(html);
+                        var $popup = render_popupComponent.ph;
+                        _.each(options.status, function(el){
+                            $popup.removeClass(el[1]);
+                        });
+                        $popup.addClass( options.status[execution_result][1] );;
                         render_popupComponent.popup($tgt);
                     },
                     error: function(){
