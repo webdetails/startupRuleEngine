@@ -20,16 +20,6 @@
             <description/>
         </parameter>
         <parameter>
-            <name>endpoint.executeAtLogin</name>
-            <default_value>N</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>endpoint.executeAtStart</name>
-            <default_value>Y</default_value>
-            <description/>
-        </parameter>
-        <parameter>
             <name>rules.dir</name>
             <default_value>&#x24;&#x7b;cpk.solution.system&#x7d;&#x2f;startupRules&#x2f;rules</default_value>
             <description/>

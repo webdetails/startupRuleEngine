@@ -13,17 +13,32 @@
     <parameters>
         <parameter>
             <name>cpk.plugin.dir</name>
-            <default_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;..&#x2f;</default_value>
+            <default_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;..</default_value>
             <description/>
         </parameter>
         <parameter>
             <name>cpk.solution.system.dir</name>
-            <default_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;..&#x2f;..&#x2f;</default_value>
+            <default_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;..&#x2f;..</default_value>
             <description/>
         </parameter>
         <parameter>
             <name>cpk.webapp.dir</name>
             <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;..&#x2f;..&#x2f;tomcat&#x2f;webapps&#x2f;pentaho</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>dst_folder</name>
+            <default_value>&#x24;&#x7b;cpk.webapp.dir&#x7d;&#x2f;WEB-INF&#x2f;lib</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>file_regex</name>
+            <default_value>cpk-pentaho5-session-listener.&#x2a;&#x5c;.jar</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>src_folder</name>
+            <default_value>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;resources&#x2f;lib</default_value>
             <description/>
         </parameter>
     </parameters>
@@ -122,29 +137,29 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>335</xloc>
-      <yloc>351</yloc>
+      <xloc>60</xloc>
+      <yloc>288</yloc>
       </entry>
     <entry>
-      <name>Delete libsession libraries</name>
+      <name>Delete files at destination</name>
       <description/>
       <type>DELETE_FILES</type>
       <arg_from_previous>N</arg_from_previous>
       <include_subfolders>N</include_subfolders>
       <fields>
         <field>
-          <name>&#x24;&#x7b;cpk.webapp.dir&#x7d;&#x2f;WEB-INF&#x2f;lib&#x2f;</name>
-          <filemask>cpk-pentaho5-session-listener.&#x2a;&#x5c;.jar</filemask>
+          <name>&#x24;&#x7b;dst_folder&#x7d;</name>
+          <filemask>&#x24;&#x7b;file_regex&#x7d;</filemask>
         </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>922</xloc>
-      <yloc>304</yloc>
+      <xloc>380</xloc>
+      <yloc>173</yloc>
       </entry>
     <entry>
-      <name>Copy libpensol</name>
+      <name>Copy files to destination</name>
       <description/>
       <type>COPY_FILES</type>
       <copy_empty_folders>Y</copy_empty_folders>
@@ -157,16 +172,16 @@
       <create_destination_folder>N</create_destination_folder>
       <fields>
         <field>
-          <source_filefolder>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;resources&#x2f;lib&#x2f;</source_filefolder>
-          <destination_filefolder>&#x24;&#x7b;cpk.webapp.dir&#x7d;&#x2f;WEB-INF&#x2f;lib&#x2f;</destination_filefolder>
-          <wildcard>cpk-pentaho5-session-listener.&#x2a;&#x5c;.jar</wildcard>
+          <source_filefolder>&#x24;&#x7b;src_folder&#x7d;</source_filefolder>
+          <destination_filefolder>&#x24;&#x7b;dst_folder&#x7d;</destination_filefolder>
+          <wildcard>&#x24;&#x7b;file_regex&#x7d;</wildcard>
         </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1123</xloc>
-      <yloc>311</yloc>
+      <xloc>495</xloc>
+      <yloc>284</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -175,37 +190,21 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1281</xloc>
-      <yloc>361</yloc>
+      <xloc>745</xloc>
+      <yloc>280</yloc>
       </entry>
     <entry>
       <name>Write To Log</name>
       <description/>
       <type>WRITE_TO_LOG</type>
-      <logmessage>Copied &#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;resources&#x2f;lib&#x2f;libsession.jar to &#x24;&#x7b;cpk.webapp.dir&#x7d;&#x2f;WEB-INF&#x2f;lib&#x2f;</logmessage>
+      <logmessage>Copied &#x24;&#x7b;src_folder&#x7d;&#x2f;&#x24;&#x7b;file_regex&#x7d; to &#x24;&#x7b;dst_folder&#x7d;</logmessage>
       <loglevel>Minimal</loglevel>
-      <logsubject>repositorySynchronizer&#x3a; libpensol</logsubject>
+      <logsubject>_install_file</logsubject>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1224</xloc>
-      <yloc>222</yloc>
-      </entry>
-    <entry>
-      <name>Checks if files exist</name>
-      <description/>
-      <type>FILES_EXIST</type>
-      <filename/>
-      <fields>
-        <field>
-          <name>&#x24;&#x7b;libsession_jar_dst&#x7d;</name>
-        </field>
-      </fields>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>653</xloc>
-      <yloc>302</yloc>
+      <xloc>684</xloc>
+      <yloc>160</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
@@ -215,61 +214,59 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>789</xloc>
-      <yloc>350</yloc>
+      <xloc>196</xloc>
+      <yloc>50</yloc>
       </entry>
     <entry>
-      <name>File Compare libpensol.jar</name>
+      <name>file exists in destination&#x3f;</name>
       <description/>
-      <type>FILE_COMPARE</type>
-      <filename1>&#x24;&#x7b;libsession_jar_src&#x7d;</filename1>
-      <filename2>&#x24;&#x7b;libsession_jar_dst&#x7d;</filename2>
-      <add_filename_result>N</add_filename_result>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>791</xloc>
-      <yloc>229</yloc>
-      </entry>
-    <entry>
-      <name>Set variables</name>
-      <description/>
-      <type>SET_VARIABLES</type>
-      <replacevars>N</replacevars>
-      <filename/>
-      <file_variable_type>JVM</file_variable_type>
+      <type>EVAL_FILES_METRICS</type>
+      <result_filenames_wildcard/>
+      <Result_field_file/>
+      <Result_field_wildcard/>
+      <Result_field_includesubfolders/>
       <fields>
         <field>
-          <variable_name>libsession_jar_dst</variable_name>
-          <variable_value>&#x24;&#x7b;cpk.webapp.dir&#x7d;&#x2f;WEB-INF&#x2f;lib&#x2f;cpk-pentaho5-session-listeners-TRUNK-SNAPSHOT.jar</variable_value>
-          <variable_type>CURRENT_JOB</variable_type>
-        </field>
-        <field>
-          <variable_name>libsession_jar_src</variable_name>
-          <variable_value>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;resources&#x2f;lib&#x2f;cpk-pentaho5-session-listeners-TRUNK-SNAPSHOT.jar</variable_value>
-          <variable_type>CURRENT_JOB</variable_type>
+          <source_filefolder>&#x24;&#x7b;dst_folder&#x7d;</source_filefolder>
+          <wildcard>&#x24;&#x7b;file_regex&#x7d;</wildcard>
+          <include_subFolders>N</include_subFolders>
         </field>
       </fields>
+      <comparevalue>0</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successnumbercondition>greater</successnumbercondition>
+      <source_files>files</source_files>
+      <evaluation_type>count</evaluation_type>
+      <scale>bytes</scale>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>440</xloc>
-      <yloc>363</yloc>
+      <xloc>200</xloc>
+      <yloc>283</yloc>
+      </entry>
+    <entry>
+      <name>Files have same content&#x3f;</name>
+      <description/>
+      <type>FOLDERS_COMPARE</type>
+      <include_subfolders>N</include_subfolders>
+      <compare_filecontent>Y</compare_filecontent>
+      <compare_filesize>N</compare_filesize>
+      <compareonly>specify</compareonly>
+      <wildcard>&#x24;&#x7b;file_regex&#x7d;</wildcard>
+      <filename1>&#x24;&#x7b;src_folder&#x7d;</filename1>
+      <filename2>&#x24;&#x7b;dst_folder&#x7d;</filename2>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>198</xloc>
+      <yloc>172</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>START</from>
-      <to>Set variables</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Set variables</from>
-      <to>Checks if files exist</to>
+      <from>Delete files at destination</from>
+      <to>Copy files to destination</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -277,52 +274,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Checks if files exist</from>
-      <to>File Compare libpensol.jar</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>File Compare libpensol.jar</from>
-      <to>Delete libsession libraries</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Checks if files exist</from>
-      <to>Delete libsession libraries</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>File Compare libpensol.jar</from>
-      <to>Abort job</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Delete libsession libraries</from>
-      <to>Copy libpensol</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Copy libpensol</from>
+      <from>Copy files to destination</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -331,13 +283,58 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Copy libpensol</from>
+      <from>Copy files to destination</from>
       <to>Write To Log</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>file exists in destination&#x3f;</from>
+      <to>Copy files to destination</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>file exists in destination&#x3f;</from>
+      <to>Files have same content&#x3f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Files have same content&#x3f;</from>
+      <to>Delete files at destination</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Files have same content&#x3f;</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>file exists in destination&#x3f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>

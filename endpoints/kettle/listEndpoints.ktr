@@ -151,6 +151,7 @@
   <hop> <from>Add constants</from><to>Sort rows</to><enabled>N</enabled> </hop>
   <hop> <from>Group by</from><to>User Defined Java Expression</to><enabled>Y</enabled> </hop>
   <hop> <from>User Defined Java Expression</from><to>Sort rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Generate Rows</from><to>Get Variables</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Add constants</name>
@@ -484,6 +485,46 @@
     </step>
 
   <step>
+    <name>User Defined Java Expression</name>
+    <type>Janino</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>execution_time</field_name>
+<formula_string>log_line.split&#x28;&#x22;-&#x22;&#x29;&#x5b;0&#x5d;.trim&#x28;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+       <formula><field_name>execution_trigger</field_name>
+<formula_string>log_line.split&#x28;&#x22;-&#x22;&#x29;&#x5b;1&#x5d;.trim&#x28;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+       <formula><field_name>execution_result</field_name>
+<formula_string>log_line.split&#x28;&#x22;-&#x22;&#x29;&#x5b;2&#x5d;.trim&#x28;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>465</xloc>
+      <yloc>295</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>get Endpoint Log</name>
     <type>SimpleMapping</type>
     <description/>
@@ -531,8 +572,8 @@
     </step>
 
   <step>
-    <name>User Defined Java Expression</name>
-    <type>Janino</type>
+    <name>Generate Rows</name>
+    <type>RowGenerator</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -541,31 +582,29 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-       <formula><field_name>execution_time</field_name>
-<formula_string>log_line.split&#x28;&#x22;-&#x22;&#x29;&#x5b;0&#x5d;.trim&#x28;&#x29;</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field/>
-</formula>
-       <formula><field_name>execution_trigger</field_name>
-<formula_string>log_line.split&#x28;&#x22;-&#x22;&#x29;&#x5b;1&#x5d;.trim&#x28;&#x29;</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field/>
-</formula>
-       <formula><field_name>execution_result</field_name>
-<formula_string>log_line.split&#x28;&#x22;-&#x22;&#x29;&#x5b;2&#x5d;.trim&#x28;&#x29;</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field/>
-</formula>
+    <fields>
+      <field>
+        <name>line</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>line</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <limit>1</limit>
+    <never_ending>N</never_ending>
+    <interval_in_ms>5000</interval_in_ms>
+    <row_time_field>now</row_time_field>
+    <last_time_field>FiveSecondsAgo</last_time_field>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>465</xloc>
-      <yloc>295</yloc>
+      <xloc>70</xloc>
+      <yloc>66</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -576,6 +615,10 @@
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
 <attributes><group><name>DataService</name>
-</group></attributes>
+<attribute><key>name</key>
+<value/>
+</attribute><attribute><key>stepname</key>
+<value/>
+</attribute></group></attributes>
 
 </transformation>

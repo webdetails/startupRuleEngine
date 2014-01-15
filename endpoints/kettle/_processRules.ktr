@@ -648,7 +648,7 @@
     <result_files_file_name_field>FileName</result_files_file_name_field>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>971</xloc>
+      <xloc>970</xloc>
       <yloc>72</yloc>
       <draw>Y</draw>
       </GUI>

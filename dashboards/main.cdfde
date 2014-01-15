@@ -518,7 +518,7 @@
     "properties": [
      {
       "name": "name",
-      "value": "buttonRefreshObj",
+      "value": "",
       "type": "Id"
      },
      {
@@ -578,56 +578,21 @@
      },
      {
       "name": "cssClass",
-      "value": "refreshButton",
+      "value": "actionButtons",
       "type": "String"
      }
     ]
    },
    {
-    "id": "f9cb0393-59af-b68f-50ae-0289f99178e7",
-    "type": "LayoutColumn",
-    "typeDesc": "Column",
-    "parent": "ddcb7a1a-0ca0-1525-9719-4a4f01403076",
+    "id": "f42d566f-dab2-16a4-534d-ed33dfa308d6",
+    "type": "LayoutRow",
+    "typeDesc": "Row",
+    "parent": "b46c3c58-8fac-3817-057d-2e67ce56fc4e",
     "properties": [
      {
       "name": "name",
       "value": "buttonInfoObj",
       "type": "Id"
-     },
-     {
-      "name": "columnSpan",
-      "value": "",
-      "type": "Integer"
-     },
-     {
-      "name": "columnPrepend",
-      "value": "",
-      "type": "Integer"
-     },
-     {
-      "name": "columnAppend",
-      "value": "",
-      "type": "Integer"
-     },
-     {
-      "name": "columnPrependTop",
-      "value": "false",
-      "type": "Boolean"
-     },
-     {
-      "name": "columnAppendBottom",
-      "value": "false",
-      "type": "Boolean"
-     },
-     {
-      "name": "columnBorder",
-      "value": "false",
-      "type": "Boolean"
-     },
-     {
-      "name": "columnBigBorder",
-      "value": "false",
-      "type": "Boolean"
      },
      {
       "name": "height",
@@ -652,6 +617,44 @@
      {
       "name": "cssClass",
       "value": "infoButton",
+      "type": "String"
+     }
+    ]
+   },
+   {
+    "id": "fa80cec4-cf0e-c449-d102-24a874bbac8a",
+    "type": "LayoutRow",
+    "typeDesc": "Row",
+    "parent": "b46c3c58-8fac-3817-057d-2e67ce56fc4e",
+    "properties": [
+     {
+      "name": "name",
+      "value": "buttonRefreshObj",
+      "type": "Id"
+     },
+     {
+      "name": "height",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "backgroundColor",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "roundCorners",
+      "value": "",
+      "type": "RoundCorners"
+     },
+     {
+      "name": "textAlign",
+      "value": "",
+      "type": "TextAlign"
+     },
+     {
+      "name": "cssClass",
+      "value": "refreshButton",
       "type": "String"
      }
     ]
@@ -959,21 +962,6 @@
       "type": "JavaScript"
      },
      {
-      "name": "colFormats",
-      "value": "[]",
-      "type": "Array"
-     },
-     {
-      "name": "colWidths",
-      "value": "[null,null,\"0\",\"0\",\"70\",\"70\",\"70\"]",
-      "type": "Array"
-     },
-     {
-      "name": "colSortable",
-      "value": "[]",
-      "type": "Array"
-     },
-     {
       "name": "expandParameters",
       "value": "[]",
       "type": "ValuesArray"
@@ -990,23 +978,23 @@
      },
      {
       "name": "colTypes",
-      "value": "[\"runKettle\",\"string\",\"hidden\",\"hidden\",\"checkbox\",\"checkbox\",\"checkbox\",\"string\",\"executionStatus\",\"hidden\"]",
+      "value": "[\"runKettle\",\"string\",\"hidden\",\"hidden\",\"checkbox\",\"checkbox\",\"checkbox\",\"formatLastExecution\",\"executionStatus\",\"hidden\"]",
       "type": "colTypesCustom"
      },
      {
-      "name": "sort",
-      "value": "true",
-      "type": "Boolean"
+      "name": "colFormats",
+      "value": "[]",
+      "type": "Array"
      },
      {
-      "name": "displayLength",
-      "value": "",
-      "type": "Integer"
+      "name": "colWidths",
+      "value": "[null,null,\"0\",\"0\",\"50\",\"50\",\"50\"]",
+      "type": "Array"
      },
      {
-      "name": "lengthChange",
-      "value": "true",
-      "type": "Boolean"
+      "name": "colSortable",
+      "value": "[]",
+      "type": "Array"
      },
      {
       "name": "expandOnClick",
@@ -1029,6 +1017,21 @@
       "type": "Boolean"
      },
      {
+      "name": "sort",
+      "value": "true",
+      "type": "Boolean"
+     },
+     {
+      "name": "displayLength",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "lengthChange",
+      "value": "true",
+      "type": "Boolean"
+     },
+     {
       "name": "colSearchable",
       "value": "[]",
       "type": "Array"
@@ -1044,14 +1047,14 @@
       "type": "Datasource"
      },
      {
-      "name": "sortBy",
-      "value": "[]",
-      "type": "SortByArray"
-     },
-     {
       "name": "sDom",
       "value": "",
       "type": "JavaScript"
+     },
+     {
+      "name": "sortBy",
+      "value": "[]",
+      "type": "SortByArray"
      },
      {
       "name": "priority",
@@ -1100,7 +1103,7 @@
      },
      {
       "name": "postExecution",
-      "value": "function f(){\n    var myself= this,\n    checkbox_str = 'Check to execute at the next ',\n    tooltips = {\n        'td.column0 span': 'Name of the endpoint to run',\n        'td.column0 button': 'Run this Kettle job/transformation now',\n        'td.column4 .checkBoxAddIn': checkbox_str + 'server start up',\n        'td.column5 .checkBoxAddIn': checkbox_str + 'user log in',\n        'td.column6 .checkBoxAddIn': checkbox_str + 'user log out',\n        'td.column8': 'Check execution logs'\n    };\n    _.each(tooltips, function(title, key){ \n        myself.placeholder(key).attr('title', title);\n    });\n    this.placeholder().tipsy();\n    \n    if (false) {        \n    var extra_row = $('<tr/>');\n    extra_row.append($('<th/>').attr('colspan', 2));\n    extra_row.append($('<th/>').attr('colspan', 3).text('Run service at:').addClass('checkbox'));\n    extra_row.append($('<th/>').attr('colspan', 2));\n    this.placeholder('thead').prepend(extra_row);\n    }\n\n}",
+      "value": "function f(){\nif (false){\n    var myself= this,\n    checkbox_str = 'Check to execute at the next ',\n    tooltips = {\n        'td.column0 span': 'Name of the endpoint to run',\n        'td.column0 button': 'Run this Kettle job/transformation now',\n        'td.column4 .checkBoxAddIn': checkbox_str + 'server start up',\n        'td.column5 .checkBoxAddIn': checkbox_str + 'user log in',\n        'td.column6 .checkBoxAddIn': checkbox_str + 'user log out',\n        'td.column8': 'Check execution logs'\n    };\n    _.each(tooltips, function(title, key){ \n        myself.placeholder(key).attr('title', title);\n    });\n    this.placeholder().tipsy();\n}\n\n    if (true) {        \n    var extra_row = $('<tr/>');\n    extra_row.append($('<th/>').attr('colspan', 2));\n    extra_row.append($('<th/>').attr('colspan', 3).text('Run service at:').addClass('checkbox'));\n    extra_row.append($('<th/>').attr('colspan', 2));\n    this.placeholder('thead').prepend(extra_row);\n    }\n\n}",
       "type": "JavaScript"
      },
      {
@@ -1131,7 +1134,7 @@
     ]
    },
    {
-    "id": "da8621ad-00a8-ab85-9c4a-f0f2c36e94f6",
+    "id": "0113db1b-7b28-e91e-681d-617a01a7c515",
     "type": "ComponentsbuttonComponent",
     "typeDesc": "Button Component",
     "parent": "OTHERCOMPONENTS",
@@ -1194,6 +1197,94 @@
      {
       "name": "htmlObject",
       "value": "${p:buttonRefreshObj}",
+      "type": "HtmlObject"
+     },
+     {
+      "name": "executeAtStart",
+      "value": "true",
+      "type": "Boolean"
+     },
+     {
+      "name": "preExecution",
+      "value": "",
+      "type": "JavaScript"
+     },
+     {
+      "name": "postExecution",
+      "value": "function f(){\n    this.placeholder('button').empty();\n        //.attr('title', 'Refresh').tooltip();\n}",
+      "type": "JavaScript"
+     },
+     {
+      "name": "tooltip",
+      "value": "",
+      "type": "Html"
+     }
+    ]
+   },
+   {
+    "id": "da8621ad-00a8-ab85-9c4a-f0f2c36e94f6",
+    "type": "ComponentsbuttonComponent",
+    "typeDesc": "Button Component",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "value": "buttonInfoComponent",
+      "type": "Id"
+     },
+     {
+      "name": "label",
+      "value": "R",
+      "type": "String"
+     },
+     {
+      "name": "listeners",
+      "value": "[]",
+      "type": "Listeners"
+     },
+     {
+      "name": "successCallback",
+      "value": "",
+      "type": "JavaScript"
+     },
+     {
+      "name": "expression",
+      "value": "function f(){\n    $('#popupObj').empty()\n        .html('<h3>Startup Rule Engine</h3><div class=\"sre-info\"><a href=\"http://redmine.webdetails.org/projects/sre\">Report a bug.</a></div>');\n    \n    render_popupComponent.ph.removeClass('executionStatusSuccess executionStatusFailed')\n        .addClass('information');\n        \n    render_popupComponent.popup(this.placeholder());\n}",
+      "type": "JavaScript"
+     },
+     {
+      "name": "actionParameters",
+      "value": "[]",
+      "type": "ValuesArray"
+     },
+     {
+      "name": "failureCallback",
+      "value": "",
+      "type": "JavaScript"
+     },
+     {
+      "name": "Datasource",
+      "value": "",
+      "type": "Datasource"
+     },
+     {
+      "name": "priority",
+      "value": 5,
+      "type": "Integer"
+     },
+     {
+      "name": "refreshPeriod",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "buttonStyle",
+      "value": "classic",
+      "type": "TableStyle"
+     },
+     {
+      "name": "htmlObject",
+      "value": "${p:buttonInfoObj}",
       "type": "HtmlObject"
      },
      {
