@@ -119,7 +119,8 @@
         defaults:{
             status : { // [StringDisplayedOnTable, associatedCSSClass]
                 'success' : ['Success', 'executionStatusSuccess'],
-                'failed' : ['Failed', 'executionStatusFailed']
+                'failed' : ['Failed', 'executionStatusFailed'],
+                'none' : ['none', 'information']
             },
             url:  Dashboards.getWebAppPath() + '/plugin/startupRuleEngine/api/getEndpointLog',
             idxEndpointName:0,
@@ -136,56 +137,57 @@
                 $tgt = $(tgt);
             var execution_result = st.value.trim().toLowerCase();
             if (execution_result in options.status){
-                $tgt.empty()
-                    .text(options.status[execution_result][0])
+                $tgt = $tgt.empty()
                     .addClass(options.status[execution_result][1])
-                    .tipsy();
-            }
-            $tgt.click(function(){
-                var endpointName = st.tableData[st.rowIdx][options.idxEndpointName];
+                    .append($('<span/>').text(options.status[execution_result][0]));
 
-                Dashboards.log("Getting log of "+endpointName, 'debug') ;
-                // Call the endpoint
-                var url = options.url;
-                $.ajax(url, {
-                    dataType: 'json',
-                    mimeType: 'application/json; charset utf-8',
-                    type: 'POST',
-                    data: {
-                        paramfilename: st.tableData[st.rowIdx][options.idxFilename]
-                    },
-                    success: function(data){
-                        // Insert a marker between different invocations
-                        _.each(data.resultset, function(el){
-                            if (el[0].endsWith('BEGIN')){
-                                el[0] += '<hr>';
-                            }
-                        });
-                        // Build log html
-                        var  html = data.resultset.join('<br>') || data;
-                        html.replace('<hr><br>', '<hr>');
-                        html = '<h3>'+ endpointName  +'</h3>'
-                            + '<div class=\"sre-logs\">'
-                            + html
-                            + '</div>';
-                        Dashboards.fireChange('popupParam', html);
+                var $btn = $('<button/>');
+                $btn.click(function(){
+                    var endpointName = st.tableData[st.rowIdx][options.idxEndpointName];
 
-                        $('#popupObj').empty().html(html);
-                        var $popup = render_popupComponent.ph;
-                        _.each(options.status, function(el){
-                            $popup.removeClass(el[1]);
-                        });
-                        $popup.addClass( options.status[execution_result][1] );;
-                        render_popupComponent.popup($tgt);
-                    },
-                    error: function(){
-                        $('#popupObj').empty().html('No log was found');
-                        render_popupComponent.popup($tgt);
-                    }
+                    Dashboards.log("Getting log of "+endpointName, 'debug') ;
+                    // Call the endpoint
+                    var url = options.url;
+                    $.ajax(url, {
+                        dataType: 'json',
+                        mimeType: 'application/json; charset utf-8',
+                        type: 'POST',
+                        data: {
+                            paramfilename: st.tableData[st.rowIdx][options.idxFilename]
+                        },
+                        success: function(data){
+                            // Insert a marker between different invocations
+                            _.each(data.resultset, function(el){
+                                if (el[0].endsWith('BEGIN')){
+                                    el[0] += '<hr>';
+                                }
+                            });
+                            // Build log html
+                            var  html = data.resultset.join('<br>') || data;
+                            html.replace('<hr><br>', '<hr>');
+                            html = '<h3>'+ endpointName  +'</h3>'
+                                + '<div class=\"sre-logs\">'
+                                + html
+                                + '</div>';
+                            Dashboards.fireChange('popupParam', html);
+
+                            $('#popupObj').empty().html(html);
+                            var $popup = render_popupComponent.ph;
+                            _.each(options.status, function(el){
+                                $popup.removeClass(el[1]);
+                            });
+                            $popup.addClass( options.status[execution_result][1] );;
+                            render_popupComponent.popup($tgt);
+                        },
+                        error: function(){
+                            $('#popupObj').empty().html('No log was found');
+                            render_popupComponent.popup($tgt);
+                        }
+                    });
                 });
-            });
+                $tgt.append($btn);
+            }
         }
-
     };
     Dashboards.registerAddIn("Table", "colType", new AddIn(myAddIn));
 
@@ -193,46 +195,36 @@
 
 
 ;(function(){
-    var expandLogAddIn = { // NOT IMPLEMENTED YET
-        name: "expandLog",
-        label: "expandLog",
+    var formatLastExecution = { // NOT IMPLEMENTED YET
+        name: "formatLastExecution",
+        label: "formatLastExecution",
         defaults:{
-            url:  Dashboards.getWebAppPath() + '/plugin/startupRuleEngine/api/getEndpointLog',
-            idxFilename: 3
+            idxExecutionTrigger: 9
         },
 
         init: function(){
-
+            $.fn.dataTableExt.oSort[this.name+'-asc'] = $.fn.dataTableExt.oSort['string-asc'];
+            $.fn.dataTableExt.oSort[this.name+'-desc'] = $.fn.dataTableExt.oSort['string-desc'];
         },
 
         implementation: function(tgt, st, opt){
             var options = $.extend(true,{},opt),
                 $tgt = $(tgt);
 
-            var $addIn = $('<button/>').addClass('runKettleAddIn').text('Run'),
-                $text = $('<div />').text(st.value);
-            $addIn.click(function(){
-                var endpointName = st.rawData.resultset[st.rowIdx][0];
-
-                Dashboards.log("Running "+endpointName, 'debug') ;
-                //Dashboards.log(JSON.stringify(st));
-                // Call the endpoint
-                var url = options.url;
-                url += '?paramfilename=' +  st.rawData.resultset[st.rowIdx][options.idxFilename];
-                $.ajax(url, {
-                    dataType: 'json',
-                    mimeType: 'application/json; charset utf-8',
-                    type: 'POST',
-                    success: function(data){
-                        //Dashboards.log('The table should be updated...');
-                        alert(JSON.stringify(data.resultset));
-                    }
-                });
-            });
-            $(tgt).empty().append($text).append($addIn);
+            var html;
+            var trigger = st.tableData[st.rowIdx][options.idxExecutionTrigger];
+            if (trigger.slice(0,4) == 'Trig'){
+                var event = trigger.split('cpk.executeAt')[1].split(' ')[0];
+                html = sprintf('at <b>%s</b> at %s', event, st.value);
+            } else if (trigger.slice(0,3) == 'Man') {
+                html = sprintf('Manually at %s', st.value);
+            } else {
+               html = st.value;
+            }
+            $tgt.empty().html(html);
         }
 
     };
-    Dashboards.registerAddIn("Table", "colType", new AddIn(expandLogAddIn));
+    Dashboards.registerAddIn("Table", "colType", new AddIn(formatLastExecution));
 
 })();
