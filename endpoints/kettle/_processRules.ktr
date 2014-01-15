@@ -139,23 +139,25 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>List Endpoints</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>atStart&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>atLogin&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>atLogout&#x3f;</to><enabled>Y</enabled> </hop>
   <hop> <from>atLogout&#x3f;</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>atLogin&#x3f;</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>atStart&#x3f;</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>atStart&#x3f;</from><to>build log string</to><enabled>Y</enabled> </hop>
   <hop> <from>atLogin&#x3f;</from><to>build log string</to><enabled>Y</enabled> </hop>
   <hop> <from>atLogout&#x3f;</from><to>build log string</to><enabled>Y</enabled> </hop>
-  <hop> <from>Mapping input specification</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>Write to log</to><enabled>Y</enabled> </hop>
   <hop> <from>Get Variables</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>execute Endpoint</from><to>Join Rows &#x28;cartesian product&#x29; 2</to><enabled>Y</enabled> </hop>
   <hop> <from>Join Rows &#x28;cartesian product&#x29; 2</from><to>Select values</to><enabled>Y</enabled> </hop>
   <hop> <from>Select values</from><to>OUPUT</to><enabled>Y</enabled> </hop>
   <hop> <from>build log string</from><to>execute Endpoint</to><enabled>Y</enabled> </hop>
+  <hop> <from>Generate Rows</from><to>Get Variables</to><enabled>Y</enabled> </hop>
+  <hop> <from>Mapping input specification</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>List Endpoints</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>build log string</from><to>Join Rows &#x28;cartesian product&#x29; 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>atStart&#x3f;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>atLogin&#x3f;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>atLogout&#x3f;</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Dummy &#x28;do nothing&#x29;</name>
@@ -172,6 +174,44 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>843</xloc>
       <yloc>268</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate Rows</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>line</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>Y</set_empty_string>
+      </field>
+    </fields>
+    <limit>1</limit>
+    <never_ending>N</never_ending>
+    <interval_in_ms>5000</interval_in_ms>
+    <row_time_field>now</row_time_field>
+    <last_time_field>FiveSecondsAgo</last_time_field>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>220</xloc>
+      <yloc>23</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -203,8 +243,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>164</xloc>
-      <yloc>95</yloc>
+      <xloc>234</xloc>
+      <yloc>104</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -301,6 +341,13 @@
     <main_path>Y</main_path>
     <rename_on_output>N</rename_on_output>
     <description/>
+       <connector><parent>endpointName</parent><child>endpointName</child></connector>
+       <connector><parent>description</parent><child>description</child></connector>
+       <connector><parent>extendedDescription</parent><child>extendedDescription</child></connector>
+       <connector><parent>filename</parent><child>filename</child></connector>
+       <connector><parent>executeAtStart</parent><child>executeAtStart</child></connector>
+       <connector><parent>executeAtStart</parent><child>executeAtStart</child></connector>
+       <connector><parent>executeAtLogout</parent><child>executeAtLogout</child></connector>
     </mapping>      </output>
           <parameters>       <variablemapping><variable>rules.dir</variable><input>&#x24;&#x7b;rules.dir&#x7d;</input></variablemapping>
     <inherit_all_vars>Y</inherit_all_vars>
@@ -308,8 +355,8 @@
     </mappings>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>242</xloc>
-      <yloc>93</yloc>
+      <xloc>60</xloc>
+      <yloc>266</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -336,8 +383,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>83</xloc>
-      <yloc>187</yloc>
+      <xloc>59</xloc>
+      <yloc>191</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -399,8 +446,8 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1054</xloc>
-      <yloc>166</yloc>
+      <xloc>1080</xloc>
+      <yloc>169</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

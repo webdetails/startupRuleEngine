@@ -20,7 +20,7 @@
             <description/>
         </parameter>
         <parameter>
-            <name>folder</name>
+            <name>rules.dir</name>
             <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;startupRules</default_value>
             <description/>
         </parameter>
@@ -136,7 +136,46 @@
   <order>
   <hop> <from>_ process Rules</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
   <hop> <from>Get Variables</from><to>_ process Rules</to><enabled>Y</enabled> </hop>
+  <hop> <from>Generate Rows</from><to>Get Variables</to><enabled>Y</enabled> </hop>
   </order>
+  <step>
+    <name>Generate Rows</name>
+    <type>RowGenerator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>line</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>line</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <limit>1</limit>
+    <never_ending>N</never_ending>
+    <interval_in_ms>5000</interval_in_ms>
+    <row_time_field>now</row_time_field>
+    <last_time_field>FiveSecondsAgo</last_time_field>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>223</xloc>
+      <yloc>111</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>Get Variables</name>
     <type>GetVariable</type>
@@ -221,7 +260,8 @@
     <rename_on_output>N</rename_on_output>
     <description/>
     </mapping>      </output>
-          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
+          <parameters>       <variablemapping><variable>rules.dir</variable><input>&#x24;&#x7b;folder&#x7d;</input></variablemapping>
+    <inherit_all_vars>Y</inherit_all_vars>
     </parameters>
     </mappings>
      <cluster_schema/>
