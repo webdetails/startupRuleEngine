@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
+ * If a copy of the MPL was not distributed with this file, 
+ * You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
 /*
  * WDStyleGuide Template CSS  
  *
@@ -58,7 +62,7 @@ time, mark, audio, video {
 margin: 0;
 padding: 0;
 border: 0;
-        font-family: Open Sans, Arial, sans-serif;
+        /* font-family: Open Sans, Arial, sans-serif; */
   }
 
 
@@ -100,7 +104,7 @@ div.container *{
   padding: 15px 0 10px 0;
   text-align: left;
   font-size: 16px;
-  font-family: 'OpenSansSemiBold';
+  font-family: 'OpenSansLight';
   border-bottom: 1px solid #ccdee9;
   color: #3d6380;
 }
@@ -701,7 +705,7 @@ table{
   font-family: 'OpenSansLight';
   font-size: 12px;
 }
-table tr{
+table tbody tr{
   height: 52px;
 }
 
@@ -717,7 +721,7 @@ thead th {
   text-align: left !important;
   font-weight: normal;
   vertical-align: bottom;
-  padding: 10px 12px;
+  padding: 5px 12px;
 }
 
 thead th:last-child {
@@ -730,7 +734,7 @@ tbody tr:nth-child(even),
 tbody tr:nth-child(odd) 
 {
   background: #ffffff;
-  background: linear-gradient(to bottom, #FFFFFF 0%, #F8F8F8 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  /* background: linear-gradient(to bottom, #FFFFFF 0%, #F8F8F8 100%) repeat scroll 0 0 rgba(0, 0, 0, 0); */
   border: 1px solid #ccdee9;
 }
 
@@ -746,7 +750,7 @@ tbody td{
   font-size: 12px;
   padding: 10px;
   /* padding-right: 0px; */
-  font-family: 'OpenSans';
+  font-family: 'OpenSansRegular';
   border:none;
   border-bottom: 1px solid #ccdee9;
 }
@@ -869,7 +873,7 @@ padding-left: 30px;
 
 thead th.checkbox
 {
-  padding: 10px 0;
+  padding: 5px 0;
 }
 thead th.column5{
   text-align:center !important;
@@ -880,7 +884,7 @@ thead th.column6{
 
 th[colspan].checkbox{
   font-weight: lighter;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   text-align: center;
   border-bottom: 1px solid #ccdee9;
   color: #333e48;
@@ -929,7 +933,12 @@ th[colspan].checkbox{
 }
 
 
-.formatLastExecution b{ 
+td.formatLastExecution{ 
+  font-family: 'OpenSansRegular';
+  font-weight: normal;
+}
+
+td.formatLastExecution b{ 
   font-family: 'OpenSansSemiBold';
   font-weight: normal;
 
@@ -1001,7 +1010,7 @@ td.executionStatus{
 }
 .popupComponent .sre-info,
 .popupComponent .sre-logs{
-  overflow-y:scroll;
+  /* overflow-y:scroll; */
   /* height: 50%; */
   color:#3b647e;
   font-size: 10px;
