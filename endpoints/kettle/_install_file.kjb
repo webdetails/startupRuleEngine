@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>_install_jars</name>
+  <name>_install_file</name>
     <description/>
     <extended_description/>
     <job_version/>
@@ -269,7 +269,7 @@
       <to>Copy files to destination</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
@@ -314,7 +314,7 @@
       <to>Delete files at destination</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>

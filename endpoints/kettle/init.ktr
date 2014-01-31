@@ -158,14 +158,17 @@
   <hop> <from>Get Variables</from><to>create rules folder</to><enabled>Y</enabled> </hop>
   <hop> <from>Get Variables</from><to>processRules &#x28;cpk.executeAtStart&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>processRules &#x28;cpk.executeAtStart&#x29;</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Variables</from><to>install jars</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Variables</from><to>install jars</to><enabled>N</enabled> </hop>
   <hop> <from>Generate Rows</from><to>Get Variables</to><enabled>Y</enabled> </hop>
   <hop> <from>Get Variables</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>hook for SessionListener &#x28; cpk.executeAtLogin and cpk.executeAtLogout &#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>install jars</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get existent samples File Names</from><to>User Defined Java Expression</to><enabled>Y</enabled> </hop>
-  <hop> <from>User Defined Java Expression</from><to>install sample files</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Variables</from><to>Get existent samples File Names</to><enabled>Y</enabled> </hop>
+  <hop> <from>install jars</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>N</enabled> </hop>
+  <hop> <from>Get existent samples File Names</from><to>User Defined Java Expression</to><enabled>N</enabled> </hop>
+  <hop> <from>User Defined Java Expression</from><to>install sample files</to><enabled>N</enabled> </hop>
+  <hop> <from>Get Variables</from><to>Get existent samples File Names</to><enabled>N</enabled> </hop>
+  <hop> <from>Get Variables</from><to>install files</to><enabled>Y</enabled> </hop>
+  <hop> <from>install files</from><to>Group by</to><enabled>Y</enabled> </hop>
+  <hop> <from>Group by</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Generate Rows</name>
@@ -371,6 +374,45 @@
     </step>
 
   <step>
+    <name>Get existent samples File Names</name>
+    <type>GetFileNames</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <filter>
+      <filterfiletype>all_files</filterfiletype>
+    </filter>
+    <doNotFailIfNoFile>N</doNotFailIfNoFile>
+    <rownum>N</rownum>
+    <isaddresult>N</isaddresult>
+    <filefield>Y</filefield>
+    <rownum_field/>
+    <filename_Field>samples_folder</filename_Field>
+    <wildcard_Field>samples_regex</wildcard_Field>
+    <exclude_wildcard_Field/>
+    <dynamic_include_subfolders>Y</dynamic_include_subfolders>
+    <limit>0</limit>
+    <file>
+      <name>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;resources&#x2f;samples</name>
+      <filemask>.&#x2a;&#x5c;.&#x28;ktr&#x7c;kjb&#x29;</filemask>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>Y</include_subfolders>
+    </file>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>109</xloc>
+      <yloc>327</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Join Rows &#x28;cartesian product&#x29;</name>
     <type>JoinRows</type>
     <description/>
@@ -416,6 +458,32 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>694</xloc>
       <yloc>101</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>User Defined Java Expression</name>
+    <type>Janino</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>destination_samples_folder</field_name>
+<formula_string>rules_folder &#x2b; &#x22;&#x2f;&#x22; &#x2b;short_filename</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>234</xloc>
+      <yloc>325</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -490,7 +558,7 @@
           <parameters>       <variablemapping><variable>folder</variable><field>rules_folder</field><input/></variablemapping>
     <inherit_all_vars>Y</inherit_all_vars>
     </parameters>
-    <execution_result_target_step>Join Rows &#x28;cartesian product&#x29; 2</execution_result_target_step>
+    <execution_result_target_step/>
     <execution_time_field>ExecutionTime</execution_time_field>
     <execution_result_field>ExecutionResult</execution_result_field>
     <execution_errors_field>ExecutionNrErrors</execution_errors_field>
@@ -599,6 +667,32 @@
     </step>
 
   <step>
+    <name>install sample files</name>
+    <type>ProcessFiles</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <sourcefilenamefield>filename</sourcefilenamefield>
+    <targetfilenamefield>destination_samples_folder</targetfilenamefield>
+    <operation_type>copy</operation_type>
+    <addresultfilenames>N</addresultfilenames>
+    <overwritetargetfile>N</overwritetargetfile>
+    <createparentfolder>Y</createparentfolder>
+    <simulate>N</simulate>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>381</xloc>
+      <yloc>325</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>processRules &#x28;cpk.executeAtStart&#x29;</name>
     <type>SimpleMapping</type>
     <description/>
@@ -644,34 +738,53 @@
     </step>
 
   <step>
-    <name>install sample files</name>
-    <type>ProcessFiles</type>
+    <name>install files</name>
+    <type>SimpleMapping</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <sourcefilenamefield>filename</sourcefilenamefield>
-    <targetfilenamefield>destination_samples_folder</targetfilenamefield>
-    <operation_type>copy</operation_type>
-    <addresultfilenames>N</addresultfilenames>
-    <overwritetargetfile>N</overwritetargetfile>
-    <createparentfolder>Y</createparentfolder>
-    <simulate>N</simulate>
+    <specification_method>filename</specification_method>
+    <trans_object_id/>
+    <trans_name/>
+    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;_install_files.ktr</filename>
+    <directory_path/>
+    <mappings>
+      <input>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>Y</rename_on_output>
+    <description/>
+    </mapping>      </input>
+      <output>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+    </mapping>      </output>
+          <parameters>       <variablemapping><variable>cpk.solution.system.dir</variable><input>&#x24;&#x7b;cpk.solution.system.dir&#x7d;</input></variablemapping>
+       <variablemapping><variable>cpk.webapp.dir</variable><input>&#x24;&#x7b;cpk.webapp.dir&#x7d;</input></variablemapping>
+       <variablemapping><variable>src.install.dir</variable><input>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;resources&#x2f;install</input></variablemapping>
+    <inherit_all_vars>Y</inherit_all_vars>
+    </parameters>
+    </mappings>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>381</xloc>
-      <yloc>325</yloc>
+      <xloc>384</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Get existent samples File Names</name>
-    <type>GetFileNames</type>
+    <name>Group by</name>
+    <type>GroupBy</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -680,56 +793,28 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <filter>
-      <filterfiletype>all_files</filterfiletype>
-    </filter>
-    <doNotFailIfNoFile>N</doNotFailIfNoFile>
-    <rownum>N</rownum>
-    <isaddresult>N</isaddresult>
-    <filefield>Y</filefield>
-    <rownum_field/>
-    <filename_Field>samples_folder</filename_Field>
-    <wildcard_Field>samples_regex</wildcard_Field>
-    <exclude_wildcard_Field/>
-    <dynamic_include_subfolders>Y</dynamic_include_subfolders>
-    <limit>0</limit>
-    <file>
-      <name>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;resources&#x2f;samples</name>
-      <filemask>.&#x2a;&#x5c;.&#x28;ktr&#x7c;kjb&#x29;</filemask>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>Y</include_subfolders>
-    </file>
+      <all_rows>N</all_rows>
+      <ignore_aggregate>N</ignore_aggregate>
+      <field_ignore/>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>grp</prefix>
+      <add_linenr>N</add_linenr>
+      <linenr_fieldname/>
+      <give_back_row>N</give_back_row>
+      <group>
+      </group>
+      <fields>
+        <field>
+          <aggregate>destination</aggregate>
+          <subject>destination</subject>
+          <type>COUNT_ALL</type>
+          <valuefield/>
+        </field>
+      </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>109</xloc>
-      <yloc>327</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>User Defined Java Expression</name>
-    <type>Janino</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <formula><field_name>destination_samples_folder</field_name>
-<formula_string>rules_folder &#x2b; &#x22;&#x2f;&#x22; &#x2b;short_filename</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field/>
-</formula>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>234</xloc>
-      <yloc>325</yloc>
+      <xloc>480</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -740,10 +825,6 @@
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
 <attributes><group><name>DataService</name>
-<attribute><key>name</key>
-<value/>
-</attribute><attribute><key>stepname</key>
-<value/>
-</attribute></group></attributes>
+</group></attributes>
 
 </transformation>
