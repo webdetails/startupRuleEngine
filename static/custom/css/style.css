@@ -636,7 +636,7 @@ button span {
   font-size: 12px;
 }
 .instructions{
-  padding-top: 10px;
+ but padding-top: 10px;
 }
 
 .sre-usage kbd{
@@ -812,18 +812,18 @@ tr.odd td.sorting_1 {
 
 th.runKettle
 {
-  padding-left: 96px;
+  padding-left: 35px;
 }
 
-.runKettle span,
+td.column1,
 .executionStatus span
 {
-line-height: 32px;
-font-family: 'OpenSansSemiBold';
+  line-height: 32px;
+  font-family: 'OpenSansSemiBold';
 }
-.runKettle span
+td.column1
 {
-padding-left: 30px;
+padding-left: 15px;
 }
 
 .runKettle button
@@ -851,25 +851,12 @@ padding-left: 30px;
   background: url('../img/play.png') no-repeat 0 0, linear-gradient(to bottom, #007297 49%,#005E7C 100%);
   float: left;
 }
+
 .runKettle button:hover
 {
   background: #0085B0 url('../img/play.png') no-repeat 0 0;
 }
 
-
-.executionStatus button
-{
-  width: 26px;
-  height: 26px;
-  margin-top: 2px;
-  background: url('../img/log-normal.png') no-repeat 0 0;
-  float: right;
-}
-
-.executionStatus button:hover
-{
-  background: url('../img/log-hover.png') no-repeat 0 0;
-}
 
 thead th.checkbox
 {
@@ -889,9 +876,9 @@ th[colspan].checkbox{
   border-bottom: 1px solid #ccdee9;
   color: #333e48;
 }
-
-.checkBoxAddIn.checked,
-.checkBoxAddIn.unchecked
+/* .column4.componentAddIn, */
+.checkbox .checked,
+.checkbox .unchecked
 {
   background-repeat: no-repeat;
   background-position: 0px 0px;
@@ -904,13 +891,13 @@ th[colspan].checkbox{
   cursor:pointer;
 }
 
-.column4 .checkBoxAddIn{
+.column4 .checkbox button{
   margin-left: -2px;
 }
-.column5 .checkBoxAddIn{
+.column5 .checkbox button{
   margin-left: 7px;
 }
-.column6 .checkBoxAddIn{
+.column6 .checkbox button{
   margin-left: 10px;
 }
 .column7
@@ -918,18 +905,15 @@ th[colspan].checkbox{
   padding-left: 20px;
 }
 
-
-.checkBoxAddIn:hover
+/* .column4.componentAddIn button:hover, */
+.checkbox button:hover
 {
   border-color: #15AAED;
 }
-.checkBoxAddIn.checked
+/* .column4.componentAddIn.checked, */
+.checkbox button.checked
 {
   background: url('../img/tick.png') -3px -3px no-repeat;
-}
-.checkBoxAddIn.unchecked
-{
-  /* background-image: url('../img/checkbox.png'); */
 }
 
 
@@ -944,8 +928,7 @@ td.formatLastExecution b{
 
 }
 
-
-.executionStatus{
+.showLogs{
   /* margin-left: auto; */
   /* margin-right:auto; */
   padding-right: 10px;
@@ -975,9 +958,21 @@ td.executionStatus{
   color: #ff0000;
   border: 1px solid #ff0000;
 }
-.executionStatus button
+
+
+
+.showLog button
 {
+  width: 26px;
+  height: 26px;
+  margin-top: 2px;
+  background: url('../img/log-normal.png') no-repeat 0 0;
   float: right;
+}
+
+.showLog button:hover
+{
+  background: url('../img/log-hover.png') no-repeat 0 0;
 }
 
 .popupComponent

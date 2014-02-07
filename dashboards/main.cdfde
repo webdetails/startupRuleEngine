@@ -973,12 +973,12 @@
      },
      {
       "name": "colHeaders",
-      "value": "[\"Service\",\"Description\",\"hidden\",\"hidden\",\"Start\",\"Login\",\"Logout\",\"Last execution\",\"Status\",\"Execution details\"]",
+      "value": "[\"Run\",\"Service\",\"Description\",\"hidden\",\"Start\",\"Login\",\"Logout\",\"Last execution\",\"Status\",\"Logs\"]",
       "type": "Array"
      },
      {
       "name": "colTypes",
-      "value": "[\"runKettle\",\"string\",\"hidden\",\"hidden\",\"checkbox\",\"checkbox\",\"checkbox\",\"formatLastExecution\",\"executionStatus\",\"hidden\"]",
+      "value": "[\"runKettle\",\"string\",\"string\",\"hidden\",\"checkbox\",\"checkbox\",\"checkbox\",\"formatLastExecution\",\"executionStatus\",\"showLog\"]",
       "type": "colTypesCustom"
      },
      {
@@ -1047,14 +1047,14 @@
       "type": "Datasource"
      },
      {
-      "name": "sDom",
-      "value": "",
-      "type": "JavaScript"
-     },
-     {
       "name": "sortBy",
       "value": "[]",
       "type": "SortByArray"
+     },
+     {
+      "name": "sDom",
+      "value": "",
+      "type": "JavaScript"
      },
      {
       "name": "priority",
@@ -1103,7 +1103,7 @@
      },
      {
       "name": "postExecution",
-      "value": "function f(){\nif (false){\n    var myself= this,\n    checkbox_str = 'Check to execute at the next ',\n    tooltips = {\n        'td.column0 span': 'Name of the endpoint to run',\n        'td.column0 button': 'Run this Kettle job/transformation now',\n        'td.column4 .checkBoxAddIn': checkbox_str + 'server start up',\n        'td.column5 .checkBoxAddIn': checkbox_str + 'user log in',\n        'td.column6 .checkBoxAddIn': checkbox_str + 'user log out',\n        'td.column8': 'Check execution logs'\n    };\n    _.each(tooltips, function(title, key){ \n        myself.placeholder(key).attr('title', title);\n    });\n    this.placeholder().tipsy();\n}\n\n    if (true) {        \n    var extra_row = $('<tr/>');\n    extra_row.append($('<th/>').attr('colspan', 2));\n    extra_row.append($('<th/>').attr('colspan', 3).text('Run service at:').addClass('checkbox'));\n    extra_row.append($('<th/>').attr('colspan', 2));\n    this.placeholder('thead').prepend(extra_row);\n    }\n\n}",
+      "value": "function f(){\nif (false){\n    var myself= this,\n    checkbox_str = 'Check to execute at the next ',\n    tooltips = {\n        'td.column1': 'Name of the endpoint to run',\n        'td.column0 button': 'Run this Kettle job/transformation now',\n        'td.column5 .checkBoxAddIn': checkbox_str + 'server start up',\n        'td.column6 .checkBoxAddIn': checkbox_str + 'user log in',\n        'td.column7 .checkBoxAddIn': checkbox_str + 'user log out',\n        'td.column9': 'Check execution logs'\n    };\n    _.each(tooltips, function(title, key){ \n        myself.placeholder(key).attr('title', title);\n    });\n    this.placeholder().tipsy();\n}\n\n    if (true) {        \n    var extra_row = $('<tr/>');\n    extra_row.append($('<th/>').attr('colspan', 3));\n    extra_row.append($('<th/>').attr('colspan', 3).text('Run service at:').addClass('checkbox'));\n    extra_row.append($('<th/>').attr('colspan', 2));\n    this.placeholder('thead').prepend(extra_row);\n    }\n\n}",
       "type": "JavaScript"
      },
      {
@@ -1166,7 +1166,7 @@
      },
      {
       "name": "actionParameters",
-      "value": "[]",
+      "value": "[[\"param\",\"value\"],[\"myparam\",\"myvalue\"]]",
       "type": "ValuesArray"
      },
      {
