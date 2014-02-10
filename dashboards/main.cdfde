@@ -962,18 +962,13 @@
       "type": "JavaScript"
      },
      {
-      "name": "expandParameters",
-      "value": "[]",
-      "type": "ValuesArray"
-     },
-     {
       "name": "parameters",
       "value": "[]",
       "type": "ValuesArray"
      },
      {
       "name": "colHeaders",
-      "value": "[\"Run\",\"Service\",\"Description\",\"hidden\",\"Start\",\"Login\",\"Logout\",\"Last execution\",\"Status\",\"Logs\"]",
+      "value": "[\"Run\",\"Service\",\"Description\",\"hidden\",\"Start\",\"Login\",\"Logout\",\"Last execution\",\"Status\",\"View log\"]",
       "type": "Array"
      },
      {
@@ -988,18 +983,18 @@
      },
      {
       "name": "colWidths",
-      "value": "[null,null,\"0\",\"0\",\"50\",\"50\",\"50\"]",
+      "value": "[\"50\",null,null,null,\"50\",\"50\",\"50\",null,\"80\",\"90\"]",
       "type": "Array"
      },
      {
       "name": "colSortable",
-      "value": "[]",
+      "value": "[\"false\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"false\"]",
       "type": "Array"
      },
      {
-      "name": "expandOnClick",
-      "value": "false",
-      "type": "Boolean"
+      "name": "expandParameters",
+      "value": "[]",
+      "type": "ValuesArray"
      },
      {
       "name": "paginate",
@@ -1032,6 +1027,11 @@
       "type": "Boolean"
      },
      {
+      "name": "expandOnClick",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
       "name": "colSearchable",
       "value": "[]",
       "type": "Array"
@@ -1047,14 +1047,14 @@
       "type": "Datasource"
      },
      {
-      "name": "sortBy",
-      "value": "[]",
-      "type": "SortByArray"
-     },
-     {
       "name": "sDom",
       "value": "",
       "type": "JavaScript"
+     },
+     {
+      "name": "sortBy",
+      "value": "[]",
+      "type": "SortByArray"
      },
      {
       "name": "priority",
@@ -1249,7 +1249,7 @@
      },
      {
       "name": "expression",
-      "value": "function f(){\n    $('#popupObj').empty()\n        .html('<h3>Startup Rule Engine</h3><div class=\"sre-info\"><a href=\"http://redmine.webdetails.org/projects/sre\">Report a bug.</a></div>');\n    \n    render_popupComponent.ph.removeClass('executionStatusSuccess executionStatusFailed')\n        .addClass('information');\n        \n    render_popupComponent.popup(this.placeholder());\n}",
+      "value": "function f(){\n    $('#popupObj').empty()\n        .html('<h3>Startup Rule Engine</h3><div class=\"sre-info\"><a href=\"http://redmine.webdetails.org/projects/sre\">Report a bug.</a></div>');\n    \n    render_popupComponent.ph.removeClass('executionStatusSuccess executionStatusFailed')\n        .addClass('information');\n    \n    var $ph = this.placeholder();\n    render_popupComponent.popup($ph);\n    \n    $ph.css({\n        bottom: 'auto',\n        right: '42px',\n        left: 'auto'\n    });\n}",
       "type": "JavaScript"
      },
      {
@@ -1357,7 +1357,7 @@
      },
      {
       "name": "closeOnClickOutside",
-      "value": "false",
+      "value": "true",
       "type": "Boolean"
      },
      {

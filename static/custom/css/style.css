@@ -76,12 +76,8 @@ border: 0;
 /* Window Background */
 body{
   font-family: 'OpenSansLight', 'Helvetica Neue', Arial, sans-serif;
-  /* background: #EBEDEE; */
-
   color: #333e48;
-  /* padding-top: 50px; */
   overflow-y: scroll;
-  /* background: url('../img/bg_page.png') repeat-x top left; */
   background-color: transparent;
 
 }
@@ -106,7 +102,7 @@ div.container *{
   font-size: 16px;
   font-family: 'OpenSansLight';
   border-bottom: 1px solid #ccdee9;
-  color: #3d6380;
+  color: #333e48;
 }
 
 .WDh1 {}
@@ -615,6 +611,7 @@ button span {
   background: #ffffff;
   border: 1px solid #ccdee9;
   margin-top: 45px;
+border: none;
 }
 
 
@@ -627,12 +624,12 @@ button span {
 }
 
 .mainBlock{
-  margin: 30px;
+  /* margin: 30px; */
   margin-top: 0px;
 }
 
 .sre-usage{
-  color: #3d5380;
+  color: #3d6380;
   font-size: 12px;
 }
 .instructions{
@@ -658,8 +655,8 @@ button span {
 .refreshButton button{
   height:20px;
   width:20px;
-  background: url('../img/refresh-normal.png') 0 1px no-repeat;
   margin-right: 10px;
+  background: url('../img/refresh-normal.png') 0 1px no-repeat;
 }
 .refreshButton button:hover{
   background-image: url('../img/refresh-hover.png');
@@ -673,7 +670,8 @@ button span {
   width:30px;
   /* padding-left: 20px; */
   background: url('../img/info-normal.png') 10px 0 no-repeat;
-
+}
+.infoButton {
   /* margin-left: 10px; */
   border-left : 1px solid #ccdee9;
 }
@@ -705,9 +703,6 @@ table{
   font-family: 'OpenSansLight';
   font-size: 12px;
 }
-table tbody tr{
-  height: 52px;
-}
 
 /* Header */
 thead tr {
@@ -721,15 +716,15 @@ thead th {
   text-align: left !important;
   font-weight: normal;
   vertical-align: bottom;
-  padding: 5px 12px;
+  padding: 5px 10px;
 }
 
-thead th:last-child {
-  /* text-align: center; */
-}
 
 
 /* Body */
+table tbody tr{
+  height: 52px;
+}
 tbody tr:nth-child(even),
 tbody tr:nth-child(odd) 
 {
@@ -757,13 +752,17 @@ tbody td{
 tbody tr:first-child td{
   border-top: 1px solid #ccdee9;
 }
+
+thead th:first-child {
+  padding-left: 20px;
+}
 tbody tr td:first-child {
-  padding-left: 30px;
+  padding-left: 20px;
   border-left: 1px solid #ccdee9;
 }
 tbody tr td:last-child {
   border-right: 1px solid #ccdee9;
-  padding-right: 30px;
+  padding-right: 18px;
 }
 
 tr.even, 
@@ -810,22 +809,6 @@ tr.odd td.sorting_1 {
 }
 
 
-th.runKettle
-{
-  padding-left: 35px;
-}
-
-td.column1,
-.executionStatus span
-{
-  line-height: 32px;
-  font-family: 'OpenSansSemiBold';
-}
-td.column1
-{
-padding-left: 15px;
-}
-
 .runKettle button
 { 
   width: 35px;
@@ -858,6 +841,24 @@ padding-left: 15px;
 }
 
 
+
+td.column1,
+.executionStatus span
+{
+  line-height: 32px;
+  font-family: 'OpenSansSemiBold';
+}
+td.column1
+{
+  padding-left: 10px;
+}
+
+
+.column2{
+  padding-left: 35px;
+}
+
+
 thead th.checkbox
 {
   padding: 5px 0;
@@ -876,7 +877,6 @@ th[colspan].checkbox{
   border-bottom: 1px solid #ccdee9;
   color: #333e48;
 }
-/* .column4.componentAddIn, */
 .checkbox .checked,
 .checkbox .unchecked
 {
@@ -885,35 +885,33 @@ th[colspan].checkbox{
   background-color: transparent;
   width: 16px;
   height:16px;
-  border:1px solid #30516D;
-  /* margin-left: 5px; */
-
+  border:1px solid #ccdee9;
   cursor:pointer;
 }
 
-.column4 .checkbox button{
+.column4.checkbox button{
   margin-left: -2px;
 }
-.column5 .checkbox button{
+.column5.checkbox button{
   margin-left: 7px;
 }
-.column6 .checkbox button{
+.column6.checkbox button{
   margin-left: 10px;
-}
-.column7
-{
-  padding-left: 20px;
+  /* padding-left: 28px; */
 }
 
-/* .column4.componentAddIn button:hover, */
 .checkbox button:hover
 {
-  border-color: #15AAED;
+  border-color: #00b9f1;
 }
-/* .column4.componentAddIn.checked, */
 .checkbox button.checked
 {
   background: url('../img/tick.png') -3px -3px no-repeat;
+}
+.formatLastExecution
+{
+  padding-left: 35px;
+  padding-right: 20px;
 }
 
 
@@ -925,17 +923,11 @@ td.formatLastExecution{
 td.formatLastExecution b{ 
   font-family: 'OpenSansSemiBold';
   font-weight: normal;
-
 }
 
-.showLogs{
-  /* margin-left: auto; */
-  /* margin-right:auto; */
-  padding-right: 10px;
-  position: relative;
-}
-th.executionStatus{
-  /* text-align:center; */
+thead th.executionStatus {
+  text-align: center !important;
+  width: 60px;
 }
 td.executionStatus{
   font-family:'OpenSansSemiBold';
@@ -944,7 +936,7 @@ td.executionStatus{
 .executionStatus span
 {
   padding: 3px 10px;
-  /* width: 100%; */
+  text-align: center;
 }
 .executionStatus.executionStatusSuccess div,
 .executionStatus.executionStatusSuccess span
@@ -959,21 +951,35 @@ td.executionStatus{
   border: 1px solid #ff0000;
 }
 
-
-
+thead th.showLog {
+  text-align: center !important;
+  width: 80px;
+  padding-right: 5px;
+}
+tr.showLog{
+  padding-right: 20px;
+  position: relative;
+}
 .showLog button
 {
+  float: right;
   width: 26px;
   height: 26px;
-  margin-top: 2px;
+  margin-top: -1px;
+  margin-right: 10px;
+  /* margin-right: auto; */
+  /* margin-left: auto; */
+  border: none;
   background: url('../img/log-normal.png') no-repeat 0 0;
-  float: right;
 }
 
 .showLog button:hover
 {
   background: url('../img/log-hover.png') no-repeat 0 0;
 }
+
+
+
 
 .popupComponent
 {
@@ -1007,8 +1013,8 @@ td.executionStatus{
 .popupComponent .sre-logs{
   /* overflow-y:scroll; */
   /* height: 50%; */
-  color:#3b647e;
-  font-size: 10px;
+  color:#333e48;
+  font-size: 12px;
   padding: 10px;
 }
 .popupComponent.executionStatusSuccess {
