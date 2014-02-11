@@ -962,16 +962,6 @@
       "type": "JavaScript"
      },
      {
-      "name": "parameters",
-      "value": "[]",
-      "type": "ValuesArray"
-     },
-     {
-      "name": "colHeaders",
-      "value": "[\"Run\",\"Service\",\"Description\",\"hidden\",\"Start\",\"Login\",\"Logout\",\"Last execution\",\"Status\",\"View log\"]",
-      "type": "Array"
-     },
-     {
       "name": "colTypes",
       "value": "[\"runKettle\",\"string\",\"string\",\"hidden\",\"checkbox\",\"checkbox\",\"checkbox\",\"formatLastExecution\",\"executionStatus\",\"showLog\"]",
       "type": "colTypesCustom"
@@ -997,14 +987,14 @@
       "type": "ValuesArray"
      },
      {
-      "name": "paginate",
-      "value": "false",
-      "type": "Boolean"
+      "name": "parameters",
+      "value": "[]",
+      "type": "ValuesArray"
      },
      {
-      "name": "filter",
-      "value": "false",
-      "type": "Boolean"
+      "name": "colHeaders",
+      "value": "[\"Run\",\"Service\",\"Description\",\"hidden\",\"Start\",\"Login\",\"Logout\",\"Last execution\",\"Status\",\"View log\"]",
+      "type": "Array"
      },
      {
       "name": "info",
@@ -1028,6 +1018,16 @@
      },
      {
       "name": "expandOnClick",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "paginate",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
+      "name": "filter",
       "value": "false",
       "type": "Boolean"
      },
@@ -1249,7 +1249,7 @@
      },
      {
       "name": "expression",
-      "value": "function f(){\n    $('#popupObj').empty()\n        .html('<h3>Startup Rule Engine</h3><div class=\"sre-info\"><a href=\"http://redmine.webdetails.org/projects/sre\">Report a bug.</a></div>');\n    \n    render_popupComponent.ph.removeClass('executionStatusSuccess executionStatusFailed')\n        .addClass('information');\n    \n    var $ph = this.placeholder();\n    render_popupComponent.popup($ph);\n    \n    $ph.css({\n        bottom: 'auto',\n        right: '42px',\n        left: 'auto'\n    });\n}",
+      "value": "function f(){\n\n    $('#popupObj').empty()\n        .html('<h3>Startup Rule Engine</h3><div class=\"sre-info\">'+SRE.AboutHTML+'</div>');\n    \n    render_popupComponent.ph.removeClass('executionStatusSuccess executionStatusFailed')\n        .addClass('information');\n    \n    var $ph = this.placeholder();\n    render_popupComponent.popup($ph);\n    \n    $ph.css({\n        bottom: 'auto',\n        right: '42px',\n        left: 'auto'\n    });\n\n    //  $('<div/>').empty()\n    //    .html('<div class=\"sre-info\">'+SRE.AboutHTML+'</div>').dialog('option', 'title', 'Startup Rule Engine')\n    //    .css({'display':'block'}).appendTo($('body'));\n        \n}",
       "type": "JavaScript"
      },
      {

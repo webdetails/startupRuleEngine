@@ -1,3 +1,6 @@
+var SRE = SRE || {};
+
+
 ;(function(){
     var formatLastExecution = {
         name: "formatLastExecution",
@@ -21,7 +24,7 @@
                 var event = trigger.split('cpk.executeAt')[1].split(' ')[0];
                 html = sprintf('<b>at %s</b> at %s', event, st.value);
             } else if (trigger.slice(0,3) == 'Man') {
-                html = sprintf('Manually at %s', st.value);
+                html = sprintf('<b>Manually</b> at %s', st.value);
             } else {
                html = st.value;
             }
@@ -75,7 +78,7 @@
 
 
 ;(function(){
-Dashboards.registerComponentAddIn = function(name, defaults){
+SRE.registerComponentAddIn = function(type, subtype, name, defaults){
     /* Generates addIns that wrap CDF components and registers them
      *
      */
@@ -118,7 +121,7 @@ Dashboards.registerComponentAddIn = function(name, defaults){
             Dashboards.bindControl(component).update();
         }
     };
-    Dashboards.registerAddIn("Table", "colType", new AddIn(componentAddIn));
+    Dashboards.registerAddIn(type, subtype, new AddIn(componentAddIn));
     //return componentAddIn;
 };
 })();
@@ -126,7 +129,7 @@ Dashboards.registerComponentAddIn = function(name, defaults){
 //Dashboards.registerAddIn("Table", "colType", new AddIn(Dashboards.wrapComponentAsAddIn('runKettle', {
 //})));
 
-Dashboards.registerComponentAddIn('runKettle', {
+SRE.registerComponentAddIn('Table', 'colType', 'runKettle', {
     actionDefinition: {
         queryType: 'cpk',
         pluginId: 'startupRuleEngine',
@@ -146,14 +149,21 @@ Dashboards.registerComponentAddIn('runKettle', {
         return r;
     },
     functions:{
+        expression: function(tgt, st, options) {
+            this.disable();
+        },
         successCallback: function(tgt, st, options){
             Dashboards.log('Success');
+            this.enable();
             Dashboards.fireChange('refreshEvent', $.now());
+        },
+        failureCallback: function(tgt, st, options){
+            this.enable();
         }
     }
 });
 
-Dashboards.registerComponentAddIn('checkbox', {
+SRE.registerComponentAddIn('Table', 'colType','checkbox', {
     actionDefinition: {
         queryType: 'cpk',
         pluginId: 'startupRuleEngine',
@@ -175,14 +185,19 @@ Dashboards.registerComponentAddIn('checkbox', {
         return p;
     },
     functions:{
+        expression: function(tgt, st, options) {
+            this.actionParameters = Dashboards.objectToPropertiesArray(options.parameters(tgt, st, options));
+            this.disable();
+        },
         preExecution: function (tgt, st, options){
             this.currentState = ( st.value.toString() == "true" );
             Dashboards.log(JSON.stringify(_.keys(this)));
-            this.buttonStyle = 'classic';
-            this.expression = function(){
-                // update parameters shortly before the server call
-                this.actionParameters = Dashboards.objectToPropertiesArray(options.parameters(tgt, st, options));
-            };
+            // this.buttonStyle = 'classic';
+            // this.expression = function(){
+            //     // update parameters shortly before the server call
+            //     this.actionParameters = Dashboards.objectToPropertiesArray(options.parameters(tgt, st, options));
+            //     this.disable();
+            // };
         },
         updateCheckbox: function(){
             this.placeholder('button').removeClass('checked unchecked')
@@ -193,16 +208,21 @@ Dashboards.registerComponentAddIn('checkbox', {
             this.updateCheckbox();
         },
         successCallback: function(tgt, st, options){
-            Dashboards.log('Success');
+            // Dashboards.log('Success');
             this.currentState = !this.currentState; //toggle the button
             this.updateCheckbox();
+            this.enable();
+        },
+        failureCallback: function(tgt, st, options){
+            // Dashboards.log('Failed');
+            this.enable();
         }
     }
 });
 
 
 
-Dashboards.registerComponentAddIn("showLog", {
+SRE.registerComponentAddIn('Table', 'colType',"showLog", {
     actionDefinition: {
         queryType: 'cpk',
         pluginId: 'startupRuleEngine',
@@ -276,3 +296,28 @@ Dashboards.registerComponentAddIn("showLog", {
         }
     }
 });
+
+
+SRE.AboutHTML = [
+    '<h4>Introduction</h4>',
+    'The Startup Rule Engine is an application that provides a PDI-based alternative to the XActions mechanism.',
+    '<p>It allows the user to configure Kettle jobs and transformations to be run upon specific events, such as upon session login or server startup.</p>',
+    '<h4>Getting Started</h4>',
+    '<ol>',
+    '<li>Copy kettle files (jobs or transformations) to the folder <kbd>pentaho-solutions/system/startupRules/rules</kbd>.</li>',
+    '<li>Schedule the execution using the main dashboard.</li>',
+    '</ol>',
+    '<h4>Feedback and Support</h4>',
+    'Help us improve this app by <a href="http://redmine.webdetails.org/projects/sre">reporting a bug or suggesting a feature.</a>'
+].join('');
+
+
+
+/*
+var MarkdownComponent = Unmanaged.extend({
+    filename: '/pentaho/api/repos//startupRuleEngine/static/custom/About.md',
+    render: function(){
+
+    }
+});
+*/
