@@ -19,9 +19,9 @@
   <property name="plugin.artifact.id" value="${plugin.name}"/>
   <property name="plugin.zipfile" value="${plugin.artifact.id}-${distribution.version}.zip"/>
   <!--=======================================================================
-              dist
-              Creates a distribution of this project's plugin zip
-              ====================================================================-->
+      dist
+      Creates a distribution of this project's plugin zip
+      ====================================================================-->
   <target name="dist" depends="clean,resolve" description="Creates a distribution">
     <!-- delete and re-create the plugin dist folder tree -->
     <mkdir dir="${stage.dir}"/>
@@ -32,38 +32,38 @@
     <copy todir="${stage.dir}/${plugin.name}/" overwrite="true">
       <fileset dir=".">
         <include name="**/*"/>
-                  <exclude name="bin/"/>
+        <exclude name="bin/"/>
       </fileset>
     </copy>
     <!-- create the version file -->
-        <tstamp/>
-        <property name="sequential.build.id" value="manual-${DSTAMP}"/>
-        <echo file="${stage.dir}/${plugin.name}/version.xml" message="&lt;version branch='TRUNK' buildId='${sequential.build.id}'>${distribution.version}&lt;/version>"/>
+    <tstamp/>
+    <property name="sequential.build.id" value="manual-${DSTAMP}"/>
+    <echo file="${stage.dir}/${plugin.name}/version.xml" message="&lt;version branch='TRUNK' buildId='${sequential.build.id}'>${distribution.version}&lt;/version>"/>
     <!-- create a zip file -->
     <zip zipfile="${dist.dir}/${plugin.zipfile}"
          basedir="${stage.dir}"
          includes="${plugin.name}/**/*"
          excludes="**/Thumbs.db  **/.DS_Store"/>
 
-        <!-- create a marketplace.xml file -->
-        <echoxml file="${dist.dir}/marketplace.xml">
-            <version>
-                <branch>TRUNK</branch>
-                <version>${distribution.version}</version>
-                <name>Trunk</name>
-                <package_url>@PLUGIN_PACKAGE_URL@</package_url>
-                <description>>@PLUGIN_PACKAGE_DESCRIPTION@</description>
-                <build_id>${sequential.build.id}</build_id>
-            </version>
-        </echoxml>
+    <!-- create a marketplace.xml file -->
+    <echoxml file="${dist.dir}/marketplace.xml">
+      <version>
+        <branch>TRUNK</branch>
+        <version>${distribution.version}</version>
+        <name>Trunk</name>
+        <package_url>@PLUGIN_PACKAGE_URL@</package_url>
+        <description>>@PLUGIN_PACKAGE_DESCRIPTION@</description>
+        <build_id>${sequential.build.id}</build_id>
+      </version>
+    </echoxml>
     <move tofile="${dist.dir}/${ivy.artifact.id}-${project.revision}.zip" file="${dist.dir}/${plugin.zipfile}"/>
 
 
   </target>
   <!--=======================================================================
-              install-plugin
-              Installs the plugin locally
-              ====================================================================-->
+      install-plugin
+      Installs the plugin locally
+      ====================================================================-->
   <target name="install-plugin" depends="clean, resolve, dist" description="Installs the plugin locally">
     <fail message="plugin.local.install.solutions.dir not set - cannot copy"
           unless="plugin.local.install.solutions.dir"/>
