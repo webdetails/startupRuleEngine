@@ -1027,6 +1027,8 @@ tr.showLog{
   font-size: 12px;
   padding: 10px;
   width: 500px;
+  max-height: 350px;
+  overflow: auto;
 }
 .popupComponent.executionStatusSuccess {
   border-color: #009245;
