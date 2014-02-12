@@ -137,8 +137,8 @@
     </data>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>623</xloc>
-      <yloc>38</yloc>
+      <xloc>608</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -156,8 +156,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>324</xloc>
-      <yloc>26</yloc>
+      <xloc>320</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -185,8 +185,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>324</xloc>
-      <yloc>118</yloc>
+      <xloc>320</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -224,8 +224,8 @@
     </file>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>182</xloc>
-      <yloc>232</yloc>
+      <xloc>160</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -264,8 +264,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>819</xloc>
-      <yloc>312</yloc>
+      <xloc>800</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -292,8 +292,8 @@
     </keys_2>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>723</xloc>
-      <yloc>317</yloc>
+      <xloc>704</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -311,8 +311,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1040</xloc>
-      <yloc>311</yloc>
+      <xloc>1024</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -332,7 +332,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xa;var kettleMeta&#x3b;&#xa;if &#x28;extension &#x3d;&#x3d; &#x27;ktr&#x27;&#x29;&#x7b;&#xa;	kettleMeta &#x3d; new Packages.org.pentaho.di.trans.TransMeta&#x28;String&#x28;filename&#x29;&#x29;&#x3b;&#xa;&#x7d; else &#x7b;&#xa;	kettleMeta &#x3d; new Packages.org.pentaho.di.job.JobMeta&#x28;String&#x28;filename&#x29;, null&#x29;&#x3b;	&#xa;&#x7d;&#xa;&#xa;var name &#x3d; kettleMeta.getName&#x28;&#x29; &#x7c;&#x7c; &#x22;&#x22;&#x3b;&#xa;var description &#x3d; kettleMeta.getName&#x28;&#x29; &#x7c;&#x7c; &#x22;&#x22;&#x3b;	&#xa;var extendedDescription &#x3d; kettleMeta.getExtendedDescription&#x28;&#x29; &#x7c;&#x7c; &#x22;&#x22;&#x3b;&#xa;&#xa;&#x2f;&#x2f; do not output the trigger row&#xa;&#x2f;&#x2f;trans_Status &#x3d; SKIP_TRANSFORMATION&#x3b;</jsScript_script>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xa;var kettleMeta&#x3b;&#xa;if &#x28;extension &#x3d;&#x3d; &#x27;ktr&#x27;&#x29;&#x7b;&#xa;	kettleMeta &#x3d; new Packages.org.pentaho.di.trans.TransMeta&#x28;String&#x28;filename&#x29;&#x29;&#x3b;&#xa;&#x7d; else &#x7b;&#xa;	kettleMeta &#x3d; new Packages.org.pentaho.di.job.JobMeta&#x28;String&#x28;filename&#x29;, null&#x29;&#x3b;	&#xa;&#x7d;&#xa;&#xa;var name &#x3d; kettleMeta.getName&#x28;&#x29; &#x7c;&#x7c; &#x22;&#x22;&#x3b;&#xa;var description &#x3d; kettleMeta.getDescription&#x28;&#x29; &#x7c;&#x7c; &#x22;&#x22;&#x3b;	&#xa;var extendedDescription &#x3d; kettleMeta.getExtendedDescription&#x28;&#x29; &#x7c;&#x7c; &#x22;&#x22;&#x3b;&#xa;&#xa;&#x2f;&#x2f; do not output the trigger row&#xa;&#x2f;&#x2f;trans_Status &#x3d; SKIP_TRANSFORMATION&#x3b;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>description</name>
         <rename>description</rename>
         <type>String</type>
@@ -353,8 +353,8 @@
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>233</xloc>
-      <yloc>329</yloc>
+      <xloc>224</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -389,8 +389,8 @@
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>239</xloc>
-      <yloc>130</yloc>
+      <xloc>224</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -411,8 +411,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>68</xloc>
-      <yloc>229</yloc>
+      <xloc>64</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -459,8 +459,8 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>913</xloc>
-      <yloc>313</yloc>
+      <xloc>896</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -493,8 +493,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>712</xloc>
-      <yloc>121</yloc>
+      <xloc>704</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -527,8 +527,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
-      <yloc>319</yloc>
+      <xloc>480</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -561,8 +561,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>361</xloc>
-      <yloc>315</yloc>
+      <xloc>352</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -595,8 +595,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>408</xloc>
-      <yloc>117</yloc>
+      <xloc>384</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -664,8 +664,8 @@
         </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>609</xloc>
-      <yloc>117</yloc>
+      <xloc>608</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -700,8 +700,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>517</xloc>
-      <yloc>116</yloc>
+      <xloc>512</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

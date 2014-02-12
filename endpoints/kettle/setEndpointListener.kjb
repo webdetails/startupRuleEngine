@@ -82,8 +82,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>70</xloc>
-      <yloc>124</yloc>
+      <xloc>32</xloc>
+      <yloc>128</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -92,8 +92,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>316</xloc>
-      <yloc>124</yloc>
+      <xloc>256</xloc>
+      <yloc>32</yloc>
       </entry>
     <entry>
       <name>Transformation</name>
@@ -131,8 +131,8 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>211</xloc>
-      <yloc>122</yloc>
+      <xloc>160</xloc>
+      <yloc>128</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
@@ -142,8 +142,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>204</xloc>
-      <yloc>36</yloc>
+      <xloc>256</xloc>
+      <yloc>256</yloc>
       </entry>
     <entry>
       <name>Write To Log</name>
@@ -156,7 +156,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>320</xloc>
-      <yloc>48</yloc>
+      <yloc>256</yloc>
       </entry>
     <entry>
       <name>Write To Log 2</name>
@@ -168,8 +168,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>315</xloc>
-      <yloc>181</yloc>
+      <xloc>320</xloc>
+      <yloc>32</yloc>
       </entry>
   </entries>
   <hops>

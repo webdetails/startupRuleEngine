@@ -92,8 +92,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>60</xloc>
-      <yloc>288</yloc>
+      <xloc>32</xloc>
+      <yloc>256</yloc>
       </entry>
     <entry>
       <name>Delete files at destination</name>
@@ -110,8 +110,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>380</xloc>
-      <yloc>173</yloc>
+      <xloc>352</xloc>
+      <yloc>160</yloc>
       </entry>
     <entry>
       <name>Copy files to destination</name>
@@ -135,8 +135,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>495</xloc>
-      <yloc>284</yloc>
+      <xloc>480</xloc>
+      <yloc>256</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -145,8 +145,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>745</xloc>
-      <yloc>280</yloc>
+      <xloc>736</xloc>
+      <yloc>256</yloc>
       </entry>
     <entry>
       <name>Write To Log</name>
@@ -158,8 +158,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>684</xloc>
-      <yloc>160</yloc>
+      <xloc>672</xloc>
+      <yloc>128</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
@@ -169,8 +169,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>196</xloc>
-      <yloc>50</yloc>
+      <xloc>192</xloc>
+      <yloc>32</yloc>
       </entry>
     <entry>
       <name>file exists in destination&#x3f;</name>
@@ -197,8 +197,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>200</xloc>
-      <yloc>283</yloc>
+      <xloc>192</xloc>
+      <yloc>256</yloc>
       </entry>
     <entry>
       <name>Files have same content&#x3f;</name>
@@ -214,8 +214,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>198</xloc>
-      <yloc>172</yloc>
+      <xloc>192</xloc>
+      <yloc>160</yloc>
       </entry>
   </entries>
   <hops>
