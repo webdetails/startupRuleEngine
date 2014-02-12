@@ -6,22 +6,22 @@
         <![CDATA[
                  Application that provides a PDI-based alternative to the XActions mechanism.
                  It allows the user to configure Kettle jobs and transformations to be run upon specific events, such as upon session login or server startup. <br /><br />
-
-Report <a href="http://redmine.webdetails.org/projects/sre">here</a>
-any issues or suggestions for improvement
+                 Report <a href="http://redmine.webdetails.org/projects/sre">here</a> any issues or suggestions for improvement
         ]]>
     </description>
     <documentation_url>>https://www.github.com/webdetails/startupRuleEngine</documentation_url>
     <author>Webdetails</author>
-    <author_url></author_url>
-    <author_logo></author_logo>
+    <author_url>http://www.webdetails.pt</author_url>
+    <author_logo>http://www.webdetails.pt/ficheiros/wd_logo.png</author_logo>
     <license>MPL 2.0</license>
     <dependencies>CDF, CDA, CDE, CGG</dependencies>
     <img>https://github.com/webdetails/startupRuleEngine/raw/master/static/custom/img/play.png</img>
-    <small_img>https://github.com/webdetails/pentahoLanguagePacks/raw/master/data/@langCode@/resources/img/flag.png</small_img>
+    <small_img></small_img>
     <installation_notes>
-        <![CDATA[You can run the Startup Rule Engine as an administrator from
-                 the Tools menu. On the first execution, the application will create the folder pentaho-solutions/system/startupRules and populate it with some sample jobs and transformations. <br /><br />
+        <![CDATA[You can run the Startup Rule Engine as an administrator from the Tools menu.
+                 On the first server restart, YOUR SERVER MAY CRASH, as the application will patch your installation and edit system files.
+                 It will also create the folder pentaho-solutions/system/startupRules and populate it with some sample jobs and transformations. <br />
+                 Upon the second server restart, the Startup Rule Engine will be operational. <br /><br/ >
                  Report <a href="http://redmine.webdetails.org/projects/sre">here</a> any issues or suggestions for improvement
         ]]>
     </installation_notes>
