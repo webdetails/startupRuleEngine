@@ -1,13 +1,15 @@
 Startup Rule Engine
 =============
 
-The Startup Rule Engine is an application that aims to provide PDI-based alternative to the XActions mechanism and which allows you to:
+The Startup Rule Engine is an application that allows you to:
 
 1. configure Kettle jobs and transformations to be run upon specific events: 
     * session login
     * session logout
     * server startup
-2. access to each job/transformation execution log.
+2. access each job/transformation execution log.
+
+<!--Now you have a PDI-based alternative to the XActions.-->
 
 # Getting started
 
