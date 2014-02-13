@@ -29,7 +29,7 @@
     <mkdir dir="${stage.dir}/${plugin.name}"/>
     <mkdir dir="${dist.dir}"/>
     <!-- copy the entire plugin to that folder  -->
-    <copy todir="${stage.dir}/${plugin.name}/" overwrite="true">
+    <copy todir="${stage.dir}/${plugin.name}/" overwrite="true" verbose="true">
       <fileset dir=".">
         <include name="**/*"/>
         <exclude name="bin/"/>
