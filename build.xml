@@ -36,12 +36,23 @@
         <exclude name=".git/"/>
         <exclude name="**/.DS_Store"/>
         <exclude name="**/Thumbs.db"/>
+        <exclude name="market_entry.xml"/>
       </fileset>
     </copy>
+
+    <!-- create a market_entry.xml file -->
+    <copy file="${basedir}/market_entry.xml" tofile="${stage.dir}/${plugin.name}/market_entry.xml" overwrite="true">
+      <filterset>
+        <filter token="project.stage" value="${project.stage}"/>
+        <filter token="distribution.version" value="${distribution.version}"/>
+        <filter token="ivy.artifact.id" value="${ivy.artifact.id}"/>
+      </filterset>
+    </copy>
+
     <!-- create the version file -->
     <tstamp/>
     <property name="sequential.build.id" value="manual-${DSTAMP}"/>
-    <echo file="${stage.dir}/${plugin.name}/version.xml" message="&lt;version branch='TRUNK' buildId='${sequential.build.id}'>${distribution.version}&lt;/version>"/>
+    <echo file="${stage.dir}/${plugin.name}/version.xml" message="&lt;version branch='${project.stage}' buildId='${sequential.build.id}'>${distribution.version}&lt;/version>"/>
     <!-- create a zip file -->
     <zip zipfile="${dist.dir}/${plugin.zipfile}"
          basedir="${stage.dir}"
@@ -51,15 +62,16 @@
     <!-- create a marketplace.xml file -->
     <echoxml file="${dist.dir}/marketplace.xml">
       <version>
-        <branch>TRUNK</branch>
+        <branch>${project.stage}</branch>
         <version>${distribution.version}</version>
-        <name>Trunk</name>
-        <package_url>@PLUGIN_PACKAGE_URL@</package_url>
-        <description>>@PLUGIN_PACKAGE_DESCRIPTION@</description>
+        <name>Release</name>
+        <package_url>http://ci.pentaho.com/job/StartupRuleEngine/lastSuccessfulBuild/artifact/dist/${ivy.artifact.id}-${distribution.version}.zip</package_url>
+        <description>@PLUGIN_PACKAGE_DESCRIPTION@</description>
         <build_id>${sequential.build.id}</build_id>
       </version>
     </echoxml>
-    <move tofile="${dist.dir}/${ivy.artifact.id}-${project.revision}.zip" file="${dist.dir}/${plugin.zipfile}"/>
+    <move tofile="${dist.dir}/${ivy.artifact.id}-${distribution.version}.zip" file="${dist.dir}/${plugin.zipfile}"/>
+
 
 
   </target>
