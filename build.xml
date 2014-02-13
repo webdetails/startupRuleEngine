@@ -33,6 +33,9 @@
       <fileset dir=".">
         <include name="**/*"/>
         <exclude name="bin/"/>
+        <exclude name=".git*"/>
+        <exclude name="**/.DS_Store"/>
+        <exclude name="**/Thumbs.db"/>
       </fileset>
     </copy>
     <!-- create the version file -->
