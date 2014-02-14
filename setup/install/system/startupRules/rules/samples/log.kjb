@@ -56,6 +56,17 @@
 <table/>
 <timeout_days/>
 <field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>LOGGING_OBJECT_TYPE</id><enabled>Y</enabled><name>LOGGING_OBJECT_TYPE</name></field><field><id>OBJECT_NAME</id><enabled>Y</enabled><name>OBJECT_NAME</name></field><field><id>OBJECT_COPY</id><enabled>Y</enabled><name>OBJECT_COPY</name></field><field><id>REPOSITORY_DIRECTORY</id><enabled>Y</enabled><name>REPOSITORY_DIRECTORY</name></field><field><id>FILENAME</id><enabled>Y</enabled><name>FILENAME</name></field><field><id>OBJECT_ID</id><enabled>Y</enabled><name>OBJECT_ID</name></field><field><id>OBJECT_REVISION</id><enabled>Y</enabled><name>OBJECT_REVISION</name></field><field><id>PARENT_CHANNEL_ID</id><enabled>Y</enabled><name>PARENT_CHANNEL_ID</name></field><field><id>ROOT_CHANNEL_ID</id><enabled>Y</enabled><name>ROOT_CHANNEL_ID</name></field></channel-log-table>
+<checkpoint-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<max_nr_retries/>
+<run_retry_period/>
+<namespace_parameter/>
+<save_parameters/>
+<save_result_rows/>
+<save_result_files/>
+<field><id>ID_JOB_RUN</id><enabled>Y</enabled><name>ID_JOB_RUN</name></field><field><id>ID_JOB</id><enabled>Y</enabled><name>ID_JOB</name></field><field><id>JOBNAME</id><enabled>Y</enabled><name>JOBNAME</name></field><field><id>NAMESPACE</id><enabled>Y</enabled><name>NAMESPACE</name></field><field><id>CHECKPOINT_NAME</id><enabled>Y</enabled><name>CHECKPOINT_NAME</name></field><field><id>CHECKPOINT_COPYNR</id><enabled>Y</enabled><name>CHECKPOINT_COPYNR</name></field><field><id>ATTEMPT_NR</id><enabled>Y</enabled><name>ATTEMPT_NR</name></field><field><id>JOB_RUN_START_DATE</id><enabled>Y</enabled><name>JOB_RUN_START_DATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>RESULT_XML</id><enabled>Y</enabled><name>RESULT_XML</name></field><field><id>PARAMETER_XML</id><enabled>Y</enabled><name>PARAMETER_XML</name></field></checkpoint-log-table>
    <pass_batchid>N</pass_batchid>
    <shared_objects_file/>
   <entries>
@@ -63,14 +74,14 @@
       <name>Write To Log</name>
       <description/>
       <type>WRITE_TO_LOG</type>
-      <logmessage>&#x24;&#x7b;message&#x7d;</logmessage>
+      <logmessage>&#x24;&#x7b;message&#x7d;&#xa;&#xa;Parameters filled in by Startup Rule Engine via CPK&#x3a;&#xa;&#xa;cpk.webapp.dir &#x3d; &#x24;&#x7b;cpk.webapp.dir&#x7d;&#xa;cpk.solution.system.dir &#x3d; &#x24;&#x7b;cpk.solution.system.dir&#x7d;&#xa;cpk.session.username &#x3d; &#x24;&#x7b;cpk.session.username&#x7d;&#xa;cpk.session.roles &#x3d; &#x24;&#x7b;cpk.session.roles&#x7d;&#xa;</logmessage>
       <loglevel>Basic</loglevel>
       <logsubject>On &#x24;&#x7b;sre.eventType&#x7d;</logsubject>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>448</xloc>
-      <yloc>160</yloc>
+      <xloc>192</xloc>
+      <yloc>128</yloc>
       </entry>
     <entry>
       <name>START</name>
@@ -89,8 +100,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>301</xloc>
-      <yloc>159</yloc>
+      <xloc>64</xloc>
+      <yloc>128</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -99,8 +110,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>623</xloc>
-      <yloc>162</yloc>
+      <xloc>352</xloc>
+      <yloc>128</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
@@ -110,7 +121,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>448</xloc>
+      <xloc>192</xloc>
       <yloc>32</yloc>
       </entry>
   </entries>

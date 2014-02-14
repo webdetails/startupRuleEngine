@@ -26,23 +26,13 @@
         </parameter>
         <parameter>
             <name>cpk.webapp.dir</name>
-            <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;..&#x2f;..&#x2f;tomcat&#x2f;webapps&#x2f;pentaho&#x2f;</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>logs.dir</name>
-            <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;startupRules&#x2f;logs</default_value>
+            <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;..&#x2f;..&#x2f;tomcat&#x2f;webapps&#x2f;pentaho&#x2f;xpto</default_value>
             <description/>
         </parameter>
         <parameter>
             <name>ruleEngine</name>
             <default_value>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;processRules.ktr</default_value>
             <description>filename of the kettle transformation that will handle the events</description>
-        </parameter>
-        <parameter>
-            <name>rules.dir</name>
-            <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;startupRules&#x2f;rules</default_value>
-            <description/>
         </parameter>
     </parameters>
     <log>
@@ -119,12 +109,13 @@
   <hop> <from>Get Variables</from><to>install files</to><enabled>Y</enabled> </hop>
   <hop> <from>install files</from><to>Group by</to><enabled>Y</enabled> </hop>
   <hop> <from>Group by</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Generate Rows</from><to>Write to log</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Generate Rows</name>
     <type>RowGenerator</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
@@ -196,7 +187,7 @@
       </field>
       <field>
         <name>logs_folder</name>
-        <variable>&#x24;&#x7b;logs.dir&#x7d;</variable>
+        <variable>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;startupRules&#x2f;logs</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -208,7 +199,7 @@
       </field>
       <field>
         <name>rules_folder</name>
-        <variable>&#x24;&#x7b;rules.dir&#x7d;</variable>
+        <variable>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;startupRules&#x2f;rules</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -281,30 +272,6 @@
       <field>
         <name>cpk_plugin_dir</name>
         <variable>&#x24;&#x7b;cpk.plugin.dir&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>samples_folder</name>
-        <variable>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;resources&#x2f;samples</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>samples_regex</name>
-        <variable>.&#x2a;&#x5c;.&#x28;ktr&#x7c;kjb&#x29;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -406,6 +373,32 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>640</xloc>
       <yloc>128</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write to log</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>0</limitRowsNumber>
+      <logmessage>Initializing Startup Rule Engine.&#xa;&#xa;Injected variables&#x3a;&#xa;cpk.webapp.dir &#x3d; &#x24;&#x7b;cpk.webapp.dir&#x7d;&#xa;cpk.plugin.id &#x3d; &#x24;&#x7b;cpk.plugin.id&#x7d;&#xa;cpk.plugin.dir &#x3d; &#x24;&#x7b;cpk.plugin.dir&#x7d;&#xa;cpk.solution.system.dir &#x3d; &#x24;&#x7b;cpk.solution.system.dir&#x7d;&#xa;</logmessage>
+    <fields>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>96</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -569,7 +562,7 @@
     </mapping>      </output>
           <parameters>       <variablemapping><variable>cpk.solution.system.dir</variable><input>&#x24;&#x7b;cpk.solution.system.dir&#x7d;</input></variablemapping>
        <variablemapping><variable>cpk.webapp.dir</variable><input>&#x24;&#x7b;cpk.webapp.dir&#x7d;</input></variablemapping>
-       <variablemapping><variable>src.install.dir</variable><input>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;resources&#x2f;install</input></variablemapping>
+       <variablemapping><variable>src.install.dir</variable><input>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;setup&#x2f;install</input></variablemapping>
     <inherit_all_vars>Y</inherit_all_vars>
     </parameters>
     </mappings>
@@ -632,10 +625,6 @@
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
 <attributes><group><name>DataService</name>
-<attribute><key>name</key>
-<value/>
-</attribute><attribute><key>stepname</key>
-<value/>
-</attribute></group></attributes>
+</group></attributes>
 
 </transformation>

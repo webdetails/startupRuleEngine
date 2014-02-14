@@ -12,8 +12,23 @@
   <modified_date>2013&#x2f;11&#x2f;28 16&#x3a;36&#x3a;41.255</modified_date>
     <parameters>
         <parameter>
+            <name>cpk.session.roles</name>
+            <default_value>none</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>cpk.session.username</name>
+            <default_value>none</default_value>
+            <description/>
+        </parameter>
+        <parameter>
             <name>cpk.solution.system.dir</name>
             <default_value>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;..&#x2f;..</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>cpk.webapp.dir</name>
+            <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;..&#x2f;..&#x2f;tomcat&#x2f;webaps&#x2f;pentaho</default_value>
             <description/>
         </parameter>
         <parameter>

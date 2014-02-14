@@ -100,8 +100,8 @@
   <hop> <from>Select values</from><to>Join Rows &#x28;cartesian product&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter rows</from><to>just the files</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter rows</from><to>junk</to><enabled>Y</enabled> </hop>
-  <hop> <from>just the files</from><to>User Defined Java Expression</to><enabled>Y</enabled> </hop>
-  <hop> <from>User Defined Java Expression</from><to>inject cpk.solution.system.dir</to><enabled>Y</enabled> </hop>
+  <hop> <from>just the files</from><to>build destination path</to><enabled>Y</enabled> </hop>
+  <hop> <from>build destination path</from><to>inject cpk.solution.system.dir</to><enabled>Y</enabled> </hop>
   <hop> <from>inject cpk.solution.system.dir</from><to>inject cpk.webapp.dir</to><enabled>Y</enabled> </hop>
   <hop> <from>inject cpk.webapp.dir</from><to>Process files</to><enabled>Y</enabled> </hop>
   <hop> <from>Process files</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
@@ -271,7 +271,7 @@
     </step>
 
   <step>
-    <name>User Defined Java Expression</name>
+    <name>build destination path</name>
     <type>Janino</type>
     <description/>
     <distribute>N</distribute>
@@ -453,7 +453,7 @@
     </filter>
     <doNotFailIfNoFile>N</doNotFailIfNoFile>
     <rownum>N</rownum>
-    <isaddresult>Y</isaddresult>
+    <isaddresult>N</isaddresult>
     <filefield>N</filefield>
     <rownum_field/>
     <filename_Field/>
@@ -482,6 +482,10 @@
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
 <attributes><group><name>DataService</name>
-</group></attributes>
+<attribute><key>name</key>
+<value/>
+</attribute><attribute><key>stepname</key>
+<value/>
+</attribute></group></attributes>
 
 </transformation>
