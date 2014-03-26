@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>_processRulesLogin</name>
+  <name>_executeAtLogin</name>
     <description/>
     <extended_description/>
     <job_version/>
@@ -12,8 +12,23 @@
   <modified_date>2014&#x2f;01&#x2f;13 16&#x3a;28&#x3a;32.214</modified_date>
     <parameters>
         <parameter>
+            <name>cpk.session.roles</name>
+            <default_value>unknown to SRE</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>cpk.session.username</name>
+            <default_value>unknown to SRE</default_value>
+            <description/>
+        </parameter>
+        <parameter>
             <name>cpk.solution.system.dir</name>
-            <default_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;..&#x2f;..&#x2f;</default_value>
+            <default_value>unknown to SRE</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>cpk.webapp.dir</name>
+            <default_value>unknown to SRE</default_value>
             <description/>
         </parameter>
     </parameters>
@@ -77,7 +92,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
+      <xloc>416</xloc>
       <yloc>128</yloc>
       </entry>
     <entry>
@@ -88,11 +103,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>192</xloc>
+      <xloc>288</xloc>
       <yloc>32</yloc>
       </entry>
     <entry>
-      <name>execute Transformation</name>
+      <name>execute processRules</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
@@ -121,25 +136,41 @@
             <parameter>            <name>event</name>
             <stream_name/>
             <value>cpk.executeAtLogin</value>
+            </parameter>            <parameter>            <name>cpk.session.username</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;cpk.session.username&#x7d;</value>
+            </parameter>            <parameter>            <name>cpk.session.roles</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;cpk.session.roles&#x7d;</value>
+            </parameter>            <parameter>            <name>cpk.webapp.dir</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;cpk.webapp.dir&#x7d;</value>
+            </parameter>            <parameter>            <name>cpk.solution.system.dir</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;</value>
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>192</xloc>
+      <xloc>288</xloc>
+      <yloc>128</yloc>
+      </entry>
+    <entry>
+      <name>Write To Log</name>
+      <description/>
+      <type>WRITE_TO_LOG</type>
+      <logmessage>cpk_session_listener inserted the following variables in startupRuleEngine&#x2f;endpoisnts&#x2f;kettle&#x2f;_executeAtLogin.kjb &#x3a;&#xa;   cpk.session.username    &#x3d; &#x24;&#x7b;cpk.session.username&#x7d;&#xa;   cpk.webapp.dir          &#x3d; &#x24;&#x7b;cpk.webapp.dir&#x7d;&#xa;   cpk.solution.system.dir &#x3d; &#x24;&#x7b;cpk.solution.system.dir&#x7d;&#xa;</logmessage>
+      <loglevel>Debug</loglevel>
+      <logsubject>_executeAtLogin</logsubject>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>160</xloc>
       <yloc>128</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>START</from>
-      <to>execute Transformation</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>execute Transformation</from>
+      <from>execute processRules</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -148,12 +179,30 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>execute Transformation</from>
+      <from>execute processRules</from>
       <to>Abort job</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Write To Log</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Write To Log</from>
+      <to>execute processRules</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>

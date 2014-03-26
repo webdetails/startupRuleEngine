@@ -179,7 +179,7 @@
       <displayHeader>Y</displayHeader>
       <limitRows>N</limitRows>
       <limitRowsNumber>0</limitRowsNumber>
-      <logmessage>Setting session variable &#x22;car&#x22;&#x3a;</logmessage>
+      <logmessage>Parameters injected by CPK&#x3a;&#xa;   cpk.session.username    &#x3d; &#x24;&#x7b;cpk.session.username&#x7d;&#xa;   cpk.session.roles       &#x3d; &#x24;&#x7b;cpk.session.roles&#x7d; &#xa;   cpk.webapp.dir          &#x3d; &#x24;&#x7b;cpk.webapp.dir&#x7d;&#xa;   cpk.solution.system.dir &#x3d; &#x24;&#x7b;cpk.solution.system.dir&#x7d;&#xa;&#xa;Setting session variable &#x22;car&#x22;</logmessage>
     <fields>
       <field>
         <name>cars</name>

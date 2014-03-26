@@ -10,8 +10,23 @@
     <directory>&#x2f;</directory>
     <parameters>
         <parameter>
+            <name>cpk.session.roles</name>
+            <default_value>punknown to SRE</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>cpk.session.username</name>
+            <default_value>punknown to SRE</default_value>
+            <description/>
+        </parameter>
+        <parameter>
             <name>cpk.solution.system.dir</name>
             <default_value>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;..&#x2f;..&#x2f;</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>cpk.webapp.dir</name>
+            <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;..&#x2f;..&#x2f;tomcat&#x2f;webapps&#x2f;pentaho</default_value>
             <description/>
         </parameter>
         <parameter>
@@ -90,8 +105,8 @@
   </notepads>
   <order>
   <hop> <from>_ process Rules</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Variables</from><to>_ process Rules</to><enabled>Y</enabled> </hop>
   <hop> <from>Generate Rows</from><to>Get Variables</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Variables</from><to>_ process Rules</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Generate Rows</name>
@@ -216,6 +231,10 @@
     <description/>
     </mapping>      </output>
           <parameters>       <variablemapping><variable>rules.dir</variable><input>&#x24;&#x7b;folder&#x7d;</input></variablemapping>
+       <variablemapping><variable>cpk.session.username</variable><input>&#x24;&#x7b;cpk.session.username&#x7d;</input></variablemapping>
+       <variablemapping><variable>cpk.session.roles</variable><input>&#x24;&#x7b;cpk.session.roles&#x7d;</input></variablemapping>
+       <variablemapping><variable>cpk.solution.system.dir</variable><input>&#x24;&#x7b;cpk.solution.system.dir&#x7d;</input></variablemapping>
+       <variablemapping><variable>cpk.webapp.dir</variable><input>&#x24;&#x7b;cpk.webapp.dir&#x7d;</input></variablemapping>
     <inherit_all_vars>Y</inherit_all_vars>
     </parameters>
     </mappings>
@@ -233,6 +252,10 @@
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
 <attributes><group><name>DataService</name>
-</group></attributes>
+<attribute><key>name</key>
+<value/>
+</attribute><attribute><key>stepname</key>
+<value/>
+</attribute></group></attributes>
 
 </transformation>

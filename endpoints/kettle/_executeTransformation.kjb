@@ -37,6 +37,11 @@
             <description/>
         </parameter>
         <parameter>
+            <name>log_filename</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
             <name>sre.eventType</name>
             <default_value>cpk.noop</default_value>
             <description/>

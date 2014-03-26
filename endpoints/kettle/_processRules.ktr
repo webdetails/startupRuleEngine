@@ -10,8 +10,23 @@
     <directory>&#x2f;</directory>
     <parameters>
         <parameter>
+            <name>cpk.session.roles</name>
+            <default_value>_unknown to SRE</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>cpk.session.username</name>
+            <default_value>_unknown to SRE</default_value>
+            <description/>
+        </parameter>
+        <parameter>
             <name>cpk.solution.system.dir</name>
             <default_value>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;..&#x2f;..&#x2f;</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>cpk.webapp.dir</name>
+            <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;..&#x2f;..&#x2f;tomcat&#x2f;webapps&#x2f;pentaho</default_value>
             <description/>
         </parameter>
         <parameter>
@@ -629,6 +644,9 @@
        <variablemapping><variable>log_string</variable><field>log_string</field><input/></variablemapping>
        <variablemapping><variable>logs.dir</variable><field>logs_folder</field><input/></variablemapping>
        <variablemapping><variable>sre.eventType</variable><field>event</field><input/></variablemapping>
+       <variablemapping><variable>cpk.session.username</variable><field/><input>&#x24;&#x7b;cpk.session.username&#x7d;</input></variablemapping>
+       <variablemapping><variable>cpk.solution.system.dir</variable><field/><input>&#x24;&#x7b;cpk.solution.system.dir&#x7d;</input></variablemapping>
+       <variablemapping><variable>cpk.webapp.dir</variable><field/><input>&#x24;&#x7b;cpk.webapp.dir&#x7d;</input></variablemapping>
     <inherit_all_vars>Y</inherit_all_vars>
     </parameters>
     <execution_result_target_step>Join Rows &#x28;cartesian product&#x29; 2</execution_result_target_step>
