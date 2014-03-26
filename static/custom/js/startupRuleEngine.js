@@ -178,7 +178,7 @@ SRE.registerComponentAddIn('Table', 'colType','checkbox', {
   parameters: function(tgt, st, options){
     var p = {
       filename: "'" + st.tableData[st.rowIdx][options.idxFilename]+"'",
-      event:  "'cpk." +st.category+ "'",
+      event:  "'" +st.category+ "'",
       value: !this.currentState
     };
     // Dashboards.log('Params:  ' +JSON.stringify(p));
