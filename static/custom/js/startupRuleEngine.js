@@ -186,18 +186,12 @@ SRE.registerComponentAddIn('Table', 'colType','checkbox', {
   },
   functions:{
     expression: function(tgt, st, options) {
-      this.actionParameters = Dashboards.objectToPropertiesArray(options.parameters(tgt, st, options));
+      this.actionParameters = Dashboards.objectToPropertiesArray(options.parameters.call(this, tgt, st, options));
       this.disable();
     },
     preExecution: function (tgt, st, options){
       this.currentState = ( st.value.toString() == "true" );
-      Dashboards.log(JSON.stringify(_.keys(this)));
-      // this.buttonStyle = 'classic';
-      // this.expression = function(){
-      //     // update parameters shortly before the server call
-      //     this.actionParameters = Dashboards.objectToPropertiesArray(options.parameters(tgt, st, options));
-      //     this.disable();
-      // };
+      //Dashboards.log(JSON.stringify(_.keys(this)));
     },
     updateCheckbox: function(){
       this.placeholder('button').removeClass('checked unchecked')
