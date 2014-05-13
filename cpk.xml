@@ -21,7 +21,7 @@
         </elementType>
     </elementTypes> 
     <info>
-        <CPK_version>4</CPK_version>
+        <CPK_version>5</CPK_version>
         <description>Application that provides a PDI-based alternative to the XActions mechanism. It allows the user to configure Kettle jobs and transformations to be run upon specific events, such as upon session login or server startup.</description>
         <name>Startup Rule Engine</name>
         <author_email>community@pentaho.com</author_email>
