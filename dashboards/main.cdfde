@@ -3,6 +3,29 @@
   "title": "main",
   "rows": [
    {
+    "id": "c072b7d8-c680-e9c2-97da-40c7e6be320d",
+    "type": "LayoutResourceFile",
+    "typeDesc": "Resource",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "value": "liquidCSS",
+      "type": "Id"
+     },
+     {
+      "name": "resourceFile",
+      "value": "/pentaho/api/repos/startupRuleEngine/static/system/css/liquid.css",
+      "type": "ResourceFile"
+     },
+     {
+      "name": "resourceType",
+      "value": "Css",
+      "type": "Label"
+     }
+    ]
+   },
+   {
     "id": "4d36e31f-d0da-6520-a96d-dcd70f0fafcd",
     "type": "LayoutResourceFile",
     "typeDesc": "Resource",
@@ -21,29 +44,6 @@
      {
       "name": "resourceType",
       "value": "Javascript",
-      "type": "Label"
-     }
-    ]
-   },
-   {
-    "id": "09efabd7-9c19-4836-e2fc-1b35752fee84",
-    "type": "LayoutResourceFile",
-    "typeDesc": "Resource",
-    "parent": "UnIqEiD",
-    "properties": [
-     {
-      "name": "name",
-      "value": "liquidCSS",
-      "type": "Id"
-     },
-     {
-      "name": "resourceFile",
-      "value": "/pentaho/api/repos/startupRuleEngine/static/system/css/liquid.css",
-      "type": "ResourceFile"
-     },
-     {
-      "name": "resourceType",
-      "value": "Css",
       "type": "Label"
      }
     ]
@@ -962,11 +962,6 @@
       "type": "JavaScript"
      },
      {
-      "name": "colTypes",
-      "value": "[\"runKettle\",\"string\",\"string\",\"hidden\",\"checkbox\",\"checkbox\",\"checkbox\",\"formatLastExecution\",\"executionStatus\",\"showLog\"]",
-      "type": "colTypesCustom"
-     },
-     {
       "name": "colFormats",
       "value": "[]",
       "type": "Array"
@@ -997,9 +992,9 @@
       "type": "Array"
      },
      {
-      "name": "info",
-      "value": "false",
-      "type": "Boolean"
+      "name": "colTypes",
+      "value": "[\"runKettle\",\"string\",\"string\",\"hidden\",\"checkbox\",\"checkbox\",\"checkbox\",\"formatLastExecution\",\"executionStatus\",\"showLog\"]",
+      "type": "colTypesCustom"
      },
      {
       "name": "sort",
@@ -1032,6 +1027,11 @@
       "type": "Boolean"
      },
      {
+      "name": "info",
+      "value": "false",
+      "type": "Boolean"
+     },
+     {
       "name": "colSearchable",
       "value": "[]",
       "type": "Array"
@@ -1047,14 +1047,14 @@
       "type": "Datasource"
      },
      {
-      "name": "sDom",
-      "value": "",
-      "type": "JavaScript"
-     },
-     {
       "name": "sortBy",
       "value": "[]",
       "type": "SortByArray"
+     },
+     {
+      "name": "sDom",
+      "value": "",
+      "type": "JavaScript"
      },
      {
       "name": "priority",
@@ -1565,6 +1565,16 @@
       "name": "name",
       "value": "listEndpointsQuery",
       "type": "Id"
+     },
+     {
+      "name": "stepName",
+      "value": "OUTPUT",
+      "type": "String"
+     },
+     {
+      "name": "kettleOutput",
+      "value": "Inferred",
+      "type": "kettleOutputCustom"
      }
     ],
     "meta": "CPK",

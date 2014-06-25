@@ -686,33 +686,38 @@ border: none;
 
 
 
-.dataTables_wrapper {
+.mainBlock .dataTables_wrapper {
   min-height: 1px;
   margin-left: 0px;
   margin-right: 0px;
 }
-.dataTables_wrapper .dataTables_filter{
+.mainBlock .dataTables_wrapper .dataTables_filter{
   display: none;
 }
 
-table{
-  /* border: none; */
+.mainBlock table.dataTable table{
+  border: none;
   max-width: 100%;
   min-width: 100%;
   padding-top: 20px;
   /* padding-bottom: 10px; */
   border-collapse:separate;
-  border-spacing:0px;
+  border-spacing: 0;
   /* margin-top: 20px; */
   font-family: 'OpenSansLight';
   font-size: 12px;
 }
 
+.mainBlock table.dataTable.no-footer th,
+.mainBlock table.dataTable.no-footer{
+  border: none;
+}
+
 /* Header */
-thead tr {
+.mainBlock table.dataTable thead tr {
   height: 30px;
 }
-thead th {
+.mainBlock table.dataTable thead th {
   background: none;
   color: #005fa2; /*#1973BC;*/
   font-family: 'OpenSansLight';
@@ -726,24 +731,24 @@ thead th {
 
 
 /* Body */
-table tbody tr{
+.mainBlock table.dataTable tbody tr{
   height: 52px;
 }
-tbody tr:nth-child(even),
-tbody tr:nth-child(odd) 
+.mainBlock table.dataTable tbody tr:nth-child(even),
+.mainBlock table.dataTable tbody tr:nth-child(odd) 
 {
   background: #ffffff;
   /* background: linear-gradient(to bottom, #FFFFFF 0%, #F8F8F8 100%) repeat scroll 0 0 rgba(0, 0, 0, 0); */
   border: 1px solid #ccdee9;
 }
 
-tbody
+.mainBlock table.dataTable tbody
 {
   border: 1px solid #ccdee9;
 /* display:block; */
 }
 
-tbody td{
+.mainBlock table.dataTable tbody td{
   text-align: left;
   color: #333e48;
   font-size: 12px;
@@ -753,34 +758,31 @@ tbody td{
   border:none;
   border-bottom: 1px solid #ccdee9;
 }
-tbody tr:first-child td{
+.mainBlock table.dataTable  tbody tr:first-child td{
   border-top: 1px solid #ccdee9;
 }
 
-thead th:first-child {
+.mainBlock table.dataTable  thead th:first-child {
   padding-left: 20px;
 }
-tbody tr td:first-child {
+.mainBlock table.dataTable  tbody tr td:first-child {
   padding-left: 20px;
   border-left: 1px solid #ccdee9;
 }
-tbody tr td:last-child {
+.mainBlock table.dataTable  tbody tr td:last-child {
   border-right: 1px solid #ccdee9;
   padding-right: 18px;
 }
 
-tr.even, 
-tr.odd
+.mainBlock table.dataTable tr.even, 
+.mainBlock table.dataTable tr.odd
 {
   border-spacing:1px;
 }
 
-tr.even td.sorting_1 {
-  background: none !important;
-}
-
-tr.odd td.sorting_1 {
-  background: none !important;
+.mainBlock table.dataTable tr.even td.sorting_1,
+.mainBlock table.dataTable tr.odd td.sorting_1 {
+  background: none;
 }
 
 /* tr.odd:hover, */
@@ -795,18 +797,18 @@ tr.odd td.sorting_1 {
 /* } */
 
 
-.sorting,
-.sorting_asc,
-.sorting_desc {
+.mainBlock table.dataTable .sorting,
+.mainBlock table.dataTable .sorting_asc,
+.mainBlock table.dataTable .sorting_desc {
   background: none;
   cursor: pointer;
 } 
 
-.sorting_asc,
-.sorting_desc,
-.sorting:hover,
-.sorting_asc:hover,
-.sorting_desc:hover
+.mainBlock table.dataTable .sorting_asc,
+.mainBlock table.dataTable .sorting_desc,
+.mainBlock table.dataTable .sorting:hover,
+.mainBlock table.dataTable .sorting_asc:hover,
+.mainBlock table.dataTable .sorting_desc:hover
 {
   color: #00b9f1;
   background: none;
@@ -848,35 +850,35 @@ tr.odd td.sorting_1 {
 
 
 
-td.column1,
+.mainBlock td.column1,
 .executionStatus span
 {
   line-height: 32px;
   font-family: 'OpenSansSemiBold';
 }
-td.column1
+.mainBlock td.column1
 {
   padding-left: 10px;
 }
 
 
-.column2{
+.mainBlock .column2{
   padding-left: 35px;
 }
 
 
-thead th.checkbox
+.mainBlock table.dataTable thead th.checkbox
 {
   padding: 5px 0;
 }
-thead th.column5{
+.mainBlock table.dataTable thead th.column5{
   text-align:center !important;
 }
-thead th.column6{
+.mainBlock table.dataTable thead th.column6{
   text-align:right !important;
 }
 
-th[colspan].checkbox{
+.mainBlock table.dataTable tr:first-child th[colspan].checkbox{
   font-weight: lighter;
   padding-bottom: 5px;
   text-align: center;
@@ -922,21 +924,21 @@ th[colspan].checkbox{
 }
 
 
-td.formatLastExecution{ 
+table.dataTable td.formatLastExecution{ 
   font-family: 'OpenSansRegular';
   font-weight: normal;
 }
 
-td.formatLastExecution b{ 
+table.dataTable td.formatLastExecution b{ 
   font-family: 'OpenSansSemiBold';
   font-weight: normal;
 }
 
-thead th.executionStatus {
+table.dataTable thead th.executionStatus {
   text-align: center !important;
   width: 60px;
 }
-td.executionStatus{
+table.dataTable td.executionStatus{
   font-family:'OpenSansSemiBold';
 }
 .executionStatus div,
@@ -958,12 +960,12 @@ td.executionStatus{
   border: 1px solid #ff0000;
 }
 
-thead th.showLog {
+.mainBlock  table.dataTable thead th.showLog {
   text-align: center !important;
   width: 80px;
   padding-right: 5px;
 }
-tr.showLog{
+.mainBlock  table.dataTable tr.showLog{
   padding-right: 20px;
   position: relative;
 }
