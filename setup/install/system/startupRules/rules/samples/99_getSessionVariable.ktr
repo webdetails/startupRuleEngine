@@ -110,6 +110,7 @@
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
+        <default_value/>
       </field>
       <field>
         <name>REGION_list</name>
@@ -122,10 +123,11 @@
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
+        <default_value/>
       </field>
       <field>
         <name>CAR</name>
-        <variable>car</variable>
+        <variable>CAR</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -134,6 +136,20 @@
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
+        <default_value/>
+      </field>
+      <field>
+        <name>SPRING_SECURITY_CONTEXT</name>
+        <variable>SPRING_SECURITY_CONTEXT</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <default_value/>
       </field>
     </fields>
      <cluster_schema/>
@@ -188,6 +204,9 @@
         </field>
       <field>
         <name>CAR</name>
+        </field>
+      <field>
+        <name>SPRING_SECURITY_CONTEXT</name>
         </field>
       </fields>
      <cluster_schema/>
