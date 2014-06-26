@@ -274,7 +274,7 @@
       </field>
       <field>
         <name>dst_folder</name>
-        <variable>&#x24;&#x7b;cpk.webapp.dir&#x7d;&#x2f;WEB-INF&#x2f;lib</variable>
+        <variable>&#x24;&#x7b;cpk.webapp.dir&#x7d;WEB-INF&#x2f;lib</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -322,7 +322,7 @@
       </field>
       <field>
         <name>cpk_session_listener</name>
-        <variable>&#x24;&#x7b;cpk.webapp.dir&#x7d;&#x2f;WEB-INF&#x2f;lib&#x2f;cpk-pentaho5-session-listener-TRUNK-SNAPSHOT.jar</variable>
+        <variable>&#x24;&#x7b;cpk.webapp.dir&#x7d;WEB-INF&#x2f;lib&#x2f;cpk-pentaho5-session-listener-TRUNK-SNAPSHOT.jar</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -824,6 +824,10 @@
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
 <attributes><group><name>DataService</name>
-</group></attributes>
+<attribute><key>name</key>
+<value/>
+</attribute><attribute><key>stepname</key>
+<value/>
+</attribute></group></attributes>
 
 </transformation>

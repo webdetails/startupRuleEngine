@@ -472,8 +472,8 @@
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>filename</name>
-        <rename/>
+      </field>      <field>        <name>uri</name>
+        <rename>filename</rename>
         <length>-2</length>
         <precision>-2</precision>
       </field>      <field>        <name>executeAtStart</name>
