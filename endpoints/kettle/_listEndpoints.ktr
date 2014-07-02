@@ -15,23 +15,13 @@
             <description/>
         </parameter>
         <parameter>
-            <name>cpk.solution.system</name>
+            <name>cpk.solution.system.dir</name>
             <default_value>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;..&#x2f;</default_value>
             <description/>
         </parameter>
         <parameter>
-            <name>endpoint.executeAtLogin</name>
-            <default_value>N</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>endpoint.executeAtStart</name>
-            <default_value>Y</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>folder</name>
-            <default_value>&#x24;&#x7b;cpk.solution.system&#x7d;&#x2f;startupRules</default_value>
+            <name>rules.dir</name>
+            <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;startupRules&#x2f;rules</default_value>
             <description/>
         </parameter>
     </parameters>
@@ -98,51 +88,6 @@
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>AgileBI</name>
-    <server>localhost</server>
-    <type>MONETDB</type>
-    <access>Native</access>
-    <database>pentaho-instaview</database>
-    <port>50006</port>
-    <username>monetdb</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb14a17edb86abd8</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <read_only>true</read_only>
-    <attributes>
-      <attribute><code>EXTRA_OPTION_INFOBRIGHT.characterEncoding</code><attribute>UTF-8</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>50006</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
-    </attributes>
-  </connection>
-  <connection>
-    <name>baseline_demo</name>
-    <server>&#x24;&#x7b;BIGWIRELESS_MYSQL_HOST&#x7d;</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>BaselineDemo</database>
-    <port>&#x24;&#x7b;BIGWIRELESS_MYSQL_PORT&#x7d;</port>
-    <username/>
-    <password>Encrypted </password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;BIGWIRELESS_MYSQL_PORT&#x7d;</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
   <hop> <from>Filter rows</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>map to boolean-like string</from><to>Transpose</to><enabled>Y</enabled> </hop>
@@ -154,12 +99,15 @@
   <hop> <from>If field value is null</from><to>Select values</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter rows</from><to>String operations 2</to><enabled>Y</enabled> </hop>
   <hop> <from>String operations 2</from><to>map to boolean-like string</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get File Names</from><to>Read parameters from kettle file</to><enabled>Y</enabled> </hop>
   <hop> <from>Read parameters from kettle file</from><to>Filter rows</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get File Names</from><to>Read metadata from kettle file</to><enabled>Y</enabled> </hop>
   <hop> <from>Read metadata from kettle file</from><to>String operations</to><enabled>Y</enabled> </hop>
   <hop> <from>Select values</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
   <hop> <from>START</from><to>Get File Names</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get File Names</from><to>Filter filenames</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter filenames</from><to>private endpoints</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter filenames</from><to>public endpoints</to><enabled>Y</enabled> </hop>
+  <hop> <from>public endpoints</from><to>Read parameters from kettle file</to><enabled>Y</enabled> </hop>
+  <hop> <from>public endpoints</from><to>Read metadata from kettle file</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Data Grid</name>
@@ -192,8 +140,8 @@
     </data>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>623</xloc>
-      <yloc>38</yloc>
+      <xloc>704</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -211,8 +159,37 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>324</xloc>
-      <yloc>26</yloc>
+      <xloc>416</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter filenames</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>public endpoints</send_true_to>
+<send_false_to>private endpoints</send_false_to>
+    <compare>
+<condition>
+ <negated>Y</negated>
+ <leftvalue>short_filename</leftvalue>
+ <function>STARTS WITH</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>_</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>192</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -236,12 +213,12 @@
  <leftvalue>parameter</leftvalue>
  <function>STARTS WITH</function>
  <rightvalue/>
- <value><name>constant</name><type>String</type><text>endpoint.</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+ <value><name>constant</name><type>String</type><text>cpk.</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>324</xloc>
-      <yloc>118</yloc>
+      <xloc>416</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -271,16 +248,16 @@
     <dynamic_include_subfolders>N</dynamic_include_subfolders>
     <limit>0</limit>
     <file>
-      <name>&#x24;&#x7b;folder&#x7d;</name>
-      <filemask>&#x5b;a-zA-Z&#x5d;&#x2b;.&#x2a;&#x5c;.k.&#x2a;</filemask>
+      <name>&#x24;&#x7b;rules.dir&#x7d;</name>
+      <filemask>.&#x2a;&#x5c;.&#x28;ktr&#x7c;kjb&#x29;</filemask>
       <exclude_filemask/>
       <file_required>N</file_required>
       <include_subfolders>Y</include_subfolders>
     </file>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>182</xloc>
-      <yloc>232</yloc>
+      <xloc>96</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -319,8 +296,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>819</xloc>
-      <yloc>312</yloc>
+      <xloc>896</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -336,7 +313,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<join_type>FULL OUTER</join_type>
+<join_type>LEFT OUTER</join_type>
 <step1>Sort rows 2</step1>
 <step2>Sort rows</step2>
     <keys_1>
@@ -347,8 +324,8 @@
     </keys_2>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>723</xloc>
-      <yloc>317</yloc>
+      <xloc>800</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -366,8 +343,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1040</xloc>
-      <yloc>311</yloc>
+      <xloc>1120</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -387,7 +364,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xa;var kettleMeta&#x3b;&#xa;if &#x28;extension &#x3d;&#x3d; &#x27;ktr&#x27;&#x29;&#x7b;&#xa;	kettleMeta &#x3d; new Packages.org.pentaho.di.trans.TransMeta&#x28;String&#x28;filename&#x29;&#x29;&#x3b;&#xa;&#x7d; else &#x7b;&#xa;	kettleMeta &#x3d; new Packages.org.pentaho.di.job.JobMeta&#x28;String&#x28;filename&#x29;, null&#x29;&#x3b;	&#xa;&#x7d;&#xa;&#xa;var name &#x3d; kettleMeta.getName&#x28;&#x29; &#x7c;&#x7c; &#x22;&#x22;&#x3b;&#xa;var description &#x3d; kettleMeta.getName&#x28;&#x29; &#x7c;&#x7c; &#x22;&#x22;&#x3b;	&#xa;var extendedDescription &#x3d; kettleMeta.getExtendedDescription&#x28;&#x29; &#x7c;&#x7c; &#x22;&#x22;&#x3b;&#xa;&#xa;&#x2f;&#x2f; do not output the trigger row&#xa;&#x2f;&#x2f;trans_Status &#x3d; SKIP_TRANSFORMATION&#x3b;</jsScript_script>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xa;var kettleMeta&#x3b;&#xa;var name, description, extendedDescription&#x3b;&#xa;try &#x7b;&#xa;	if &#x28;extension &#x3d;&#x3d; &#x27;ktr&#x27;&#x29;&#x7b;&#xa;		kettleMeta &#x3d; new Packages.org.pentaho.di.trans.TransMeta&#x28;String&#x28;filename&#x29;&#x29;&#x3b;&#xa;	&#x7d; else &#x7b;&#xa;		kettleMeta &#x3d; new Packages.org.pentaho.di.job.JobMeta&#x28;String&#x28;filename&#x29;, null&#x29;&#x3b;	&#xa;	&#x7d;&#xa;&#xa;	name &#x3d; kettleMeta.getName&#x28;&#x29; &#x7c;&#x7c; &#x22;&#x22;&#x3b;&#xa;	description &#x3d; kettleMeta.getDescription&#x28;&#x29; &#x7c;&#x7c; &#x22;&#x22;&#x3b;	&#xa;	extendedDescription &#x3d; kettleMeta.getExtendedDescription&#x28;&#x29; &#x7c;&#x7c; &#x22;&#x22;&#x3b;&#xa;&#x7d; catch &#x28;e&#x29; &#x7b;&#xa;&#xa;&#x7d;&#xa;&#x2f;&#x2f; do not output the trigger row&#xa;&#x2f;&#x2f;trans_Status &#x3d; SKIP_TRANSFORMATION&#x3b;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>description</name>
         <rename>description</rename>
         <type>String</type>
@@ -408,8 +385,8 @@
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>233</xloc>
-      <yloc>329</yloc>
+      <xloc>320</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -429,7 +406,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xa;var kettleMeta&#x3b;&#xa;if &#x28;extension &#x3d;&#x3d; &#x27;ktr&#x27;&#x29;&#x7b;&#xa;	kettleMeta &#x3d; new Packages.org.pentaho.di.trans.TransMeta&#x28;String&#x28;filename&#x29;&#x29;&#x3b;&#xa;&#x7d; else &#x7b;&#xa;	kettleMeta &#x3d; new Packages.org.pentaho.di.job.JobMeta&#x28;String&#x28;filename&#x29;, null&#x29;&#x3b;	&#xa;&#x7d;&#xa;&#xa;&#xa;var parameters &#x3d; kettleMeta.listParameters&#x28;&#x29;&#x3b;&#xa;var k&#x3b;&#xa;for &#x28;k&#x3d;0&#x3b; k&#x3c;parameters.length&#x3b; k&#x2b;&#x2b;&#x29;&#x7b;&#xa;&#xa;	var propName &#x3d; parameters&#x5b;k&#x5d;&#x3b;&#xa;	var propValue &#x3d; kettleMeta.getParameterDefault&#x28;parameters&#x5b;k&#x5d;&#x29;&#x3b;	&#xa;	&#x2f;&#x2f;var propDescription &#x3d; kettleMeta.getParameterDescription&#x28;parameters&#x5b;k&#x5d;&#x29;&#x3b;&#xa;    &#x2f;&#x2f; create a new row object, that fits our output size&#xa;&#xa;    var row &#x3d; createRowCopy&#x28;getOutputRowMeta&#x28;&#x29;.size&#x28;&#x29;&#x29;&#x3b;&#xa; &#xa;    &#x2f;&#x2f; find the index of the first field appended by this step&#xa;    var idx &#x3d; getInputRowMeta&#x28;&#x29;.size&#x28;&#x29;&#x3b;&#xa; &#xa;    &#x2f;&#x2f; fill each field &#x28;notice how the index is increased&#x29;&#xa;    row&#x5b;idx&#x2b;&#x2b;&#x5d; &#x3d; propName&#x3b;&#xa;    row&#x5b;idx&#x2b;&#x2b;&#x5d; &#x3d; propValue&#x3b;&#xa;    &#x2f;&#x2f;row&#x5b;idx&#x2b;&#x2b;&#x5d; &#x3d; propDescription&#x3b;&#xa;    &#x2f;&#x2f;row&#x5b;idx&#x2b;&#x2b;&#x5d; &#x3d; kettleDescription&#x3b;&#xa; &#xa;    &#x2f;&#x2f; output the row&#xa;    putRow&#x28;row&#x29;&#x3b;&#xa;&#x7d;&#xa;&#xa;&#x2f;&#x2f; do not output the trigger row&#xa;trans_Status &#x3d; SKIP_TRANSFORMATION&#x3b;</jsScript_script>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xa;var kettleMeta&#x3b;&#xa;var parameters&#x3b;&#xa;try &#x7b;&#xa;	if &#x28;extension &#x3d;&#x3d; &#x27;ktr&#x27;&#x29;&#x7b;&#xa;		kettleMeta &#x3d; new Packages.org.pentaho.di.trans.TransMeta&#x28;String&#x28;filename&#x29;&#x29;&#x3b;&#xa;	&#x7d; else &#x7b;&#xa;		kettleMeta &#x3d; new Packages.org.pentaho.di.job.JobMeta&#x28;String&#x28;filename&#x29;, null&#x29;&#x3b;	&#xa;	&#x7d;&#xa;	parameters &#x3d; kettleMeta.listParameters&#x28;&#x29; &#x7c;&#x7c; &#x5b;&#x5d;&#x3b;&#xa;&#x7d; catch &#x28;e&#x29; &#x7b;&#xa;	&#x2f;&#x2f;swallow&#xa;	parameters &#x3d; &#x5b;&#x5d;&#x3b;&#xa;&#x7d;&#xa;&#xa;var k&#x3b;&#xa;for &#x28;k&#x3d;0&#x3b; k&#x3c;parameters.length&#x3b; k&#x2b;&#x2b;&#x29;&#x7b;&#xa;&#xa;	var propName &#x3d; parameters&#x5b;k&#x5d;&#x3b;&#xa;	var propValue&#x3b;&#xa;	try &#x7b;&#xa;		propValue &#x3d; kettleMeta.getParameterDefault&#x28;parameters&#x5b;k&#x5d;&#x29;&#x3b;	&#xa;		&#x2f;&#x2f;var propDescription &#x3d; kettleMeta.getParameterDescription&#x28;parameters&#x5b;k&#x5d;&#x29;&#x3b;&#xa;    	&#x2f;&#x2f; create a new row object, that fits our output size&#xa;	&#x7d; catch&#x28;e&#x29; &#x7b;&#xa;		&#x2f;&#x2f; swallow&#xa;	&#x7d;	&#xa;    var row &#x3d; createRowCopy&#x28;getOutputRowMeta&#x28;&#x29;.size&#x28;&#x29;&#x29;&#x3b;&#xa; &#xa;    &#x2f;&#x2f; find the index of the first field appended by this step&#xa;    var idx &#x3d; getInputRowMeta&#x28;&#x29;.size&#x28;&#x29;&#x3b;&#xa; &#xa;    &#x2f;&#x2f; fill each field &#x28;notice how the index is increased&#x29;&#xa;    row&#x5b;idx&#x2b;&#x2b;&#x5d; &#x3d; propName&#x3b;&#xa;    row&#x5b;idx&#x2b;&#x2b;&#x5d; &#x3d; propValue&#x3b;&#xa;    &#x2f;&#x2f;row&#x5b;idx&#x2b;&#x2b;&#x5d; &#x3d; propDescription&#x3b;&#xa;    &#x2f;&#x2f;row&#x5b;idx&#x2b;&#x2b;&#x5d; &#x3d; kettleDescription&#x3b;&#xa; &#xa;    &#x2f;&#x2f; output the row&#xa;    putRow&#x28;row&#x29;&#x3b;&#xa;&#x7d;&#xa;&#xa;&#x2f;&#x2f; do not output the trigger row&#xa;trans_Status &#x3d; SKIP_TRANSFORMATION&#x3b;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>parameter</name>
         <rename>parameter</rename>
         <type>String</type>
@@ -444,8 +421,8 @@
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>239</xloc>
-      <yloc>130</yloc>
+      <xloc>320</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -466,8 +443,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>68</xloc>
-      <yloc>229</yloc>
+      <xloc>32</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -495,11 +472,11 @@
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>filename</name>
-        <rename/>
+      </field>      <field>        <name>uri</name>
+        <rename>filename</rename>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>executeAtInit</name>
+      </field>      <field>        <name>executeAtStart</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -514,8 +491,8 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>913</xloc>
-      <yloc>313</yloc>
+      <xloc>992</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -548,8 +525,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>712</xloc>
-      <yloc>121</yloc>
+      <xloc>800</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -582,8 +559,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
-      <yloc>319</yloc>
+      <xloc>576</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -616,8 +593,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>361</xloc>
-      <yloc>315</yloc>
+      <xloc>448</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -650,8 +627,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>408</xloc>
-      <yloc>117</yloc>
+      <xloc>480</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -676,7 +653,7 @@
       <fields>
         <field>
           <field_name>defaultValue</field_name>
-          <key_value>endpoint.executeAtLogin</key_value>
+          <key_value>cpk.executeAtLogin</key_value>
           <target_name>executeAtLogin</target_name>
           <target_type>Boolean</target_type>
           <target_format/>
@@ -690,7 +667,7 @@
           </field>
         <field>
           <field_name>defaultValue</field_name>
-          <key_value>endpoint.executeAtLogout</key_value>
+          <key_value>cpk.executeAtLogout</key_value>
           <target_name>executeAtLogout</target_name>
           <target_type>Boolean</target_type>
           <target_format/>
@@ -704,8 +681,8 @@
           </field>
         <field>
           <field_name>defaultValue</field_name>
-          <key_value>endpoint.executeAtInit</key_value>
-          <target_name>executeAtInit</target_name>
+          <key_value>cpk.executeAtStart</key_value>
+          <target_name>executeAtStart</target_name>
           <target_type>Boolean</target_type>
           <target_format/>
           <target_length>-1</target_length>
@@ -719,8 +696,8 @@
         </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>609</xloc>
-      <yloc>117</yloc>
+      <xloc>704</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -755,8 +732,46 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>517</xloc>
-      <yloc>116</yloc>
+      <xloc>608</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>private endpoints</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>192</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>public endpoints</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>288</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

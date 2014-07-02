@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>get variable</name>
+    <name>get Endpoint Log</name>
     <description>Clean Transformation</description>
     <extended_description/>
     <trans_version/>
@@ -10,8 +10,28 @@
     <directory>&#x2f;</directory>
     <parameters>
         <parameter>
-            <name>variable</name>
-            <default_value>figaro</default_value>
+            <name>cpk.plugin.dir</name>
+            <default_value>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;..</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>cpk.solution.system.dir</name>
+            <default_value>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;..</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>filename</name>
+            <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;startupRules&#x2f;rules&#x2f;log.kjb</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>logs.dir</name>
+            <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;startupRules&#x2f;log</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>rules.dir</name>
+            <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;startupRules&#x2f;rules</default_value>
             <description/>
         </parameter>
     </parameters>
@@ -78,61 +98,47 @@
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>AgileBI</name>
-    <server>localhost</server>
-    <type>MONETDB</type>
-    <access>Native</access>
-    <database>pentaho-instaview</database>
-    <port>50006</port>
-    <username>monetdb</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb14a17edb86abd8</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <read_only>true</read_only>
-    <attributes>
-      <attribute><code>EXTRA_OPTION_INFOBRIGHT.characterEncoding</code><attribute>UTF-8</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>50006</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
-    </attributes>
-  </connection>
-  <connection>
-    <name>baseline_demo</name>
-    <server>&#x24;&#x7b;BIGWIRELESS_MYSQL_HOST&#x7d;</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>BaselineDemo</database>
-    <port>&#x24;&#x7b;BIGWIRELESS_MYSQL_PORT&#x7d;</port>
-    <username/>
-    <password>Encrypted </password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;BIGWIRELESS_MYSQL_PORT&#x7d;</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
-  <hop> <from>Modified Java Script Value</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Variables</from><to>Modified Java Script Value</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Variables</from><to>User Defined Java Expression</to><enabled>N</enabled> </hop>
+  <hop> <from>Select values</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Variables</from><to>getEndpointLog</to><enabled>Y</enabled> </hop>
+  <hop> <from>Sort rows</from><to>Select values</to><enabled>Y</enabled> </hop>
+  <hop> <from>getEndpointLog</from><to>Add sequence</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add sequence</from><to>Sort rows</to><enabled>Y</enabled> </hop>
   </order>
+  <step>
+    <name>Add sequence</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <valuename>row</valuename>
+      <use_database>N</use_database>
+      <connection/>
+      <schema/>
+      <seqname>SEQ_</seqname>
+      <use_counter>Y</use_counter>
+      <counter_name/>
+      <start_at>1</start_at>
+      <increment_by>1</increment_by>
+      <max_value>99999999999999</max_value>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>288</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>Get Variables</name>
     <type>GetVariable</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
@@ -141,8 +147,8 @@
            </partitioning>
     <fields>
       <field>
-        <name>variable</name>
-        <variable>&#x24;&#x7b;variable&#x7d;</variable>
+        <name>filename</name>
+        <variable>&#x24;&#x7b;filename&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -155,41 +161,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>185</xloc>
-      <yloc>247</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Modified Java Script Value</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#xa;var value &#x3d; getVariable&#x28;variable, &#x22;&#x22;&#x29;</jsScript_script>
-      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
-        <jsScript_name>getVariable_Sample</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f; Retrieves the value of a given Kettle&#x2f;Pentaho Variable&#xa;&#x2f;&#x2f; &#xa;&#x2f;&#x2f; Usage&#x3a;&#xa;&#x2f;&#x2f; getVariable&#x28;var, var&#x29;&#x3b;&#xa;&#x2f;&#x2f; 1&#x3a; String - The name of the variable to retrieve.&#xa;&#x2f;&#x2f; 2&#x3a; String - The default if the variable doesn&#x27;t exist.&#xa;&#x2f;&#x2f;&#xa;&#x2f;&#x2f; 2007-07-27&#xa;&#x2f;&#x2f;&#xa;var strVarName&#x3d;&#x22;getVariableTest&#x22;&#x3b;&#xa;var strVarValue&#x3d;&#x22;123456&#x22;&#x3b;&#xa;Alert&#x28;getVariable&#x28;strVarName, &#x22;&#x22;&#x29;&#x29;&#x3b;&#xa;setVariable&#x28;strVarName,strVarValue, &#x22;r&#x22;&#x29;&#x3b;&#xa;Alert&#x28;getVariable&#x28;strVarName, &#x22;&#x22;&#x29;&#x29;&#x3b;&#xa;strVarValue&#x3d;&#x22;654321&#x22;&#x3b;&#xa;setVariable&#x28;strVarName,strVarValue, &#x22;r&#x22;&#x29;&#x3b;&#xa;Alert&#x28;getVariable&#x28;strVarName, &#x22;&#x22;&#x29;&#x29;&#x3b;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>value</name>
-        <rename>value</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>397</xloc>
-      <yloc>245</yloc>
+      <xloc>32</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -207,15 +180,15 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>541</xloc>
-      <yloc>246</yloc>
+      <xloc>608</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>User Defined Java Expression</name>
-    <type>Janino</type>
+    <name>Select values</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -224,17 +197,94 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-       <formula><field_name>value</field_name>
-<formula_string>getVariable&#x28;variable, &#x22;&#x22;&#x29;</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field/>
-</formula>
+    <fields>      <field>        <name>log_line</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>480</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>getEndpointLog</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <specification_method>filename</specification_method>
+    <trans_object_id/>
+    <trans_name/>
+    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;_getEndpointLog.ktr</filename>
+    <directory_path/>
+    <mappings>
+      <input>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>Y</rename_on_output>
+    <description/>
+       <connector><parent>filename</parent><child>k_filename</child></connector>
+    </mapping>      </input>
+      <output>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+    </mapping>      </output>
+          <parameters>       <variablemapping><variable>logs.dir</variable><input>&#x24;&#x7b;logs.dir&#x7d;</input></variablemapping>
+       <variablemapping><variable>rules.dir</variable><input>&#x24;&#x7b;rules.dir&#x7d;</input></variablemapping>
+    <inherit_all_vars>Y</inherit_all_vars>
+    </parameters>
+    </mappings>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>369</xloc>
-      <yloc>153</yloc>
+      <xloc>128</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort rows</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>row</name>
+        <ascending>N</ascending>
+        <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>384</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -245,10 +295,6 @@
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
 <attributes><group><name>DataService</name>
-<attribute><key>name</key>
-<value/>
-</attribute><attribute><key>stepname</key>
-<value/>
-</attribute></group></attributes>
+</group></attributes>
 
 </transformation>

@@ -1,82 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>log</name>
-    <description>Writes a message to the log</description>
-    <extended_description>Job</extended_description>
+  <name>_install_file</name>
+    <description/>
+    <extended_description/>
     <job_version/>
     <job_status>0</job_status>
   <directory>&#x2f;</directory>
   <created_user/>
-  <created_date>2013&#x2f;11&#x2f;28 16&#x3a;36&#x3a;41.255</created_date>
+  <created_date>2014&#x2f;01&#x2f;14 19&#x3a;28&#x3a;28.379</created_date>
   <modified_user/>
-  <modified_date>2013&#x2f;11&#x2f;28 16&#x3a;36&#x3a;41.255</modified_date>
+  <modified_date>2014&#x2f;01&#x2f;14 19&#x3a;28&#x3a;28.379</modified_date>
     <parameters>
         <parameter>
-            <name>endpoint.executeAtLogin</name>
-            <default_value>Y</default_value>
-            <description>fake</description>
+            <name>cpk.plugin.dir</name>
+            <default_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;..</default_value>
+            <description/>
         </parameter>
         <parameter>
-            <name>endpoint.executeAtLogout</name>
-            <default_value>Y</default_value>
-            <description>fake</description>
+            <name>cpk.solution.system.dir</name>
+            <default_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;..&#x2f;..</default_value>
+            <description/>
         </parameter>
         <parameter>
-            <name>endpoint.executeAtStart</name>
-            <default_value>Y</default_value>
-            <description>fake</description>
+            <name>cpk.webapp.dir</name>
+            <default_value>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;..&#x2f;..&#x2f;tomcat&#x2f;webapps&#x2f;pentaho</default_value>
+            <description/>
         </parameter>
         <parameter>
-            <name>message</name>
-            <default_value>Computer says Hi&#x21;</default_value>
+            <name>dst_folder</name>
+            <default_value>&#x24;&#x7b;cpk.webapp.dir&#x7d;&#x2f;WEB-INF&#x2f;lib</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>file_regex</name>
+            <default_value>cpk-pentaho5-session-listener.&#x2a;&#x5c;.jar</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>src_folder</name>
+            <default_value>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;resources&#x2f;lib</default_value>
             <description/>
         </parameter>
     </parameters>
-  <connection>
-    <name>AgileBI</name>
-    <server>localhost</server>
-    <type>MONETDB</type>
-    <access>Native</access>
-    <database>pentaho-instaview</database>
-    <port>50006</port>
-    <username>monetdb</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb14a17edb86abd8</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <read_only>true</read_only>
-    <attributes>
-      <attribute><code>EXTRA_OPTION_INFOBRIGHT.characterEncoding</code><attribute>UTF-8</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>50006</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
-    </attributes>
-  </connection>
-  <connection>
-    <name>baseline_demo</name>
-    <server>&#x24;&#x7b;BIGWIRELESS_MYSQL_HOST&#x7d;</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>BaselineDemo</database>
-    <port>&#x24;&#x7b;BIGWIRELESS_MYSQL_PORT&#x7d;</port>
-    <username/>
-    <password>Encrypted </password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;BIGWIRELESS_MYSQL_PORT&#x7d;</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
     <slaveservers>
     </slaveservers>
 <job-log-table><connection/>
@@ -111,19 +76,6 @@
    <shared_objects_file/>
   <entries>
     <entry>
-      <name>Write To Log</name>
-      <description/>
-      <type>WRITE_TO_LOG</type>
-      <logmessage>&#x24;&#x7b;message&#x7d;</logmessage>
-      <loglevel>Basic</loglevel>
-      <logsubject/>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>439</xloc>
-      <yloc>161</yloc>
-      </entry>
-    <entry>
       <name>START</name>
       <description/>
       <type>SPECIAL</type>
@@ -140,8 +92,51 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>301</xloc>
-      <yloc>159</yloc>
+      <xloc>32</xloc>
+      <yloc>256</yloc>
+      </entry>
+    <entry>
+      <name>Delete files at destination</name>
+      <description/>
+      <type>DELETE_FILES</type>
+      <arg_from_previous>N</arg_from_previous>
+      <include_subfolders>N</include_subfolders>
+      <fields>
+        <field>
+          <name>&#x24;&#x7b;dst_folder&#x7d;</name>
+          <filemask>&#x24;&#x7b;file_regex&#x7d;</filemask>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>352</xloc>
+      <yloc>160</yloc>
+      </entry>
+    <entry>
+      <name>Copy files to destination</name>
+      <description/>
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <overwrite_files>N</overwrite_files>
+      <include_subfolders>N</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>N</destination_is_a_file>
+      <create_destination_folder>N</create_destination_folder>
+      <fields>
+        <field>
+          <source_filefolder>&#x24;&#x7b;src_folder&#x7d;</source_filefolder>
+          <destination_filefolder>&#x24;&#x7b;dst_folder&#x7d;</destination_filefolder>
+          <wildcard>&#x24;&#x7b;file_regex&#x7d;</wildcard>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>480</xloc>
+      <yloc>256</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -150,8 +145,21 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>623</xloc>
-      <yloc>162</yloc>
+      <xloc>736</xloc>
+      <yloc>256</yloc>
+      </entry>
+    <entry>
+      <name>Write To Log</name>
+      <description/>
+      <type>WRITE_TO_LOG</type>
+      <logmessage>Copied &#x24;&#x7b;src_folder&#x7d;&#x2f;&#x24;&#x7b;file_regex&#x7d; to &#x24;&#x7b;dst_folder&#x7d;</logmessage>
+      <loglevel>Minimal</loglevel>
+      <logsubject>_install_file</logsubject>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>672</xloc>
+      <yloc>128</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
@@ -161,22 +169,67 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>437</xloc>
-      <yloc>64</yloc>
+      <xloc>192</xloc>
+      <yloc>32</yloc>
+      </entry>
+    <entry>
+      <name>file exists in destination&#x3f;</name>
+      <description/>
+      <type>EVAL_FILES_METRICS</type>
+      <result_filenames_wildcard/>
+      <Result_field_file/>
+      <Result_field_wildcard/>
+      <Result_field_includesubfolders/>
+      <fields>
+        <field>
+          <source_filefolder>&#x24;&#x7b;dst_folder&#x7d;</source_filefolder>
+          <wildcard>&#x24;&#x7b;file_regex&#x7d;</wildcard>
+          <include_subFolders>N</include_subFolders>
+        </field>
+      </fields>
+      <comparevalue>0</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successnumbercondition>greater</successnumbercondition>
+      <source_files>files</source_files>
+      <evaluation_type>count</evaluation_type>
+      <scale>bytes</scale>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>192</xloc>
+      <yloc>256</yloc>
+      </entry>
+    <entry>
+      <name>Files have same content&#x3f;</name>
+      <description/>
+      <type>FOLDERS_COMPARE</type>
+      <include_subfolders>N</include_subfolders>
+      <compare_filecontent>Y</compare_filecontent>
+      <compare_filesize>N</compare_filesize>
+      <compareonly>specify</compareonly>
+      <wildcard>&#x24;&#x7b;file_regex&#x7d;</wildcard>
+      <filename1>&#x24;&#x7b;src_folder&#x7d;</filename1>
+      <filename2>&#x24;&#x7b;dst_folder&#x7d;</filename2>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>192</xloc>
+      <yloc>160</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>START</from>
-      <to>Write To Log</to>
+      <from>Delete files at destination</from>
+      <to>Copy files to destination</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Write To Log</from>
+      <from>Copy files to destination</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -185,13 +238,58 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Write To Log</from>
-      <to>Abort job</to>
+      <from>Copy files to destination</from>
+      <to>Write To Log</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>file exists in destination&#x3f;</from>
+      <to>Copy files to destination</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
       <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>file exists in destination&#x3f;</from>
+      <to>Files have same content&#x3f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Files have same content&#x3f;</from>
+      <to>Delete files at destination</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>N</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Files have same content&#x3f;</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>file exists in destination&#x3f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>
