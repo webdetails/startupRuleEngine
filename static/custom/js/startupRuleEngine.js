@@ -118,7 +118,10 @@ var SRE = SRE || {};
           };
         });
         $(tgt).attr('id', id);
-        Dashboards.bindControl(component).update();
+        var comp = Dashboards.bindControl(component);
+        //window.SREComponents = window.SREComponents || [];
+        //window.SREComponents.push(comp);
+        comp.update();
       }
     };
     Dashboards.registerAddIn(type, subtype, new AddIn(componentAddIn));
@@ -143,7 +146,7 @@ SRE.registerComponentAddIn('Table', 'colType', 'runKettle', {
   },
   parameters: function(tgt, st, options){
     var r = {
-      filename: "'" + st.tableData[st.rowIdx][options.idxFilename]+"'"
+      filename: "" + st.tableData[st.rowIdx][options.idxFilename]+""
     };
     Dashboards.log('Params:  ' +JSON.stringify(r));
     return r;
@@ -177,9 +180,9 @@ SRE.registerComponentAddIn('Table', 'colType','checkbox', {
   },
   parameters: function(tgt, st, options){
     var p = {
-      filename: "'" + st.tableData[st.rowIdx][options.idxFilename]+"'",
-      event:  "'" +st.category+ "'",
-      value: !this.currentState
+      filename: "" + st.tableData[st.rowIdx][options.idxFilename]+"",
+      event:  "" +st.category+ "",
+      value: (!this.currentState).toString()
     };
     // Dashboards.log('Params:  ' +JSON.stringify(p));
     return p;
@@ -237,7 +240,7 @@ SRE.registerComponentAddIn('Table', 'colType',"showLog", {
   },
   parameters: function(tgt, st, options){
     var p = {
-      filename: "'"+st.tableData[st.rowIdx][options.idxFilename]+"'"
+      filename: ""+st.tableData[st.rowIdx][options.idxFilename]+""
     };
     Dashboards.log('Params: '+JSON.stringify(p));
     return p;
