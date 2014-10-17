@@ -15,7 +15,7 @@
      },
      {
       "name": "resourceFile",
-      "value": "/pentaho/api/repos/startupRuleEngine/static/system/css/liquid.css",
+      "value": "${system:/static/system/css/liquid.css}",
       "type": "ResourceFile"
      },
      {
@@ -38,7 +38,7 @@
      },
      {
       "name": "resourceFile",
-      "value": "/pentaho/api/repos/startupRuleEngine/static/custom/js/startupRuleEngine.js",
+      "value": "${system:/static/custom/js/startupRuleEngine.js}",
       "type": "ResourceFile"
      },
      {
@@ -61,7 +61,7 @@
      },
      {
       "name": "resourceFile",
-      "value": "/pentaho/api/repos/startupRuleEngine/static/custom/css/style.css",
+      "value": "${system:/static/custom/css/style.css}",
       "type": "ResourceFile"
      },
      {
@@ -962,9 +962,9 @@
       "type": "JavaScript"
      },
      {
-      "name": "colFormats",
-      "value": "[]",
-      "type": "Array"
+      "name": "language",
+      "value": "",
+      "type": "JavaScript"
      },
      {
       "name": "colWidths",
@@ -975,11 +975,6 @@
       "name": "colSortable",
       "value": "[\"false\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"false\"]",
       "type": "Array"
-     },
-     {
-      "name": "expandParameters",
-      "value": "[]",
-      "type": "ValuesArray"
      },
      {
       "name": "parameters",
@@ -997,19 +992,19 @@
       "type": "colTypesCustom"
      },
      {
-      "name": "sort",
-      "value": "true",
-      "type": "Boolean"
+      "name": "colFormats",
+      "value": "[]",
+      "type": "Array"
+     },
+     {
+      "name": "expandParameters",
+      "value": "[]",
+      "type": "ValuesArray"
      },
      {
       "name": "displayLength",
       "value": "",
       "type": "Integer"
-     },
-     {
-      "name": "lengthChange",
-      "value": "true",
-      "type": "Boolean"
      },
      {
       "name": "expandOnClick",
@@ -1032,9 +1027,14 @@
       "type": "Boolean"
      },
      {
-      "name": "colSearchable",
-      "value": "[]",
-      "type": "Array"
+      "name": "sort",
+      "value": "true",
+      "type": "Boolean"
+     },
+     {
+      "name": "lengthChange",
+      "value": "true",
+      "type": "Boolean"
      },
      {
       "name": "drawCallback",
@@ -1042,9 +1042,9 @@
       "type": "JavaScript"
      },
      {
-      "name": "dataSource",
-      "value": "listEndpointsQuery",
-      "type": "Datasource"
+      "name": "colSearchable",
+      "value": "[]",
+      "type": "Array"
      },
      {
       "name": "sortBy",
@@ -1057,9 +1057,9 @@
       "type": "JavaScript"
      },
      {
-      "name": "priority",
-      "value": 5,
-      "type": "Integer"
+      "name": "dataSource",
+      "value": "listEndpointsQuery",
+      "type": "Datasource"
      },
      {
       "name": "refreshPeriod",
@@ -1067,14 +1067,19 @@
       "type": "Integer"
      },
      {
-      "name": "paginationType",
-      "value": "two_button",
-      "type": "PaginationType"
+      "name": "priority",
+      "value": 5,
+      "type": "Integer"
      },
      {
       "name": "tableStyle",
       "value": "classic",
       "type": "TableStyle"
+     },
+     {
+      "name": "paginationType",
+      "value": "two_button",
+      "type": "PaginationType"
      },
      {
       "name": "htmlObject",
@@ -1097,13 +1102,13 @@
       "type": "JavaScript"
      },
      {
-      "name": "postFetch",
-      "value": "",
+      "name": "postExecution",
+      "value": "function f(){\nif (false){\n    var myself= this,\n    checkbox_str = 'Check to execute at the next ',\n    tooltips = {\n        'td.column1': 'Name of the endpoint to run',\n        'td.column0 button': 'Run this Kettle job/transformation now',\n        'td.column5 .checkBoxAddIn': checkbox_str + 'server start up',\n        'td.column6 .checkBoxAddIn': checkbox_str + 'user log in',\n        'td.column7 .checkBoxAddIn': checkbox_str + 'user log out',\n        'td.column9': 'Check execution logs'\n    };\n    _.each(tooltips, function(title, key){ \n        myself.placeholder(key).attr('title', title);\n    });\n    this.placeholder().tipsy();\n}\n\n    if (true) {        \n    var extra_row = $('<tr/>');\n    extra_row.append($('<th/>').attr('colspan', 3));\n    extra_row.append($('<th/>').attr('colspan', 3).text('Run service at:').addClass('checkbox'));\n    extra_row.append($('<th/>').attr('colspan', 2));\n    this.placeholder('thead').prepend(extra_row);\n    }\n\n}",
       "type": "JavaScript"
      },
      {
-      "name": "postExecution",
-      "value": "function f(){\nif (false){\n    var myself= this,\n    checkbox_str = 'Check to execute at the next ',\n    tooltips = {\n        'td.column1': 'Name of the endpoint to run',\n        'td.column0 button': 'Run this Kettle job/transformation now',\n        'td.column5 .checkBoxAddIn': checkbox_str + 'server start up',\n        'td.column6 .checkBoxAddIn': checkbox_str + 'user log in',\n        'td.column7 .checkBoxAddIn': checkbox_str + 'user log out',\n        'td.column9': 'Check execution logs'\n    };\n    _.each(tooltips, function(title, key){ \n        myself.placeholder(key).attr('title', title);\n    });\n    this.placeholder().tipsy();\n}\n\n    if (true) {        \n    var extra_row = $('<tr/>');\n    extra_row.append($('<th/>').attr('colspan', 3));\n    extra_row.append($('<th/>').attr('colspan', 3).text('Run service at:').addClass('checkbox'));\n    extra_row.append($('<th/>').attr('colspan', 2));\n    this.placeholder('thead').prepend(extra_row);\n    }\n\n}",
+      "name": "postFetch",
+      "value": "",
       "type": "JavaScript"
      },
      {
@@ -1166,7 +1171,7 @@
      },
      {
       "name": "actionParameters",
-      "value": "[[\"param\",\"value\"],[\"myparam\",\"myvalue\"]]",
+      "value": "[]",
       "type": "ValuesArray"
      },
      {
