@@ -967,11 +967,6 @@
       "type": "JavaScript"
      },
      {
-      "name": "colWidths",
-      "value": "[\"50\",null,null,null,\"50\",\"50\",\"50\",null,\"80\",\"90\"]",
-      "type": "Array"
-     },
-     {
       "name": "colSortable",
       "value": "[\"false\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"false\"]",
       "type": "Array"
@@ -994,6 +989,11 @@
      {
       "name": "colFormats",
       "value": "[]",
+      "type": "Array"
+     },
+     {
+      "name": "colWidths",
+      "value": "[\"50\",null,null,null,\"50\",\"50\",\"50\",null,\"80\",\"90\"]",
       "type": "Array"
      },
      {
@@ -1052,14 +1052,14 @@
       "type": "SortByArray"
      },
      {
-      "name": "sDom",
-      "value": "",
-      "type": "JavaScript"
-     },
-     {
       "name": "dataSource",
       "value": "listEndpointsQuery",
       "type": "Datasource"
+     },
+     {
+      "name": "sDom",
+      "value": "",
+      "type": "JavaScript"
      },
      {
       "name": "refreshPeriod",
@@ -1103,12 +1103,12 @@
      },
      {
       "name": "postExecution",
-      "value": "function f(){\nif (false){\n    var myself= this,\n    checkbox_str = 'Check to execute at the next ',\n    tooltips = {\n        'td.column1': 'Name of the endpoint to run',\n        'td.column0 button': 'Run this Kettle job/transformation now',\n        'td.column5 .checkBoxAddIn': checkbox_str + 'server start up',\n        'td.column6 .checkBoxAddIn': checkbox_str + 'user log in',\n        'td.column7 .checkBoxAddIn': checkbox_str + 'user log out',\n        'td.column9': 'Check execution logs'\n    };\n    _.each(tooltips, function(title, key){ \n        myself.placeholder(key).attr('title', title);\n    });\n    this.placeholder().tipsy();\n}\n\n    if (true) {        \n    var extra_row = $('<tr/>');\n    extra_row.append($('<th/>').attr('colspan', 3));\n    extra_row.append($('<th/>').attr('colspan', 3).text('Run service at:').addClass('checkbox'));\n    extra_row.append($('<th/>').attr('colspan', 2));\n    this.placeholder('thead').prepend(extra_row);\n    }\n\n}",
+      "value": "function f(){\nif (false){\n    var myself= this,\n    checkbox_str = 'Check to execute at the next ',\n    tooltips = {\n        'td.column1': 'Name of the endpoint to run',\n        'td.column0 button': 'Run this Kettle job/transformation now',\n        'td.column5 .checkBoxAddIn': checkbox_str + 'server start up',\n        'td.column6 .checkBoxAddIn': checkbox_str + 'user log in',\n        'td.column7 .checkBoxAddIn': checkbox_str + 'user log out',\n        'td.column9': 'Check execution logs'\n    };\n    _.each(tooltips, function(title, key){ \n        myself.placeholder(key).attr('title', title);\n    });\n    this.placeholder().tipsy();\n}\n\n    if (true) {        \n    var extra_row = $('<tr/>');\n    extra_row.append($('<th/>').attr('colspan', 3));\n    extra_row.append($('<th/>').attr('colspan', 3).text('Run service at:').addClass('checkbox'));\n    extra_row.append($('<th/>').attr('colspan', 2));\n    this.placeholder('thead').prepend(extra_row);\n    }\n\n} ",
       "type": "JavaScript"
      },
      {
       "name": "postFetch",
-      "value": "",
+      "value": "function _f_ ( data ){\n    \n    var rulesModel = {};\n    if (data && data.resultset){\n        _.each( data.resultset, function( row, rowIdx ){\n            rulesModel['row' + rowIdx] = {};\n            _.each( row, function( cell, colIdx ){\n                rulesModel['row' + rowIdx]['col' + colIdx] = {\n                    filename: row[0]\n                };\n            });\n        });\n    }\n    Dashboards.fireChange('rulesModel', rulesModel);\n    \n    \n    this.setAddInOptions('colType', 'runKettle', {\n        parameters: function (tgt, st, options){\n            return { \n                filename: 'rulesModel.row' + st.rowIdx + '.col' + st.colIdx + '.filename' \n            };\n        }\n    });\n\n    this.setAddInOptions('colType', 'checkbox', {\n        parameters: function (tgt, st, options){\n            rulesModel['row' + st.rowIdx]['col' + st.colIdx].event = st.category;\n            rulesModel['row' + st.rowIdx]['col' + st.colIdx].value = (!this.currentState).toString();\n            \n            return { \n                filename: 'rulesModel.row' + st.rowIdx + '.col' + st.colIdx + '.filename',\n                event: 'rulesModel.row' + st.rowIdx + '.col' + st.colIdx + '.event',\n                value: 'rulesModel.row' + st.rowIdx + '.col' + st.colIdx + '.value'\n\n            };\n        }\n    });\n    \n    \n    this.setAddInOptions('colType', 'showLog', {\n        parameters: function (tgt, st, options){\n            return { \n                filename: 'rulesModel.row' + st.rowIdx + '.col' + st.colIdx + '.filename' \n            };\n        }\n    });\n    \n    \n    \n} ",
       "type": "JavaScript"
      },
      {
@@ -1449,6 +1449,34 @@
       "name": "propertyValue",
       "value": "",
       "type": "String"
+     },
+     {
+      "name": "parameterViewRole",
+      "value": "unused",
+      "type": "parameterViewRoleCustom"
+     },
+     {
+      "name": "bookmarkable",
+      "value": "false",
+      "type": "Boolean"
+     }
+    ]
+   },
+   {
+    "id": "b41be21f-78f6-4e42-16bc-d70e64a4da1a",
+    "type": "ComponentsJavascriptParameter",
+    "typeDesc": "Custom parameter",
+    "parent": "GENERIC",
+    "properties": [
+     {
+      "name": "name",
+      "value": "rulesModel",
+      "type": "Id"
+     },
+     {
+      "name": "javaScript",
+      "value": "[] ",
+      "type": "JavaScript"
      },
      {
       "name": "parameterViewRole",
