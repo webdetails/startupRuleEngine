@@ -27,6 +27,16 @@
             <description/>
         </parameter>
         <parameter>
+            <name>cpk.session.roles</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>cpk.session.username</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
             <name>message</name>
             <default_value>Startup Rule Engine says Hi&#x21;</default_value>
             <description/>
