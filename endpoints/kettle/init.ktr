@@ -132,41 +132,7 @@
   <hop> <from>cpk_session_listener.jar exists</from><to>Write to log 2</to><enabled>Y</enabled> </hop>
   <hop> <from>Join Rows &#x28;cartesian product&#x29;</from><to>Blocking Step</to><enabled>Y</enabled> </hop>
   <hop> <from>Blocking Step</from><to>cpk_session_listener.jar exists</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Variables</from><to>isBundled &#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>isBundled &#x3f;</from><to>BAServer utils not bundled</to><enabled>Y</enabled> </hop>
-  <hop> <from>BAServer utils not bundled</from><to>Select values</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select values</from><to>install files 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>install files 2</from><to>Group by</to><enabled>Y</enabled> </hop>
   </order>
-  <step>
-    <name>BAServer utils not bundled</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to/>
-<send_false_to/>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>isBundled</leftvalue>
- <function>&#x3d;</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>false</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>96</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
   <step>
     <name>Blocking Step</name>
     <type>BlockingStep</type>
@@ -380,7 +346,7 @@
       </field>
       <field>
         <name>src_install_dir</name>
-        <variable>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;setup&#x2f;install&#x2f;all</variable>
+        <variable>&#x24;&#x7b;cpk.plugin.dir&#x7d;&#x2f;setup&#x2f;install</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -482,27 +448,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>640</xloc>
       <yloc>128</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>isBundled</name>
-      </remove>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>224</xloc>
-      <yloc>448</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -814,87 +759,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>224</xloc>
       <yloc>256</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>install files 2</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <specification_method>filename</specification_method>
-    <trans_object_id/>
-    <trans_name/>
-    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;_install_files.ktr</filename>
-    <directory_path/>
-    <mappings>
-      <input>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>Y</rename_on_output>
-    <description/>
-       <connector><parent>src_install_dir</parent><child>src_install_dir</child></connector>
-    </mapping>      </input>
-      <output>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>N</rename_on_output>
-    <description/>
-    </mapping>      </output>
-          <parameters>       <variablemapping><variable>cpk.solution.system.dir</variable><input>&#x24;&#x7b;cpk.solution.system.dir&#x7d;</input></variablemapping>
-       <variablemapping><variable>cpk.webapp.dir</variable><input>&#x24;&#x7b;cpk.webapp.dir&#x7d;</input></variablemapping>
-    <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
-    </mappings>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>320</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>isBundled &#x3f;</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#xa;var version &#x3d; kettle_version.split&#x28;&#x27;.&#x27;&#x29;&#x3b;&#xa;&#xa;var isBundled &#x3d; &#x28; version&#x5b;0&#x5d; &#x3e;&#x3d; 6 &#x29; &#x7c;&#x7c; &#x28;version&#x5b;0&#x5d; &#x3e;&#x3d; 5 &#x26;&#x26; version&#x5b;1&#x5d; &#x3e;&#x3d; 4&#x29;&#x3b;&#xa;&#xa;src_install_dir &#x3d; getVariable&#x28;&#x27;cpk.plugin.dir&#x27;, &#x27;.&#x27;&#x29; &#x2b; &#x27;&#x2f;setup&#x2f;install&#x2f;below_5.4&#x27;&#x3b;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>isBundled</name>
-        <rename>isBundled</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>src_install_dir</name>
-        <rename>src_install_dir</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>Y</replace>
-      </field>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>96</xloc>
-      <yloc>352</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
