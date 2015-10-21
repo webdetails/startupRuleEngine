@@ -136,7 +136,8 @@ SRE.registerComponentAddIn('Table', 'colType', 'runKettle', {
   actionDefinition: {
     queryType: 'cpk',
     pluginId: 'startupRuleEngine',
-    endpoint: 'executeendpoint'
+    endpoint: 'executeendpoint',
+    kettleOutput: 'ResultOnly'
   },
   idxFilename: 0, //column containing the filename
   idxEndpointName:1,
