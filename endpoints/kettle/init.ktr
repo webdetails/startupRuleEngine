@@ -795,8 +795,8 @@
     <description/>
     </mapping>      </output>
           <parameters>       <variablemapping><variable>event</variable><input>cpk.executeAtStart</input></variablemapping>
-       <variablemapping><variable>logs.dir</variable><input>&#x24;&#x7b;logs.dir&#x7d;</input></variablemapping>
-       <variablemapping><variable>rules.dir</variable><input>&#x24;&#x7b;rules.dir&#x7d;</input></variablemapping>
+        <variablemapping><variable>logs.dir</variable><input>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;startupRules&#x2f;logs</input></variablemapping>
+        <variablemapping><variable>rules.dir</variable><input>&#x24;&#x7b;cpk.solution.system.dir&#x7d;&#x2f;startupRules&#x2f;rules</input></variablemapping>
     <inherit_all_vars>Y</inherit_all_vars>
     </parameters>
     </mappings>
